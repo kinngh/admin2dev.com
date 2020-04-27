@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 2:<br />Variables and Data Types</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <h3>Integrated Development Environment</h3>
+            <p>Let's refer the coffee making code</p>
+            <pre><code>get cup = 1 unit;
+get coffee = 100 grams;
+get water = 500 ml;
+get pot;
+get timer;
+get frenchPress;
+
+put cup, frenchPress, pot on table;
+pour water(500 ml) in pot;
+start pot;
+set timer = 60 seconds;
+
+put coffee(100 grams) in frenchPress;
+pour 1/5 water from pot in frenchPress;
+set timer = 30 seconds;
+
+pour water from pot in frenchPress;
+set timer = 5 minutes;
+
+pour everything from frenchPress to cup;
+
+drink;</code></pre>
+
+            <p>The first step to making coffee was <i>to enter the kitchen.</i> The equivalent to which is using an IDE (Integrated Development Environment).</p>
+
+            <p>An IDE or Integrated Development Environment is a combination of text editor and tools that make writing, running and error reporting (debugging) easier. Throughout this course, we will be using 2 IDEs.</p>
+            <ul>
+              <li>Salesforce Developer Console</li>
+              <li>Microsoft Visual Studio Code</li>
+            </ul>
+
+            <p>Since we are beginners let's use Salesforce Developer Console.</p>
+            <p>For this, we will be using our Developer Org. A developer org is a Salesforce instance that is used to test and debug SF Applications and Code. If you don't have a Salesforce Developer Org yet, here's how you make it:</p>
+            <ul>
+              <li>Head over to <a href="https://developer.salesforce.com">Salesforce Developer Website</a> and sign up.</li> <br />
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/logo.svg" width=100 height=100 alt="Sign up page"> <br /></figure>
+              <li>Click on your name, and click on <i>My Developer Account</i></li><br />
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/logo.svg" width=100 height=100 alt="Developer Org"> <br /></figure>
+            </ul>
+
+            <hr>
+            <blockquote>Developer Hack</blockquote>
+            <p>Since a Developer Org cannot be reset to its empty state, I like to make trailhead orgs for more complex SF App development where my other settings don't interfere with development. This can be achieved by</p>
+            <ul>
+              <li>Head over to <a href="https://trailhead.salesforce.com">Trailhead</a> and sign in.</li> <br />
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/logo.svg" width=100 height=100 alt="Trailhead Sign In"> <br /></figure>
+              <li>Click on your settings and make a new org</li><br />
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/logo.svg" width=100 height=100 alt="Create a new org"> <br /> </figure>
+              <li>To use the org, open a lesson in trailhead and click on launch</li><br />
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/logo.svg" width=100 height=100 alt="Launch Trailhead Org"> <br /> </figure>
+            </ul>
+            <hr>
+            <p>To open the developer console, click on setup and select developer console
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/logo.svg" width=100 height=100 alt="Developer console"> <br /></figure>
+
+            <h3>Variables and Data Types</h3>
+            </p>
+            <p>Now that we are in our kitchen (the developer console), let's make some coffee. <br />
+              The first step was to <i>gather our materials.</i> <br>
+            <pre> <code>get cup = 1 unit;
+get coffee = 100 grams;
+get water = 500 ml;
+get pot;
+get timer;
+get frenchPress;</code> </pre>
+            We need to gather our basic materials to build on them further. You have materials that have the sole purpose of holding coffee/sugar/water in them. You have materials with the purpose to process it's contents, like the pot boiling water
+            or using French Press to filter the coffee. Then we walk away from the kitchen using just one cup filled with processed/mixed ingredients. The "cups" in code that hold your materials are called Variables. </p>
+
+            <p>Variables are called so because they can vary, meaning their content can change over time just like the cup was first used to hold water, then ground coffee, then finally the prepared coffee. Unlike real life the cup that was used to
+              hold multiple contents of different types, a variable can hold content of only one type and this is called its Data type.</p>
+
+            <p>A data type is just the programmer telling the computer how they intend to use the variable. It's similar to playing <i>fit the shape</i> game from kindergarten. A star hole(data type) will only allow a star(data) to be fit inside.
+              There are two kinds of Data Types in Apex</p>
+            <ul>
+              <li>Primitive Data Types</li>
+              <li>Complex Data Types</li>
+            </ul>
+
+            <p>Primitive data types are the simplest data types to define. </p>
+            <ul>
+              <li>Blob</li>
+              <li>Boolean</li>
+              <li>Date</li>
+              <li>DateTime</li>
+              <li>Decimal</li>
+              <li>Double</li>
+              <li>ID</li>
+              <li>Integer</li>
+              <li>Long</li>
+              <li>Object</li>
+              <li>String</li>
+              <li>Time</li>
+            </ul>
+
+            <p>Complex Data types are based on needs of the programmer. </p>
+            <ul>
+              <li>Class Object</li>
+              <li>Enumerator</li>
+              <li>List</li>
+              <li>Map</li>
+              <li>Set</li>
+              <li>sObject</li>
+            </ul>
+            <p>For example, a <i>List</i> can hold a group of IDs, Strings, Decimals and Integers at the same time. A List could also contain multiple lists within itself! The usage of complex data types are completely dependant on how the programmer
+              intends to use it.</p>
+
+            <h3>Syntax</h3>
+            <p>Every language has it's own grammar, the same applies to programming languages. Every programming language has it's own set of strictly defined grammar called syntax.
+            </p>
+            <p>The grammar(syntax) to make new variables and define their data types is
+            <pre><code>dataType variableName = value;</code></pre>
+            <ul>
+              <li><code>dataType</code> is one of the primitive or complex data types.</li>
+              <li><code>variableName</code> is how we use this variable later.</li>
+              <li><code>=</code> is the <i>assignment operator</i>. This means, assign the value on the right, to the variable on the left. More on operators and how they function is later in the course.</li>
+              <li><code>value</code> is the final value being assigned to the variable.</li>
+              <li><code>;</code> defines end of line / block.</li>
+            </ul>
+
+            A good practice while naming multi-word variables is to use camel case. The variable <code>variableName</code> could be written as <code>VariableName</code>, but it's a good practice to lower case the first letter of the first word and
+            then capitalize first letter of following words. Apex is a case-insensitive language, so <code>variableName</code> and <code>VariableName</code> both mean the same variable. A lot of other programming languages like Python and Swift would
+            see <code>variableName</code> and <code>VariableName</code> as two separate entities. <br />
+            In future lessons, you'll realize how most of the code you write is simply syntax populated with logic and data types.</p>
+
+            <h3>Data Types: Basics</h3>
+            <p>Let's dive into basics of Data Types in an order of ease of understanding.</p>
+            <ul>
+              <p>
+                <li>ID</li>
+                The ID data type holds Salesforce IDs inside single quotes. An ID can be any <u>valid 18 digit</u> character that represents an ID.
+              <pre><code>ID nameID = '00300000003T2PGAA0';</code></pre>
+              </p>
+
+              <p>
+                <li>String</li>
+                A String data type holds Text, Numbers and other alphaneumeric characters inside single quotes. When numbers are put inside a String, it cannot be used to run mathematical operations on, this is why we use Integer, Decimal and Double
+                data types.
+              <pre><code>String siteName = 'Admin2Dev';</code></pre>
+              </p>
+              <p>
+                <li>Integer</li>
+                An Integer data type holds whole numbers that can be negative, zero or positive. The range of Integer is -2,147,483,647 to 2,147,483,647 and separators like <code>,</code> and spaces are not allowed.
+              <pre><code>Integer positiveNumber = 10000;
+Integer zero = 0;
+Integer negativeNumber = -100;</code></pre>
+              </p>
+              <p>
+                <li>Decimal</li>
+                A Decimal data type holds positive and negative numbers that include a decimal point and separators like <code>,</code> and spaces are not allowed.
+              <pre><code>Decimal positiveNumber = 1.45;
+Decimal zero = 0.0;
+Decimal negativeNumber = -1.45;</code></pre>
+              </p>
+              <p>
+                <li>Double</li>
+                A Double data type holds positive and negative numbers that include a decimal point. It has a range of -2<sup>63</sup> to 2<sup>63</sup>-1 and separators like <code>,</code> and spaces are not allowed.
+              <pre><code>Double positiveNumber = 1.45;
+Double zero = 0.0;
+Double negativeNumber = -1.45;</code></pre>
+              </p>
+              <p>
+                <li>Long</li>
+                A long data type holds whole numbers that can be negative, zero or positive. It has a range of -2<sup>63</sup> to 2<sup>63</sup>-1 and separators like <code>,</code> and spaces are not allowed.
+              <pre><code>Long positiveNumber = 100;
+Long zero = 0;
+Long negativeNumber = -100;</code></pre>
+              </p>
+
+            </ul>
+            <p>
+            <h3>Summary</h3><br />
+            <ul>
+              <li>An IDE (Integrated Development Environment) is where we write, run and debug code.</li>
+              <li>Variables hold data that can change over time.</li>
+              <li>Data types define what type of data a variable will hold.</li>
+              <li>There are primitive and complex data types.</li>
+              <li>Primitive data types are simple numbers, texts and Salesforce IDs. Complex data types are dependant on how the programmer intends to use them.</li>
+              <li>The grammar of a programming language is called a Syntax and must be strictly followed.</li>
+            </ul>
+            </p>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="harshdeephura.com">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>

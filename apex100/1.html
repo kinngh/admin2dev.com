@@ -22,6 +22,14 @@
 						<h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
 					</div>
 					<div class="header-nav">
+						<input id="toggle" class="header-checkbox" type="checkbox">
+						<label class="header-toggle" for="toggle">
+							<span>
+								<span class="bar"></span>
+								<span class="bar"></span>
+								<span class="bar"></span>
+							</span>
+						</label>
 						<nav>
 							<ul>
 								<li><a href="../index.html">Home</a></li>
@@ -94,7 +102,7 @@
 						</p>
 						<p>The next step involves how-to for the solution. What steps to follow? What do you require? How long and often should it run?</p>
 
-						<img src="../images/logo.svg" width=50% alt="flow chart for problem solving">
+						<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/logo.svg" width=50% alt="flow chart for problem solving"><br /></figure>
 						<p>From top to bottom, the flowchart is extremely detailed about steps to follow to make a cup of coffee. If you’ve used Flow Builder before, this may seem familiar.</p>
 						<p>
 						<h5>Writing the code</h5>
@@ -125,13 +133,16 @@ pour 1/5 water from pot in frenchPress;
 set timer = 30 seconds;
 
 pour water from pot in frenchPress;
-set timer = 5 minutes;</code></pre></p>
+set timer = 5 minutes;</code></pre>
+						</p>
 
 						<p>Now that our coffee is ready, let's pour it in our cup and drink!
 						<pre><code>pour everything from frenchPress to cup;
-drink;</code></pre></p>
+drink;</code></pre>
+						</p>
 
-						<p>Now, our coffee is ready! The final code looks something like this:</p><pre><code>get cup = 1 unit;
+						<p>Now, our coffee is ready! The final code looks something like this:</p>
+						<pre><code>get cup = 1 unit;
 get coffee = 100 grams;
 get water = 500 ml;
 get pot;
@@ -147,23 +158,26 @@ put coffee(100 grams) in frenchPress;
 pour 1/5 water from pot in frenchPress;
 set timer = 30 seconds;
 
-pour water from pot in frenchPressl
+pour water from pot in frenchPress;
 set timer = 5 minutes;
 
 pour everything from frenchPress to cup;
 
 drink;</code></pre>
 
-<strong><p>Congratulations! You're now a programmer!</p></strong>
+						<strong>
+							<p>Congratulations! You're now a programmer!</p>
+						</strong>
 
-<p><h3>Summary</h3><br />
-	<ul>
-		<li>Programming is writing <i>your</i> solutions to a problem.</li>
-		<li>Following the three step process simplifies programming and problem solving.</li>
-		<li>Learning to code is a marathon and not a sprint. It's okay to take your time.</li>
-		<li><strike>The author has a terrible sleeping schedule</strike></li>
-	</ul>
-</p>
+						<p>
+						<h3>Summary</h3><br />
+						<ul>
+							<li>Programming is writing <i>your</i> solutions to a problem.</li>
+							<li>Following the three step process simplifies programming and problem solving.</li>
+							<li>Learning to code is a marathon and not a sprint. It's okay to take your time.</li>
+							<li><strike>The author has a terrible sleeping schedule</strike></li>
+						</ul>
+						</p>
 
 					</div>
 				</article>
