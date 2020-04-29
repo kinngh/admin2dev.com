@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 3:<br />Developer Console, Arithmetic Operations, String Interpolation and Code Refactoring</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <h3>Installing Dark Mode for Salesforce Extension for Chrome [Recommended]</h3>
+            <p>As a programmer you will spend hours at a strech staring at a screen figuring out solutions and writing code which makes it really important to protect your eyes. A good way to reduce the stress on eyes is using dark mode wherever
+              possible. Salesforce doesn't provide an inbuilt dark mode UI, but it's possible to get there using a browser extension. The one I recommend is <i>Dark Mode for Salesorce</i>.</p>
+            <p>Download the extension from <a href="https://chrome.google.com/webstore/detail/dark-mode-for-salesforce/dfhaknkfkemfajjhmkikhhaiafkhphak?hl=en" target="_blank">Chrome Web Store</a> and follow on screen instructions</p>
+
+            <p>All screenshots through out the course will use Darkmode wherever possible. Note that this doesn't change any functionality in your Salesforce org, just changes the color of UI elements.</p>
+
+            <h3>The Developer Console</h3>
+
+            <p>Open developer console.</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/opening-developer-console-classic.png" width=100% alt="Open Developer Console in classic">
+              <figcaption>Classic</figcaption> <br />
+            </figure>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/opening-developer-console-lightning.png" width=100% alt="Open Developer Console in lightning">
+              <figcaption>Lightning</figcaption> <br />
+            </figure>
+            <p>You should be greeted with a screen similar to this:</p>
+            <figure class="kg-card kg-width-full kg-card-hascaption"><img src="../images/apex/3/developer-console.png" width=100% alt="Developer Console with numbers and sections marked." class="kg-image"></figure>
+            <ol>
+              <li><strong>File</strong>: This menu contains options to open, save, close and delete files and resources.</li>
+              <li><strong>Edit</strong>: This menu contains options to find and replace, fix indentation and code formatting.</li>
+              <li><strong>Debug</strong>: This menu contains options that relate to debugging and error fixing code.</li>
+              <li><strong>Test</strong>: This menu contains options related to testing our code and ensuring our code does what it's supposed to.</li>
+              <li><strong>Workspace</strong>: This menu contains options to setup UI for the developer console.</li>
+              <li><strong>Help</strong>: This menu contains general help topics like links to documentation, shortcut keys and preferences for the developer console.</li>
+              <br />
+              <li><strong>Tabs</strong>: This space contains all open files in a tabbed format, ready to switch between.</li>
+              <li><strong>Editor</strong>: This is where we write our code.</li>
+              <br />
+              <li><strong>Logs</strong>: This tab contains all logs from current and previous runs.</li>
+              <li><strong>Tests</strong>: This tab contains all reports from testing our code like code coverage and pass/fail results.</li>
+              <li><strong>Checkpoints</strong>: This tab contains information on checkpoints when setup in code.</li>
+              <li><strong>Query Editor</strong>: This option allows the developer to run SOSL and SOQL queries and validate them.</li>
+              <li><strong>View State</strong>:</li>
+              <li><strong>Progress</strong>: This tab shows progress on running the current and previous code.</li>
+              <li><strong>Problems</strong>: This tab shows, in near real time, the errors available, if any, while writing our code.</li>
+            </ol>
+
+            <h3>Writing code</h3>
+            <p>Now that we know where we write our code, let's write some of our first programs! Head over to Debug > Open execute anonymous window. This window allows us to write snippets of code. Any code that runs here is anonymous and doesn't
+              follow sharing rules, which gives the current user access to all objects in the org.</p>
+            <p>Let's make 2 integers and add them:</p>
+            <pre><code>Integer a = 5;
+Integer b = 4;
+a + b;</code></pre>
+            <p>Make sure the "Open logs after execution" is checked. Your screen should look something like this:</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/anon-exec.png" width=100% alt="Running code in anon exec window">
+            </figure>
+
+            <p>You will notice you're greeted with this screen:</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/log-error.png" width=100% alt="Log screen">
+            </figure>
+            <pre><code>Line 3, Column 1:
+Expression cannot be a statment</code> </pre>
+            <p>The code in line 3, <code>a+b</code> is the equivalent to mixing coffee and water in nothing. We need a variable to hold them. Let's fix that:</p>
+            <pre><code>Integer a = 5;
+Integer b = 4;
+Integer c = a + b;</code></pre>
+            <p>You will notice you're automatically taken to this screen</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/log-screen.png" width=100% alt="Log screen">
+            </figure>
+            <p>Click on <code>Debug Only</code> checkbox and you will notice it's empty.</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/log-screen-empty.png" width=100% alt="Log screen">
+            </figure>
+            <p>Here's what we did wrong. We took a calculator and pressed a + b, but we didn't press the <code>=</code> to see the result, the equivalent of <code>=</code> is using <code>System.debug();</code>.</p>
+            <p><code>System.debug();</code> is used to output text and variables in the log. Programmers use this handy line of code to debug and see values of variables throughtout it's runtime. The syntax for using it is:
+            <pre><code>System.debug(value);</code></pre>
+            <p>Where <code>value</code> can be any Data type. Here are some examples:</p>
+            <pre><code>System.debug(c);
+System.debug("This is some text");
+System.debug(45);</code></pre>
+            <p>Let's add this to our code and run:</p>
+            <pre><code>Integer a = 5;
+Integer b = 4;
+Integer c = a + b;
+System.debug(c);</code></pre>
+
+            <p>Now, click on <strong>Debug Only</strong> and you will notice your answer is there! </p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/debug-answer-9.png" width=100% alt="Showing logs"><br />
+            </figure>
+
+            <h3>Understanding logs</h3>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/understanding-logs.png" width=100% alt="Log breakdown"><br />
+            </figure>
+            <ol>
+              <li>Timestamp of when the code was run</li>
+              <li>Time in seconds on when it was run from the time it started</li>
+              <li>What line it ran on</li>
+              <li>The output</li>
+            </ol>
+
+
+            </p>
+
+            <h3>Basic Arithmetic Operations</h3>
+            <ul>
+              <li><strong>Addition</strong></li>
+              <p>Addition is done by using the <code>+</code> symbol between values / variables
+              <pre><code>Integer a = 4;
+Integer b = 5;
+Integer c = a + b;
+Integer d = 4 + 5;
+Integer e = a + 5;
+
+System.debug(c);
+System.debug(d);
+System.debug(e);</code></pre>
+              The results are 9 in every case.</p>
+
+
+              <li><strong>Subtraction</strong></li>
+              <p>Subtraction is done by using the <code>-</code> symbol between values / variables. This will subtract the value on the right from the value on the left.
+              <pre><code>Integer a = 4;
+Integer b = 5;
+Integer c = a - b;
+Integer d = b - a;
+Integer e = 4 - 5;
+Integer f = a - 5;
+
+System.debug(c);
+System.debug(d);
+System.debug(e);
+System.debug(f);</code></pre>
+              The results for c, e and f are -1, while d is 1.</p>
+
+
+              <li><strong>Multiplication</strong></li>
+              <p>Multiplication is done by using the <code>*</code> symbol between values / variables
+              <pre><code>Integer a = 4;
+Integer b = 5;
+Integer c = a * b;
+Integer d = 4 * 5;
+Integer e = a * 5;
+
+System.debug(c);
+System.debug(d);
+System.debug(e);
+
+Integer f = -4;
+Integer g = a * f;
+System.debug(g);</code></pre>
+              The results for c, d and e are 20, while g results to -20.</p>
+
+              <li><strong>Division</strong></li>
+              <p>Division is done by using the <code>/</code> symbol between values / variables. The value on the left is the numerator, and the one on the right is the denominator.
+              <pre><code>Integer a = 4;
+Integer b = 5;
+Integer c = a / b;
+Integer d = 4 / 5;
+Integer e = a / 5;
+
+System.debug(c);
+System.debug(d);
+System.debug(e);</code> </pre>
+            </ul>
+            Before reading further, run the above example and read the log. The answers are quite interesting 0, 0 and 0. There happens to be no decimals involved either! <br />
+            This happens because an Integer Data Type only accepts whole numbers. If we wanted the exact number, a Decimal or Double data type would be more relevant. Try this code in Anon exec:</p>
+            <pre><code>Integer a = 4;
+Integer b = 5;
+
+Decimal c = a / b;
+System.debug(c);</code></pre>
+            <p>On reading the log, the answer is still 0! This is because while c is a decimal, a and b are still integers! Let's switch our code again:</p>
+            <pre><code>Decimal a = 4.0
+Decimal b = 5.0;
+Decimal c = a / b;
+
+System.debug(c);</code></pre>
+            <p>The answer is 0.8! This happens because we have only 1 character after the decimal point. Take your time to experiment around this. What if a is 4.0 but b is 5.00? What if a is an integer and b is a decimal? There are no wrong answers
+              here (yet)!</p>
+
+            <p>Let's use multiple operators now. Make 5 integers, assign them whole numbers and decimals at random and use multiple operators between them. Here's my code:
+            <pre><code>Integer a = 45;
+Integer b = 18;
+Decimal c = 4.0;
+Decimal d = 5.0;
+System.debug(a + b / c * d);</code></pre>
+            Before you run the code, use a pen and paper and calucalte using BODMAS (Bracket, Of, Division, Multiplication, Addition, Subtraction) rule. If you run the code above using BODMAS, you'll get answer as <code> 67.50</code>and the developer console will give you the same result! This is because the developer console follows a specific set of arithmetic operations.</p>
+
+            <h3>String Interpolation</h3>
+
+            <p>Ever wonder how your instance of Salesforce org says "Good Morning &lt;Your Name&gt;"? This is possible by adding a variable to a string and is called String Interpolation. Try this code:
+            <pre><code>String myName = 'Harshdeep';
+String hello = 'Hello ' + myName;
+System.debug(hello);</code> </pre>
+            and the result will be <code>My name is Harshdeep</code></p>
+            <p>Apart from personalization, it is really useful for writing logs to make them more readable. Let's write some more code:</p>
+            <pre><code>Integer a = 5
+Integer b = 10;
+Integer c = a + b;
+String answer = 'The answer is ' + c;
+System.debug(answer);</code> </pre>
+
+            <p>In the logs, you will notice how easy it is to read now! A clear "The answer is 15" is available. Take your time to make different variations using string interpolation. What if you want to output <code>The answer is 15!</code>?</p>
+
+
+            <h3>Code Refactoring</h3>
+            <p>While brewing your own coffee is fun, the cleaning up process can be <i>mildly</i> infurating because you ended up using 5 cups, 2 bowls, a pot, a french press, few spoons and a measuring cup which needs to be cleaned up. To deal with
+              this, most of us would simply use less utensils. This can be done by using only 1 cup for measuring and rewiring our entire coffee making process to make less mess. This applies to code too. Let's take a look at a simple addition example:
+            <pre><code>integer a = 4;
+integer b = 5;
+integer c = a + b;
+System.debug(c);</code></pre>
+
+            We made 3 variables here. One holds the number 4. One holds the number 5. One holds the result of addition. While a simple program like this doesn't take much to run, when you scale to write bigger, more complex programs, it'll take too
+            much memory and computing power to run on a larger scale. </p>
+            <p>This can be easily understood by the simple act of turning off your lights when you leave your room, to save electricity. You alone make a small difference in terms of your electricity usage, but when the entire family does
+              it, then the neighborhood, and then the city, there's a dramatic reduction in electricity consumption.
+            </p>
+            <p>Code refactoring means to write code that has reusable blocks which ends up running faster and taking less memory, while having the same output.
+
+            <p>First, let's remove the variable c, and directly output a+b in our log</p>
+            <pre><code>integer a = 4
+integer b = 5;
+System.debug(a+b);</code></pre>
+
+
+            <p>Now, let's declare both our integers in the same line, using a <code>,</code> as a separator. </p>
+
+            <pre><code>Integer a = 4, b = 5;
+System.debug(a+b);</code></pre>
+
+            Notice how we went from 4 lines of code to 2. We also use one less variable and we get the same result, while also reusing the variables we already had. Code refactoring will play a super important role later in more complex code.</p>
+
+            <p>Code refactoring is important because Salesforce orgs run on a multi-tenant environment. This is similar to living in an apartment with strangers and sharing hallways and kitchen but having a personal room. Similarly, multiple orgs run
+              on a server and use shared computing resources with limits called as <i>Governor Limits</i>. We will explore governor limits in depth later in this course.</p>
+
+
+            <h3>Summary</h3>
+            <ul>
+              <li>It's important to take care of your health as a programmer right from day 1 <strike>you could rely on the author telling you about it on day 3</strike>.</li>
+              <li>The results of arithmetic operations depends on the data type of parent values.</li>
+              <li><code>System.debug();</code> is a powerful and necessary tool to log values during runtime.</li>
+              <li>It's important to refactor code and value computing power and resources.</li>
+            </ul>
+
+            <h3>Note</h3>
+            <p>The author is aware there are a lot of concepts marked as <u>We will deal with this later</u>. The course assumes this is your first time writing code and overloading with a lot of information that doesn't make sense immediately can be
+              counter productive.</p>
+
+            <a href="4.html" class="global-button"> Day 4 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
