@@ -10,15 +10,18 @@
   <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-112097931-2');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
 
 </head>
 
@@ -62,41 +65,54 @@
           </div>
           <div class="post-content">
             <h3>Git</h3>
-            <p>Before we dive any further, let's learn about git. Git is a versioning system and collaboration tool. Some popular services are GitHub, GitLab and BitBucket, which all provide a versioning system and collaboration tool. It's really
-              handy when working with teams.</p>
-            <p>Make a github account and download the <a href = "https://desktop.github.com" target="_blank">GitHub Desktop App</a>, which will also install a CLI (Command line integration) tool that allows you to use git from your terminal and <a href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp" target="_blank">Dark Mode for GitHub</a> on Chrome.</p>
-            <p><strong>macOS</strong>: Press search button on top and open <code>terminal</code>.<br />
-            <strong>Windows</strong>: Press <code>Start button</code> and <code>r</code>, and type <code>cmd</code>.</p>
+            <p>Before we dive any further, let's learn about git. Git is a versioning system and collaboration tool. Some popular services are GitHub, GitLab and BitBucket. It's really handy when working with teams.</p>
+            <p>Make a GitHub account and download the <a href="https://desktop.github.com" target="_blank">GitHub Desktop App</a>, which will also install the CLI (Command line integration) tool that allows you to use git from your terminal and <a
+                href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp" target="_blank">Dark Mode for GitHub</a> on Chrome.</p>
+            <p><strong>macOS</strong>: Press the search button on top and open <code>terminal</code>.<br />
+              <strong>Windows</strong>: Press <code>Start button</code> and <code>r</code>, and type <code>cmd</code>.</p>
 
-            <p>You will be greeted with black screen and text on it. After you've installed github desktop app, just type <code>git</code> and press enter. You should be greeted with a screen similar to this: </p>
+            <p>You will be greeted with a black screen and text on it. After you've installed GitHub desktop app, just type <code>git</code> and press enter. You should be greeted with a screen similar to this: </p>
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/git-terminal.png" width=100% alt="git on terminal"></figure>
 
             <p>First, we need to tell git who we are, for this we run two commands one after the other:</p>
             <pre><code>git config [--global] user.name "Name"
 git config [--global] user.email "email@address.com"</code> </pre>
 
-            <p>Now, let's head over to Github and make a new repository. A repository is the equivalent to a cabinet in your kitchen. You can have multiple cabinets in your kitchen and they all store distinct contents. Once logged in, you will be
-              greeted with a screen similar to this. Press on new to make a new repo:</p>
+            <p>Now, let's head over to Github and make a new repository. A repository is equivalent to a cabinet in your kitchen. You can have multiple cabinets in your kitchen and they all store distinct contents. Once logged in, you will be greeted
+              with a screen similar to this. Press on new to make a new repo:</p>
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/git-home.png" width=100% alt="GitHub home"></figure>
 
-            <p>Fill in the information about your repo. An important thing to note is we are making a <u>Private repo</u>.</p>
+            <p>Fill in information about your repo. An important thing to note is we are making a <u>Private repo</u>.</p>
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/git-make-new-repo.png" width=100% alt="Making a new repo"></figure>
-            <p>Make a new folder named <u>git</u> in your desktop. Folder and file names are case sensitive so it's convinent to make it all lower case.</p>
+
+            <p>Make a new folder named <u>git</u> in your desktop. Folder and file names are case sensitive so it's handy to make it all lower case.</p>
+
             <p>In terminal, type <code>cd</code>, press the space bar and drag the git folder on the terminal and press enter. <code>cd</code> stands for <i>Change Directory</i>.</p>
+
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/terminal-git-folder.png" width=100% alt="terminal git folder"></figure>
-            <p>You will notice immediately the text on your left has changed. This means you're now inside the folder. Now we will download the repository in our computer. To do this, head back to your browser and if your repo isn't already open,
-              open it. Now press on <u>Clone or download</u> and copy the url.</p>
+            <p>In terminal, type cd, press the space bar and drag the git folder on the terminal and press enter. cd stands for Change Directory.
+              You will notice immediately the text on your left has changed. This means you're now inside the folder. Now we will download the repository in our computer. To do this, head back to your browser and if your repo isn't already open, open
+              it. Now press on <u>Clone or download</u> and copy the URL.</p>
+
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-clone-repo.png" width=100% alt="clone repo"></figure>
+
             <p>Now head back in terminal and type</p>
+
             <pre><code>git clone &lt;url&gt;</code></pre>
 
-            <p>You will be prompted to add your username and password. Enter your username and instead of typing your password, you need to generate a personal token. Head back to github, click on your profile on top right and click on settings</p>
+            <p>You will be prompted to add your username and password. Enter your username and instead of typing your password, you need to generate a personal token. Head back to GitHub, click on your profile on the top right and click on settings</p>
+
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-open-settings.png" width=100% alt="open settings"></figure>
+
             <p>Now head over to developer settings</p>
+
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-developer-settings.png" width=100% alt="Settings"></figure>
-            <p>Click on Personal access tokens, generate new token</p>
+
+            <p>Click on Personal access tokens and generate a new token</p>
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-personal-token.png" width=100% alt="Get to personal token"></figure>
-            <p>Add any name you want to, and assign premissions.</p>
+
+            <p>Add any name you want to, and assign permissions.</p>
+
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-new-token.png" width=100% alt="Generate new token"></figure>
             <p>Copy the personal token and paste it in your terminal where the password should go.</p>
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-copy-token.png" width=100% alt="Copy access token"></figure>
@@ -111,7 +127,7 @@ git config [--global] user.email "email@address.com"</code> </pre>
               should look similar to this:</p>
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/atom-welcome.png" width=100% alt="Atom screen in directory"></figure>
 
-            <p>A git repo will display the readme.md file as a formatted document. The <code>MD</code> stands for Markdown. Here's a quick markdown guide:</p>
+            <p>A git repo will display the README.md file as a formatted document. The <code>MD</code> stands for Markdown. Here's a quick markdown guide:</p>
             <pre><code># Markdown syntax
 
 # H1
@@ -142,7 +158,7 @@ git config [--global] user.email "email@address.com"</code> </pre>
 }
 ```</code></pre>
 
-            <p>Paste this codeblock in readme.md and save it. Head back to terminal, and make sure you're inside your repo folder. to do this, simply type <code>cd folder-name</code></p>
+            <p>Paste this code block in README.md and save it. Head back to terminal, and make sure you're inside your repo folder. to do this, simply type <code>cd folder-name</code></p>
             <p>Now, you need to add all the files to your repo. To do this, type</p>
             <pre><code>git add .</code> </pre>
             <p>The <code>.</code> at the end is important because it prepares to commit all the files in your folder to the repository. Now to commit it, we run</p>
@@ -155,8 +171,8 @@ git config [--global] user.email "email@address.com"</code> </pre>
 
             <p>The code block that you pasted is now properly formatted and easily readable! I highly recommend reading more on the markdown syntax because it is an extremely useful tool in your arsenal as a developer.</p>
 
-            <p>Now let's setup our repo to be notes ready. Here is how I setup my repo. </p>
-            <p>First, setup README.md as an index to the entire repo. </p>
+            <p>Now let's set up our repo to be notes ready. Here is how I set up my repo. </p>
+            <p>First, set up README.md as an index to the entire repo. </p>
             <pre><code># Apex Snippets and Code Library.
 
 ## Index
@@ -169,7 +185,8 @@ git config [--global] user.email "email@address.com"</code> </pre>
 
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/atom-git-structure.png" width=100% alt="Markdown Example"></figure>
 
-            <p>Git can be really overwhelming at first. I highly recommend to referring to <a href= "https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown Syntax</a> and learning more about <a href = "https://guides.github.com/introduction/git-handbook/" target="_blank">Git and GitHub</a>.</p>
+            <p>Git can be overwhelming at first. I highly recommend to referring <a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown Syntax</a> and learning more about <a
+                href="https://guides.github.com/introduction/git-handbook/" target="_blank">Git and GitHub</a>.</p>
 
             <h3>Boolean Data Type</h3>
             <p>The boolean data type can only hold values that are true or false. Here is a quick syntax:</p>
@@ -180,7 +197,7 @@ git config [--global] user.email "email@address.com"</code> </pre>
               <li><code>=</code> is to assign the value to the variable.</li>
               <li><code>value</code> can only be <code>true</code> or <code>false</code> and doesn't use any <code>'</code>.</li>
             </ul>
-            <p>Here are quick examples on how to declare boolean variables:</p>
+            <p>Here are quick examples of how to declare boolean variables:</p>
             <pre><code>Boolean a = true;
 Boolean b = false;</code></pre>
 
@@ -189,8 +206,8 @@ Boolean b = false;</code></pre>
               comparison operators:</p>
             <ul>
               <li><code>==</code> is different from <code>=</code> operator. A single <code>=</code> assigns the value on the right to the variable on the left but the <code>==</code> operator checks if the value on the left <strong>IS EQUAL</strong>
-                to the value on right. </li>
-              <li><code>!=</code> operator checks if the value on the right <strong>IS NOT EQUAL</strong> to the variable on the left. This returns true if the values are different, and false if the values are same.</li>
+                to the value on the right. </li>
+              <li><code>!=</code> operator checks if the value on the right <strong>IS NOT EQUAL</strong> to the variable on the left. This returns true if the values are different, and false if the values are the same.</li>
               <li><code>&gt;</code> operator checks if the value on the left is greater than variable on the left.</li>
               </li>
               <li><code>&lt;</code> operator checks if the value of the right is greater than the variable on the left.</li>
@@ -198,12 +215,12 @@ Boolean b = false;</code></pre>
               <li><code>&lt;=</code> operator checks if the value of the right is either greater than, or equal to the variable on the left.</li>
               <li><code>&gt;=</code> operator checks if the value of the right is either smaller than, or equal to the variable on the left.</li>
               </li>
-              <li><code>||</code> is called the OR operator. It takes two values on either side and checks returns true if either values are true, or both values are true, and returns false if both values are false.</li>
-              <li><code>&amp;&amp;</code> is called the AND operator. It takes two values on either side and returns true if both values are true, and false if either values are false, or both values are false.</li>
+              <li><code>||</code> is called the OR operator. It takes two values on either side and checks returns true if either value is true, or both values are true and returns false if both values are false.</li>
+              <li><code>&amp;&amp;</code> is called the AND operator. It takes two values on either side and returns true if both values are true, and false if either value is false, or both values are false.</li>
             </ul>
 
             <h3>Conditionals</h3>
-            <p>A very widely used conditional is the <code>if else</code> statement. It's very straight forward and simple to use. here is the syntax: </p>
+            <p>A very widely used conditional is the <code>if-else</code> statement. It's very straight forward and simple to use. here is the syntax: </p>
             <pre><code>if(condition){
   //run if code
 } else {
@@ -211,13 +228,13 @@ Boolean b = false;</code></pre>
 }</code></pre>
 
             <ul>
-              <li><code>if</code> declares start of the condition.</li>
-              <li><code>(condition)</code> holds a combination of comparison operators and values/variables. If the condition evaluates to true, the if codeblock is run and if it's false, the entire codeblock is igonred and moves to else. It's a good
+              <li><code>if</code> declares the start of the condition.</li>
+              <li><code>(condition)</code> holds a combination of comparison operators and values/variables. If the condition evaluates to true, the if code block is run and if it's false, the entire code block is ignored and moves to else. It's a good
                 practice to always keep the condition within brackets.</li>
               <li><code>//run if code the</code> // symbol is used to comment in code. Anything towards the right side of the // in the line is not run by the computer.</li>
               <li><code>else</code> is run if the first condition evaluates to false.</li>
               <li><code>{ }</code> brackets are used to denote code blocks. </li>
-              <li>Notice there is no <code>;</code> to mark the end of if-else condition. The values inside the codeblock, however, require <code>;</code>.</li>
+              <li>Notice there is no <code>;</code> to mark the end of the if-else condition. The values inside the code block, however, require <code>;</code>.</li>
             </ul>
 
             <p>Here's an example to a simple if-else statement:</p>
@@ -262,19 +279,19 @@ if (a==4 || a == 5){
             <p>Chaining if-else statements can get really complicated, and to deal with that, we use <code>switch</code> statements. Here is the syntax:</p>
             <pre><code>switch on variableName{
     when value1{
-      //run codeblock 1
+      //run code block 1
     }
     when value2 {
-      //run codeblock 2
+      //run code block 2
     }
     when else {
-      //run codeblock 3
+      //run code block 3
     }
 }</code> </pre>
             <ul>
               <li><code>switch on</code> is used to declare we are making a switch statement</li>
               <li><code>variableName</code> This is the variable we are runing the switch statement on.</li>
-              <li><code>when value1</code> if the value of variableName is value1, the <code>codeblock 1</code> is run</li>
+              <li><code>when value1</code> if the value of variableName is value1, the <code>code block 1</code> is run</li>
               <li><code>when else</code> this code block will run if the value of variableName isn't equal to any values.</li>
             </ul>
 
@@ -302,7 +319,7 @@ when else {
               <li>Switch statements are a good way to refactor if-else statements when they need to be nested a lot.</li>
             </ul>
             <!-- <a href="5.html" class="global-button"> Day 5 </a> -->
-            <a href="https://discord.gg/sw59wmx" target = "_blank" class="global-button"> Join Discord Server to stay updated on Day 5 </a>
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 5 </a>
           </div>
         </article>
 
