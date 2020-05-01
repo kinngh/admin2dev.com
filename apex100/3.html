@@ -91,8 +91,7 @@
             </ol>
 
             <h3>Writing code</h3>
-            <p>Now that we know where we write our code, let's write some of our first programs! Head over to Debug > Open execute anonymous window. This window allows us to write snippets of code. Any code that runs here is anonymous and doesn't
-              follow sharing rules, which gives the current user access to all objects in the org.</p>
+            <p>Now that we know where we write our code, let's write some of our first programs! Head over to Debug > Open execute anonymous window. This window allows us to write snippets of code. Alternativelt, you can press <code>Ctrl</code> and <code>E</code> to open quicker.</p>
             <p>Let's make 2 integers and add them:</p>
             <pre><code>Integer a = 5;
 Integer b = 4;
@@ -106,7 +105,7 @@ a + b;</code></pre>
             </figure>
             <pre><code>Line 3, Column 1:
 Expression cannot be a statment</code> </pre>
-            <p>The code in line 3, <code>a+b</code> is the equivalent to mixing coffee and water in nothing. We need a variable to hold them. Let's fix that:</p>
+            <p>The code in line 3, <code>a+b</code> is the equivalent to mixing coffee and water in nothing. We need a variable (cup) to hold them. Let's fix that:</p>
             <pre><code>Integer a = 5;
 Integer b = 4;
 Integer c = a + b;</code></pre>
@@ -136,12 +135,10 @@ System.debug(c);</code></pre>
             <h3>Understanding logs</h3>
             <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/3/understanding-logs.png" width=100% alt="Log breakdown"><br />
             </figure>
-            <ol>
-              <li>Timestamp of when the code was run</li>
-              <li>Time in seconds on when it was run from the time it started</li>
-              <li>What line it ran on</li>
-              <li>The output</li>
-            </ol>
+            <ul>
+              <li><code>03:51:26:002</code> is the timestamp of when the code was run. This is in the format HH:MM:ss:SS</li>
+              <li><code>USER_DEBUG [4]|DEBUG|9</code> is the event identifier. This includes information on who ran the code, the line which output the log, and the value from <code>System.debug();</code> itself.</li>
+            </ul>
 
 
             </p>
@@ -230,6 +227,7 @@ Decimal c = 4.0;
 Decimal d = 5.0;
 System.debug(a + b / c * d);</code></pre>
             Before you run the code, use a pen and paper and calucalte using BODMAS (Bracket, Of, Division, Multiplication, Addition, Subtraction) rule. If you run the code above using BODMAS, you'll get answer as <code> 67.50</code>and the developer console will give you the same result! This is because the developer console follows a specific set of arithmetic operations.</p>
+            <p>If we want to follow a specific way of solving an operation, we enclose it in brackets <code>( )</code>. Brackets are always solved inside out.</p>
 
             <h3>String Interpolation</h3>
 
@@ -237,7 +235,7 @@ System.debug(a + b / c * d);</code></pre>
             <pre><code>String myName = 'Harshdeep';
 String hello = 'Hello ' + myName;
 System.debug(hello);</code> </pre>
-            and the result will be <code>My name is Harshdeep</code></p>
+            and the result will be <code>Hello Harshdeep</code></p>
             <p>Apart from personalization, it is really useful for writing logs to make them more readable. Let's write some more code:</p>
             <pre><code>Integer a = 5
 Integer b = 10;
@@ -245,7 +243,7 @@ Integer c = a + b;
 String answer = 'The answer is ' + c;
 System.debug(answer);</code> </pre>
 
-            <p>In the logs, you will notice how easy it is to read now! A clear "The answer is 15" is available. Take your time to make different variations using string interpolation. What if you want to output <code>The answer is 15!</code>?</p>
+            <p>The logs are so much easier to read now!. Take your time to make different variations using string interpolation. What if you want to output <code>The answer is 15!</code>?</p>
 
 
             <h3>Code Refactoring</h3>
@@ -256,20 +254,20 @@ integer b = 5;
 integer c = a + b;
 System.debug(c);</code></pre>
 
-            We made 3 variables here. One holds the number 4. One holds the number 5. One holds the result of addition. While a simple program like this doesn't take much to run, when you scale to write bigger, more complex programs, it'll take too
-            much memory and computing power to run on a larger scale. </p>
-            <p>This can be easily understood by the simple act of turning off your lights when you leave your room, to save electricity. You alone make a small difference in terms of your electricity usage, but when the entire family does
-              it, then the neighborhood, and then the city, there's a dramatic reduction in electricity consumption.
+            We made 3 variables here. One holds the number 4. One holds the number 5. One holds the result of addition. While a simple program like this doesn't take much to run, when we scale to write bigger, more complex programs, it'll take too
+            much memory and computing power to run.</p>
+            <p>This can be easily understood by the simple act of turning off your lights when you leave your room to save electricity. You alone make a small difference in terms of electricity usage, but when the entire family does
+              it, then the entire neighborhood and then the entire city, there's a dramatic reduction in electricity consumption.
             </p>
             <p>Code refactoring means to write code that has reusable blocks which ends up running faster and taking less memory, while having the same output.
 
-            <p>First, let's remove the variable c, and directly output a+b in our log</p>
+            <p>Let's refactor our code. First, let's remove the variable c, and directly output a+b in our log:</p>
             <pre><code>integer a = 4
 integer b = 5;
 System.debug(a+b);</code></pre>
 
 
-            <p>Now, let's declare both our integers in the same line, using a <code>,</code> as a separator. </p>
+            <p>Now, let's declare both our integers in the same line, using a <code>,</code> as a separator:</p>
 
             <pre><code>Integer a = 4, b = 5;
 System.debug(a+b);</code></pre>
