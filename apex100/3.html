@@ -71,6 +71,7 @@
             <p>You should be greeted with a screen similar to this:</p>
             <figure class="kg-card kg-width-full kg-card-hascaption"><img src="../images/apex/3/developer-console.png" width=100% alt="Developer Console with numbers and sections marked." class="kg-image"></figure>
             <ol>
+              <p><strong> Top Menu Bar</strong> </p>
               <li><strong>File</strong>: This menu contains options to open, save, close and delete files and resources.</li>
               <li><strong>Edit</strong>: This menu contains options to find and replace, fix indentation and code formatting.</li>
               <li><strong>Debug</strong>: This menu contains options that relate to debugging and error fixing code.</li>
@@ -78,14 +79,16 @@
               <li><strong>Workspace</strong>: This menu contains options to setup UI for the developer console.</li>
               <li><strong>Help</strong>: This menu contains general help topics like links to documentation, shortcut keys and preferences for the developer console.</li>
               <br />
-              <li><strong>Tabs</strong>: This space contains all open files in a tabbed format, ready to switch between.</li>
+              <p><strong>Text Editor</strong></p>
+              <li><strong>Tabs</strong>: This space contains all open files in a tabbed format.</li>
               <li><strong>Editor</strong>: This is where we write our code.</li>
               <br />
+              <p><strong>Bottom Menu Bar</strong> </p>
               <li><strong>Logs</strong>: This tab contains all logs from current and previous runs.</li>
               <li><strong>Tests</strong>: This tab contains all reports from testing our code like code coverage and pass/fail results.</li>
               <li><strong>Checkpoints</strong>: This tab contains information on checkpoints when setup in code.</li>
               <li><strong>Query Editor</strong>: This option allows the developer to run SOSL and SOQL queries and validate them.</li>
-              <li><strong>View State</strong>:</li>
+              <li><strong>View State</strong>: This tab allows you to examine the view state for Visualforce page request.</li>
               <li><strong>Progress</strong>: This tab shows progress on running the current and previous code.</li>
               <li><strong>Problems</strong>: This tab shows, in near real time, the errors available, if any, while writing our code.</li>
             </ol>
@@ -256,14 +259,14 @@ System.debug(c);</code></pre>
 
             We made 3 variables here. One holds the number 4. One holds the number 5. One holds the result of addition. While a simple program like this doesn't take much to run, when we scale to write bigger, more complex programs, it'll take too
             much memory and computing power to run.</p>
-            <p>This can be easily understood by the simple act of turning off your lights when you leave your room to save electricity. You alone make a small difference in terms of electricity usage, but when the entire family does
+            <p>This is comparable to the simple act of turning off your lights when you leave your room to save electricity. You make a small difference towards your electricity usage, but when the entire family does
               it, then the entire neighborhood and then the entire city, there's a dramatic reduction in electricity consumption.
             </p>
             <p>Code refactoring means to write code that has reusable blocks which ends up running faster and taking less memory, while having the same output.
 
             <p>Let's refactor our code. First, let's remove the variable c, and directly output a+b in our log:</p>
-            <pre><code>integer a = 4
-integer b = 5;
+            <pre><code>Integer a = 4
+Integer b = 5;
 System.debug(a+b);</code></pre>
 
 
@@ -276,6 +279,18 @@ System.debug(a+b);</code></pre>
 
             <p>Code refactoring is important because Salesforce orgs run on a multi-tenant environment. This is similar to living in an apartment with strangers and sharing hallways and kitchen but having a personal room. Similarly, multiple orgs run
               on a server and use shared computing resources with limits called as <i>Governor Limits</i>. We will explore governor limits in depth later in this course.</p>
+
+              <h4>Refactoring Arithmetic Operations</h4>
+              <p>Certain arithmetic operations can be rewritten for ease of readibility. This will come handy when using loops.</p>
+              <ul>
+                <li><code>++</code> adds 1 to the value and assign it back to the variable.</li>
+                <li><code>--</code> subtracts 1 from the value and assign it back to the variable.</li>
+                <li><code>*=</code> multiplies the variable with the number on the right and assign it back to the variable.</li>
+                <p><code>a *= 10;</code> is equivalent to <code>a = a * 10;</code></p>
+                <li><code>/=</code> divides the variable with the number on the right and assign it back to the variable.</li>
+                <p><code>a /= 10;</code> is equivalent to <code>a = a / 10;</code></p>
+
+              </ul>
 
 
             <h3>Summary</h3>
