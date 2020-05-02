@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 5 <br />Lists, Sets, Maps and For Loops</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <h3>Lists, Sets, Maps</h3>
+
+            <p><strong>List</strong> is an ordered data type that holds multiple values. Each value has its place on the list where the <u>counting starts from 0</u>. Here is the syntax:<br /></p>
+            <pre><code>List&lt;dataType&gt; variableName = new List&lt;dataType&gt;();</code></pre>
+            <ul>
+              <li><code>List&lt;dataType&gt;</code> defines what kind of data will the list hold</li>
+              <li><code>variableName</code> defines the name used to refer to this list</li>
+              <li><code>new</code> defines we are making a new list</li>
+              <li><code>List&lt;dataType&gt;()</code> defines we are making a blank list.</li>
+
+            </ul>
+
+            <p>To add a value in the List we follow the syntax:</p>
+
+            <pre><code>variableName.add(value);</code></pre>
+
+            <p>Here is the code in action:</p>
+
+            <pre><code>List&lt;String&gt; names = new List&lt;String&gt;();
+
+names.add('Harshdeep');
+names.add('Cobey');
+names.add('Zerab');
+
+System.debug(names);</code></pre>
+            <p>If we want to access a specific element in the List, we use the following syntax:</p>
+            <pre><code> variableName[n];</code></pre>
+            <ul>
+              <li><code>variableName</code> is the name of the list</li>
+              <li><code>[n]</code> is the number element we are trying to access, enclosed within square brackets</li>
+            </ul>
+
+            <p>Let's see this in practice:</p>
+
+            <pre><code>List&lt;String&gt; names = new List&lt;String&gt;();
+
+names.add('Harshdeep');
+names.add('Cobey');
+names.add('Zerab');
+
+System.debug(names[3]);</code></pre>
+            <p>You will be presented with the following error:</p>
+            <pre><code>Line: 7, Column: 1
+System.ListException: List index out of bounds: 3</code></pre>
+
+            <p>This is because all counting starts from 0, so to access the third element, we need to subtract 1 from it because internally the list is stored in the following way:</p>
+
+            <table>
+              <tr>
+                <th>Index</th>
+                <th>Name</th>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>Harshdeep</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Cobey</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Zerab</td>
+              </tr>
+            </table>
+            <p>Now let's fix the code by removing the last line with:</p>
+
+            <pre><code>System.debug(names[0]);
+System.debug(names[2]);</code></pre>
+            <p>Now the log outputs the first and last name! This is super important to remember. All counting starts from 0.</p>
+
+            <p><strong>Set</strong> is an unordered list that doesn't hold any duplicates. Here is how you make a Set:</p>
+            <pre><code>List&lt;dataType&gt; variableName = new List&lt;dataType&gt;();</code></pre>
+            <ul>
+
+              <li><code>List&lt;dataType&gt;</code> is to declare Set of dataType type.</li>
+              <li><code>variableName</code> is to refer to this set.</li>
+              <li><code>new</code> defines this is a new variable.</li>
+              <li><code>List&lt;dataType&gt;()</code> is to init the empty set with said data type.</li>
+            </ul>
+            <p>Let's see Set in action:</p>
+
+            <pre><code>List&lt;String&gt; names = new List&lt;String&gt;();
+names.add('Harshdeep');
+names.add('Cobey');
+names.add('Zerab');
+names.add('Cobey');
+
+System.debug(names);</code></pre>
+            <p>When you look at the logs, the duplicate name has been removed, and the order has been changed too. Sets usually aren't used a lot in practical programming as much as Lists or Maps. A practical use for Sets would be in a scenario when
+              bad
+              data has been entered, and instead of exporting all data and running through a spreadsheet, all the data is stored in a set and unique values are immediately pulled out to restructure the data.</p>
+
+            <p><strong>Map</strong> holds key value pairs. This means, every element will have two values. The syntax for making sets is:</p>
+            <pre><code>Map&lt;dataType1, dataType2&gt; variableName = new Map&lt;dataType1, dataType2&gt;();</code></pre>
+
+            <li><code>Map&lt;dataType1, dataType2&gt;</code> is to initialize the map variable. dataType 1 and 2 can be the same data types, or different.</li>
+            <li><code>variableName</code> is the name of the variable to refer to
+              new is to declare it's a new variable</li>
+            <li><code>Map&lt;dataType1, dataType2&gt;()</code> is to initialize an empty Map of the same data type.</li>
+
+            <pre><code>Map&lt;dataType1, dataType2&gt; variableName = new Map&lt;dataType1, dataType2&gt;();
+variableName.put(key, value);</code></pre>
+            <p>Where key and value are dataType variables as defined in their declaration. An easier way to understand is ordering food in a drive through. You ask for Number 1, 2 and 6 and you're given the food corresponding to those
+              numbers.</p>
+
+            <p>To access value from a Map, we use <code>.get(key)</code>.<br />
+              An example of maps with the same data type:</p>
+
+            <pre><code>Map&lt;String, String&gt; placeCapital = new Map&lt;String, String&gt;();
+placeCapital.put('New Delhi', 'India');
+placeCapital.put('Captial', 'Country');
+
+String ourCapital = placeCapital.get('New Delhi');
+System.debug(ourCapital);</code></pre>
+            <h3>Understanding when to use Sets, Lists and Maps</h3>
+
+            <h4>Set</h4>
+
+            <p>In my experience, I've rarely used Sets. Two very distinct problems were easier to solve with Set than anywhere else:</p>
+            <ol>
+
+
+              <li>An org had Billing Country field set to Text instead of the picklist, and for every country, there were multiple values, some recurring more than others. Instead of exporting data to a spreadsheet, run formulas and uploading
+                them, it was more efficient to write a Set which gathered all the unique values in one table and then processing on it further to fix the issue.</li>
+              <li>An org had a custom-built mailing list with no restrictions on the number of times you could sign up for. When certain managers would miss out on emails, they chose to re-sign up, resulting in sending multiple emails to the
+                same user. A quick way to solve this was to make a loop and assign all values from the List to the Set and updating the final List.</li>
+            </ol>
+            <p>In both of these cases, it was a result of bad configuration by admins and developers which could have been easily avoided.
+            </p>
+            <p>To understand optimal usage for Lists v/s Maps first let us learn about For Loops, then come back to it.</p>
+
+            <h3>For Loops</h3>
+
+            <p>For loops is one of the most commonly used code blocks in Apex programming. A For loop can be used in 2 different ways:</p>
+
+            <ol>
+              <li>To run a code block n number of times</li>
+              <li>To iterate over a list</li>
+            </ol>
+
+            <h4>Running a code block n times</h4>
+
+            <p>To make this loop, we need three things:
+            <ol>
+              <li>A start statement</li>
+              <li>An exit condition</li>
+              <li>An increment statement</li>
+            </ol>
+            </p>
+            <p>The syntax is:</p>
+
+            <pre><code>for(start statement; exit condition; increment statement) {
+  //code block
+}</code></pre>
+
+            <ul>
+              <li><code>for</code> is declaration of the loop</li>
+              <li><code>start</code> statement is what will run at the start of the loop</li>
+              <li><code>exit condition</code> is what will stop the loop if it returns false</li>
+              <li><code>increment statement</code> will be run every time the code block finishes running</li>
+              <li><code>;</code> is the separator between each condition / statement and is necessary</li>
+            </ul>
+            <p>Run this code in developer console:</p>
+
+            <pre><code>for(Integer i = 0; i < 10; i++){
+  System.debug('Hello '+ i);
+}</code></pre>
+            <p>Let' s break down this code. Here's what happened: </p>
+            <ol>
+              <li>Make an integer i and assign it the value of 0</li>
+              <li>Is i smaller than 10? if it's smaller than 10, run the code block</li>
+              <li>After code block is run, increment the value of i by 1.</li>
+              <li>The statements 2, 3 and 4 run until the i is equal to 10. </li>
+            </ol>
+
+
+            <h4>Looping over a List or Set</h4>
+            <p>To make this loop, we need two things:</p>
+            <ul>
+              <li> A list or set to iterate over </li>
+              <li>A variable that will hold values temporarily </li>
+            </ul>
+            <p>The syntax is:</p>
+            <pre><code>for (dataType variableName: list_or_set){
+    //code block
+}</code></pre>
+            <ul>
+              <li><code>for</code> is the declaration of the loop </li>
+              <li><code>dataType</code> is the data type of the variable </li>
+              <li><code>variableName</code> is the variable that will temporarily hold the value </li>
+              <li><code>list_or_set</code> is an existing list or set </li>
+            </ul>
+
+            <p>Run this code in developer console:</p>
+            <pre><code>List&lt;String&gt; names=new List&lt;String&gt;();
+
+names.add('Name 1');
+names.add('Name 2');
+names.add('Name 3');
+names.add('Name 4');
+
+for(String iterator: names){
+  System.debug(iterator);
+} </code></pre>
+
+            <p>Let's break down this code. Here's what happened:</p>
+            <ol>
+              <li> Make a list and add values to it.</li>
+              <li> The for loop starts</li>
+              <li> We have a variable named iterator that is of type string, which confirms to the data type of the list names which is a List of Strings</li>
+              <li> Assign the first value of names to
+                iterator and run the code block </li>
+              <li>After the code block has run, assign the next value in names to iterator and run the code block </li>
+              <li>If the list names have run out of values, exit the loop.</li>
+            </ol>
+            <h4>A For loop can also be nested inside the for loop.</h4>
+            <p>Here's an example</p>
+            <pre><code>List&lt;String&gt; names=new List&lt;String&gt;();
+names.add('Name 1');
+names.add('Name 2');
+names.add('Name 3');
+names.add('Name 4');
+
+List&lt;String&gt; surnames=new List&lt;String&gt;();
+surnames.add('Name 3');
+surnames.add('Name 1');
+surnames.add('Name 4');
+surnames.add('Name 2');
+
+for (String outerLoop: names) {
+  for (String innerLoop: surnames) {
+    if (outerLoop==innerLoop) {
+      System.debug(outerLoop + ' ' +innerLoop); //To add a space between both values
+    }
+  }
+}</pre></code>
+
+
+            <p>Let's break down this code:</p>
+            <ol>
+              <li>Make 2 lists and assign values to them</li>
+              <li>outerLoop gets assigned the value Name 1 from names list.</li>
+              <li>innerLoop gets assigned the value Name 3 from surnames list.</li>
+              <li>If condition checks the value is not true</li>
+              <li>innerLoop now gets assigned the value Name 1 from surnames list.</li>
+              <li>If condition is true and it outputs "Name 1 Name 1" in the log innerLoop now gets assigned the value Name 4 and then Name 2.</li>
+              <li>outerLoop now gets assigned Name 2 from names list.</li>
+              <li>innerLoop gets assigned Name 3 from surnames list</li>
+            </ol>
+            <p>The outerloop will run once, then let it's inner loop finish completely before jumping on to the next value. The iterator variable in the for loop needs to match the data type of the list or set iterating over because every value in
+              the said list or set will be assigned to the iterator variable one by one, and will throw an error if there's a mismatch of data types.</p>
+
+            <h3>Lists vs Maps</h3>
+            <p>Now that we know how for loops work, let's understand the difference between lists and maps. </p>
+            <p>Take this example: I have a list of 100 emails with names. I have another list of 100 emails with phone numbers. I need to make a new list with Names, Phone
+              Numbers and Emails.</p>
+            <p>The following code is for demonstration purposes only</p>
+            <p>Using a list and nested for loop the code would look something like this:</p>
+            <pre><code>List&lt;String&gt;  emailList = //list with email and name
+List&lt;String&gt; phoneList = //list with email and phone
+List&lt;String&gt; finalList = new List&lt;String&gt; ();
+
+for(String emailLooper: emailList) {
+	for (String phoneLooper: phoneList) {
+		if (emailLooper.email == phoneLooper.email){
+			finalList.add(emailLooper.email + emailLooper.name + phoneLooper.phone);
+		}
+
+	}
+}</code></pre>
+
+
+            <p>This loop takes the first email from emailList and matches it against every email in phoneList and when it finds a match it assigns it to the final list and keeps going on. This means, 100 emails * 100 numbers,
+              which comes up to 10,000 runs.</p>
+            <p>Using a map would look something like this:</p>
+
+            <pre><code>Map&lt;String, String&gt; emailList = //list with email and name
+Map&lt;String, String&gt; phoneList = //list with email and phone
+
+List&lt;String&gt;  finalList = new List&lt;String&gt; ();
+
+//Make empty variables
+String emailFromEmailList;
+String emailFromPhoneList;
+
+for (String emailLooper: emailList.keyset()){ // .keyset() returns all the values in maps
+	emailFromEmailList = emailList.get(emailLooper);
+	emailFromPhoneList = phoneList.get(emailLooper);
+
+	if (emailFromEmailList == emailFromPhoneList) {
+		finalList.add(emailList.name, emailList.email, phoneList.phone); //This is not how use maps, for demonstartion purposes only
+	}
+}</code></pre>
+
+
+
+            <p>This loop iterates over the email list 100 times and gets the correct value from the phone list by calling its key-value pair. Lists and Maps have their own time and place to use, but in this scenario using Maps resulted in 100x fewer iterations of the loop, resulting in less usage of computing power and resources.</p>
+<h3>Summary</h3>
+<ul>
+  <li>Lists, Sets and Maps can hold multiple values</li>
+  <li>A for loop runs until the exit condition is <code>false</code></li>
+</ul>
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 6 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
