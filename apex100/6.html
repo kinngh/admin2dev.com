@@ -223,7 +223,8 @@ return return_dataType
 
             <pre><code>CookieCutter finalCutter = new CookieCutter();</code></pre>
 
-            <p>This tells the computer to make a new template called </code>finalCutter</code> based on </code>CookieCutter</code> template. Now to access our <code>radius</code> method with 4.0 as it's radius, that returns a list of decimals, we call it like so:</p>
+            <p>This tells the computer to make a new template called </code>finalCutter</code> based on </code>CookieCutter</code> template. Now to access our <code>radius</code> method with 4.0 as it's radius, that returns a list of decimals, we
+              call it like so:</p>
 
             <pre><code>List&lt;Decimal&gt; finalList = finalCutter.radius(4.0);</code></pre>
 
@@ -233,8 +234,25 @@ return return_dataType
 List&lt;Decimal&gt; finalList = finalCutter.radius(4.0);
 System.debug(finalList);</code></pre>
 
+            <p>You can have multiple methods with the same name inside the class, as long as there are ways to distinguish them.</p>
+            <p>In our <code>CookieCutter</code> class, we can define another method that already exists but takes different inputs. Here’s some code:</p>
+            <pre><code>public class CookieCutter {
 
-            <p>Now that we are aware of what classes are, remember <code>System.debug();</code>? <code>System</code> is the name of the class and <code>debug()</code> is a method inside the class. Salesforce provides us with a bunch of inbuilt classes and methods like <code>mail</code> that
+    private Decimal area(Decimal r){
+        Decimal finalArea = 3.14 * r * r;
+        return finalArea;
+    }
+
+    private Decimal area(Decimal r, String someVariable){
+        return 2.0;
+    }
+}</code></pre>
+            <p>Notice how we have two methods named <code>area</code> but both take different inputs! This is useful when your program makes use of optional parameters. An example would be when you need to generate numbers for your organization, but
+              marketing department believes odd numbers are <em>evil</em> and must not be used. Your manager approves of this and asks you to write a new generator. <s>This may or may not be from personal experience.</s></p>
+
+
+            <p>Now that we are aware of what classes are, remember <code>System.debug();</code>? <code>System</code> is the name of the class and <code>debug()</code> is a method inside the class. Salesforce provides us with a bunch of inbuilt
+              classes and methods like <code>mail</code> that
               reduce the amount of code we need to write. To know more about what classes ad methods are available to us, we need to read the documentation.</p>
 
             <p>Reading documentation can get confusing at times, but we do cover it at a later stage, with one day entirely dedicated to using documentation.</p>
@@ -245,8 +263,9 @@ System.debug(finalList);</code></pre>
               <li> Methods are generic processing units that take input variables and return processedd results.</li>
               <li> <strike>Cookies are delicious.</strike></li>
             </ul>
-
             <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 7 </a>
+            </div>
+            <!-- <a href="7.html" class="global-button"> Day 7 </a> -->
           </div>
         </article>
 
