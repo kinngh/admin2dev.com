@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 6:<br /> OOPs, Classes and Methods</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <h2>Object Oriented Programming</h2>
+
+            <p>Apex is an Object Oriented Programming (OOP) Language, a programming paradigm where data is stored in objects and code in procedures (methods). The idea of OOP is to bind data and functions that operate on the data together to maintain
+              access control through classes.</p>
+
+            <p>OOP brings quite a lot of programming concepts with it. Here are some concepts we will be using more often than others:</p>
+
+            <ul>
+              <li>Inheritance: This allows you to 'inherit' methods from the parent class.</li>
+              <li>Encapsulation: This means the variables inside of a class are always hidden and can only be accessed using a method. An example would be, you cannot enter a room without first entering the building. The room is a variable, the floor
+                a method, and the building a class.</li>
+            </ul>
+
+            <h2>Classes</h2>
+
+            <p>Classes are templates to create objects that are an instance of the class and are useful for organizing related variables and functions. Think of classes like cookie cutters, they have a defined shape and structure and everything they
+              operate on has a specific outcome (shape of the cookie). If we define a round cookie cutter as a class in our code we would say that it needs to have a circumference, a radius and an area. The values, however, can be calculated on the
+              fly by just asking the user one value: the radius.</p>
+
+            <p>Here is the syntax for making a class:</p>
+            <pre><code>scope modifier class ClassName{
+}
+</code></pre>
+
+            <p>Let's break this down:</p>
+            <ol>
+              <li> <code>scope</code> can be private, public or global.</li>
+              <li> <code>modifier</code> can be virtual, abstract, with sharing, without sharing (optional)</li>
+              <li> <code>class</code> declares that this variable is a class data type</li>
+              <li> <code>ClassName</code> is the name of the variable. Note we do not follow camelCase when writing Class Names. This is to make a clear distinction between regular variables and classes.</li>
+            </ol>
+
+            <p><strong>Scope</strong></p>
+            <p>Scope can be Private, Public or Global.</p>
+            <ul>
+              <li> <code>Private</code> scope means any object outside the class cannot access methods inside of it</li>
+              <li> <code>Public</code> scope means any object throughout the application has access to it.</li>
+              <li> <code>Global</code> scope means any object throughout Apex has access to it.</li>
+            </ul>
+
+            <p><strong>Modifier</strong></p>
+            <p>Sharing scope can be virtual, abstract, with sharing or without sharing.</p>
+            <ul>
+              <li> <code>virtual</code> modifier allows you to override methods inherited from the parent class.</li>
+              <li> <code>abstract</code> modifier allows you to make methods without anybody defined.</li>
+              <li> <code>with sharing</code> modifier allows you to run the code in the context of the user's permission scope in Salesforce.</li>
+              <li> <code>without sharing</code> modifier allows you to run the code and access objects even outside of the user's permission scope in Salesforce.</li>
+            </ul>
+
+
+            <p>To make a cookie cutter class, we define it the following way:</p>
+
+            <pre><code>public class CookieCutter{
+}</code> </pre>
+
+            <h2>Methods</h2>
+
+            <p>Methods (also called functions when written outside the class) are template structures that take input parameters and return computed values. The syntax for Method is:</p>
+            <pre><code>scope modifier return_dataType methodName(inputParameters){
+
+return return_dataType
+}</code> </pre>
+
+
+            <p>Let's break it down</p>
+
+            <ol>
+              <li> <code>scope</code> can be public, private, protected or global. </li>
+              <li> <code>modifier</code> can be override, static, final (optional). </li>
+              <li> <code>return_dataType</code> defines what kind of value will the method return. </li>
+              <li> <code>methodName</code> is the name given to this method. Follows camelCase. </li>
+              <li> <code>inputParameters</code> are parameters that the method takes to process on them. (optional) </li>
+              <li> <code>return</code> is a keyword that denotes a value is being returned</li>
+
+            </ol>
+            <h3>Scope</h3>
+            <p>Scope can be Public, Private, Protected or Global.</p>
+            <ul>
+
+
+              <li> <code>Public</code> scope makes the method available to code throughout the application.</li>
+              <li> <code>Private</code> scope makes the method inaccessible outside the class.</li>
+              <li> <code>Protected</code> scope is used when the method should only be accessible by its children classes.</li>
+              <li> <code>Global</code> scope makes the method available throughout Apex.</li>
+            </ul>
+
+            <h3>Modifier</h3>
+            <li> <code>override</code> modifier is used when inheriting from parent class and rewriting parent method in the child class.</li>
+            <li> <code>static</code> modifier is used when creating a method/variable that is initialized only once and is associated with its outer class. There is no need for making a new instance of the class to access static methods.</li>
+            <li> <code>final</code> modifier is used when creating a method where the value cannot be changed once it's been inserted in the method/variable.</li>
+
+            <p>An example method would be:</p>
+            <pre><code>public String hello(String h){
+	String finalString = "Hello " + h;
+	return finalString;
+}</code></pre>
+
+
+            <p>To access this method, we would simply type the method name and our String in <code>( )</code> like so:</p>
+
+            <pre><code>hello('harshdeep');</code></pre>
+
+            <p>This would return;</p>
+            <pre><code>Hello harshdeep</code></pre>
+
+            <p>Now towards a more complex situation, the Cookie Cutter. To make a round cookie cutter, we would need a radius from the user, and return its circumference and area. Instead of writing this in our anon exec window, let's make a new
+              file.</p>
+
+            <p>In the developer console, click on new > apex class. Name the class <code>CookieCutter</code> and press enter.</p>
+
+            <p>In the class, write three methods (refer to syntax guide if you have to):</p>
+            <ol>
+              <li>A private method named <code>cir</code> that returns <code>Decimal</code> and takes a <code>Decimal</code> as it's input. It returns the value <code>2 * 3.14 * r</code> as a Decimal.</li>
+              <li>A private method named <code>area</code> that returns <code>Decimal</code> and takes a <code>Decimal</code> as it's input. It returns the value <code>3.14 * r * r</code> as a Decimal.</li>
+              <li>A public method named <code>radius</code> that returns <code>List&lt;Decimal&gt;</code> and takes a <code>Decimal</code> as it's input. It adds the value from <code>area</code> and <code>cir</code> into the list and returns it.</li>
+            </ol>
+
+            <pre><code>public class CookieCutter {
+
+    private Decimal cir(Decimal r){
+        Decimal fence = 2 * 3.14 * r;
+
+        return fence;
+    }
+
+    private Decimal area(Decimal r){
+        Decimal finalArea = 3.14 * r * r;
+
+        return finalArea;
+    }
+
+    public List&lt;Decimal&gt; radius(Decimal r){
+        List&lt;Decimal&gt; returnList = new List&lt;Decimal&gt;();
+
+        returnList.add(area(r));
+        returnList.add(cir(r));
+
+        return returnList;
+    }
+
+}</code></pre>
+
+            <p>Let's break this code down:</p>
+            <ul>
+              <li> First, we make a public class called <code>CookieCutter</code>.</li>
+              <li> Out first method is <code>cir</code>, that returns a Decimal data type and takes a Decimal <code>r</code> as it's input parameter.</li>
+              <li> <code>cir</code> makes a new decimal called <code>fence</code> (short for circumference) and calculated the circumference of the circle using 2 pie r and returns the final value.</li>
+              <li> <code>area</code> makes a new decimal called <code>finalArea</code> that takes Decimal <code>r</code> as an input and calculates area using pie r square and returns the final value.</li>
+              <li> <code>radius</code> method takes decimal <code>r</code> as input and will return a list of decimal.</li>
+              <li> <code>raidus</code> method calls <code>area</code> and <code>cir</code>, adds them to the list and returns the final list.</li>
+            </ul>
+
+
+            <p>We will be running following code from Anon Exec Window (Control + E). Because this method is inside a class, we need to create a new instance of this class using the class name as a data type. This is the same as making a new
+              variable, except the data type would be the class.</p>
+
+            <pre><code>CookieCutter finalCutter = new CookieCutter();</code></pre>
+
+            <p>This tells the computer to make a new template called </code>finalCutter</code> based on </code>CookieCutter</code> template. Now to access our <code>radius</code> method with 4.0 as it's radius, that returns a list of decimals, we call it like so:</p>
+
+            <pre><code>List&lt;Decimal&gt; finalList = finalCutter.radius(4.0);</code></pre>
+
+            <p>Now the list </code>finalList</code> has values of <code>area</code> and <code>cir</code> from inside the class! Go ahead and output it in the log and see the results!</p>
+
+            <pre><code>CookieCutter finalCutter = new CookieCutter();
+List&lt;Decimal&gt; finalList = finalCutter.radius(4.0);
+System.debug(finalList);</code></pre>
+
+
+            <p>Now that we are aware of what classes are, remember <code>System.debug();</code>? <code>System</code> is the name of the class and <code>debug()</code> is a method inside the class. Salesforce provides us with a bunch of inbuilt classes and methods like <code>mail</code> that
+              reduce the amount of code we need to write. To know more about what classes ad methods are available to us, we need to read the documentation.</p>
+
+            <p>Reading documentation can get confusing at times, but we do cover it at a later stage, with one day entirely dedicated to using documentation.</p>
+
+            <h3>Summary</h3>
+            <ul>
+              <li> Classes are templates that can be resued.</li>
+              <li> Methods are generic processing units that take input variables and return processedd results.</li>
+              <li> <strike>Cookies are delicious.</strike></li>
+            </ul>
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 7 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
