@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 7:<br />Test I</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <p>You made it to the end of week 1! This quick test is made to test your basic understanding of everything you've learnt in the past 6 days.</p>
+            <ul>
+              <li>You can look at the syntax, bonus points if you don't.</li>
+              <li>The test should ideally not take more than 20 minutes to solve.</li>
+              <li>All the criterias must be met.</li>
+              <li>The answer is available at <a href="https://github.com/Admin2Dev/Answers" target="_blank">Admin2Dev GitHub Repo</a>.</li>
+              <li>The answer and complete breakdown of the program is available at the end of this page.</li>
+            </ul>
+
+            <h2>The Test</h2>
+            <h3>Pre-requisite</h3>
+            <p>
+              The <strong>Fibonacci Sequence</strong> is a series of numbers where every number is the sum of 2 numbers before it. The sequence starts with numbers 0, 1 and following numbers are the sum of their 2 previous numbers. You can read more
+              on Fibonacci Sequence on <a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank">Wikipedia</a>.
+            </p>
+
+            <h3>Question</h3>
+            <p>
+              Write a class <code>NumberGenerator</code> that takes two <code>static</code> methods named <code>fibonacci</code>.
+
+            <ol>
+              <li>The first method should take an <code>Integer</code> and generate that many numbers in the fibonacci sequence in a single line. For example, if the input integer is <code>5</code>, it should generate <code>0, 1, 1, 2, 3</code>.</li>
+
+              <li>The second method should take 2 <code>Integer</code> values. The first input defines where to start the sequence from, and the second input defines how many numbers to generate in the fibonacci sequence in a single line. For
+                example, if the input integer values are <code>5 , 5</code>, it should generate <code>1,5,6,11,17</code>. <i>Hint: Use 1 as the other value when generating the sequence.</i> </li>
+              <li>Make a git entry on repo of your choice that has the final answer in a markdown file.</li>
+            </ol>
+
+            </p>
+
+            <hr>
+            <blockquote>
+              Start a timer and note how long you take to solve. Ideally, it should take ~20 minutes, but don't worry if you go overboard. This is your first time programming.
+            </blockquote>
+            <hr>
+            <h3>Answer</h3>
+            <p>First, let's see how many variables we need. We have 3 numbers at hand before we add them in the final list. Number 1 and 2 that already exist and Number 3 that is the sum of Number 1 and 2. We repeat this <code>n</code> number of
+              times. The reason why we don't ever need to know how many times we repeat the process is because the logic stays the same, <code>Number 1 + Number 2 = Number 3</code> and add Number 3 in the final list.</p>
+
+            <pre><code>public class NumberGenerator{
+  public static List&lt;Integer&gt; fibonacci(Integer n){ //where n denotes how many numbers to generate.
+    List&lt;Integer&gt; finalList = new List&lt;Integer&gt;(); //This is out final list.
+    Integer a = 0, b = 1; //First two numbers are 0 and 1 in the sequence.
+    Integer c; //Empty integer to hold the sum.
+}
+  }</code></pre>
+            <p>Now to generate the sequence we need a for loop, that runs <code>n</code> times.</p>
+
+            <pre><code> for(Integer i = 0; i &lt; n; i++){
+
+}</code></pre>
+
+            <p>We keep the exit condition to <code>i &lt; n</code> beause we are starting counting from 0. Now to add the values in the list, we first add values of number 1 and 2 <u>outside the loop</u> and number 3 inside the loop. This is done
+              because Number 1 and 2 always are constant in the List, while every number after that is added on the fly.</p>
+            <pre><code>finalList.add(a);
+finalList.add(b);
+for(Integer i = 0; i &lt; n; i++){
+  c = a + b;
+  finalList.add(c);
+}</code></pre>
+
+            <p>We also need to increment the value of a, b and c in the loop, so the previous values update too, allowing us to generate further numbers.</p>
+            <pre><code>for(Integer i = 0; i &lt; n; i++){
+  c = a + b;
+  finalList.add(c);
+  a = b;
+  b = c;
+}</code></pre>
+
+            <p>Since we are adding the starting 2 numbers in the final list, we need to subtract <code>n</code> from it. Here is what the final method looks like:</p>
+            <pre><code>public static List&lt;Integer&gt; fibonacci(Integer n){
+        List&lt;Integer&gt; returnList = new List&lt;Integer&gt;();
+
+        Integer a = 0, b = 1; //Initial numbers and place holders
+        Integer c; //new number place holder
+
+        returnList.add(a);
+        returnList.add(b);
+
+        for(Integer i = 0; i &lt; n-2; i++){
+
+            c = a + b;
+            returnList.add(c);
+            a = b;
+            b = c;
+        }
+
+        return returnList;
+    }</code></pre>
+
+            <p>The second <code>fibonacci</code> method wouldn't require too many changes. Here's what's different between the two methods: </p>
+            <ul>
+              <li>The method would take two integers as inputs.</li>
+              <pre><code>public static List&lt;Integer&gt; fibonacci(Integer starter, Integer sizer){}</code></pre>
+
+              <li>The value for Number 1 and Number 2 would be <code>1</code> and <code>starter</code> respectively.</li>
+              <pre><code>Integer a = 1, b = starter;</code></pre>
+
+              <li>The <code>for</code> loop would update to using <code>sizer-2</code> as exit condition instead of <code>n-2</code></li>
+              <pre><code>for(Integer i = 0; i &lt; sizer-2; i++){</code> </pre>
+            </ul>
+
+            <p>The final code would look something like this:</p>
+            <pre><code>public static List&lt;Integer&gt; fibonacci(Integer starter, Integer sizer){
+        List&lt;Integer&gt; returnList = new List&lt;Integer&gt;();
+
+        Integer a = 1, b = starter; //Initial numbers and place holders
+        Integer c = 0; //new number place holder
+
+        returnList.add(a);
+        returnList.add(b);
+
+        for(Integer i = 0; i &lt; sizer-2; i++){
+
+            c = a + b;
+            returnList.add(c);
+            a = b;
+            b = c;
+        }
+
+        return returnList;
+
+    }</code> </pre>
+
+            <p>To execute this code, open an Anonymous Execution window <code>Control + E</code> and log the entry:</p>
+            <pre><code>System.debug(NumberGenerator.fibonacci(5));
+System.debug(NumberGenerator.fibonacci(6,5));</code></pre>
+
+            <p>To add this to a GitHub repo, create and clone the repo on your desktop first using <code>git clone url</code>, make a new file named <code>README.md</code> and enclose your entire code between <code>```</code>. Your README.md should
+              look something like this:</p>
+            <pre><code>```
+public class NumberGenerator{
+
+    public static List&lt;Integer&gt; fibonacci(Integer n){
+        List&lt;Integer&gt; returnList = new List&lt;Integer&gt;();
+
+        Integer a = 0, b = 1; //Initial numbers and place holders
+        Integer c; //new number place holder
+
+        returnList.add(a);
+        returnList.add(b);
+
+        for(Integer i = 0; i &lt; n-2; i++){
+
+            c = a + b;
+            returnList.add(c);
+            a = b;
+            b = c;
+        }
+
+        return returnList;
+    }
+
+    public static List&lt;Integer&gt; fibonacci(Integer starter, Integer sizer){
+        List&lt;Integer&gt; returnList = new List&lt;Integer&gt;();
+
+        Integer a = 1, b = starter; //Initial numbers and place holders
+        Integer c = 0; //new number place holder
+
+        returnList.add(a);
+        returnList.add(b);
+
+        for(Integer i = 0; i &lt; sizer-2; i++){
+
+            c = a + b;
+            returnList.add(c);
+            a = b;
+            b = c;
+        }
+
+        return returnList;
+
+    }
+
+}
+```</code> </pre>
+            <p>Congratulations! If you got your answers right, you have a clear understanding of basic programming concepts. It's okay to take more than ideal time to solve because as a first time programmer you will take time to form your solutions
+              in code!</p>
+
+
+
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 8 </a>
+
+
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
