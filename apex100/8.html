@@ -70,7 +70,7 @@
 <pre><code>Contact con = new Contact();
 con.firstName = 'John';
 </code></pre>
-<p>You will notice it won’t let us do this. Let’s open SF org and make a new contact. You see, last name is a required fields. Let’s add those in the code. Also, a good practice is to open the object and make a manual entry to see what fields are required.</p>
+<p>You will notice it won’t let us do this. Let’s open SF org and make a new contact and this is because last name is a required field. Let’s add those in the code.</p>
 <pre><code>Contact con = new Contact();
 con.firstName = 'John';
 con.lastName = 'Smith';
@@ -94,13 +94,13 @@ insert con;
 </code></pre>
 <p>Now let’s open up org and see our new contact.</p>
 <figure class="kg-card kg-image-card kg-card-hascaption"><img src = "../images/apex/8/new-contact.png" width = 100%></figure>
-<p>To do this to custom objects and fields, we need to add <code>__c</code> to the end.</p>
+<p>When using custom objects we need to add <code>__c</code> to the end.</p>
 <pre><code>Painter__c pai = new Painter__c();
 pai.firstName__c = 'aye';
 
 insert pai;
 </code></pre>
-<p>What if we want to update multiple fields?</p>
+<p>To insert multiple entries, we can either make multiple instances of the objects or use a for loop</p>
 <pre><code>Contact con = new Contact();
 con.firstName = 'Ayye';
 con.lastName = 'Last Name';
@@ -117,8 +117,8 @@ finalList.add(boi);
 insert finalList;
 
 </code></pre>
-<p>We make a list that only takes contacts and add them in and add stuff to the list. We do this because we don’t want to hit Governor Limits (more on it on Day 10 where we explore GL in depth). Let’s try this: Make a for loop and create 250 new records in your developer org (Don’t worry, we will delete them later using the <code>delete</code> operation). Make 10 new contacts with last name as. “Test” followed by the number 1 - 10. So your contact list should look like “Test 1”, “Test 2”… “Test 10”.</p>
-<p>Here’s how we do it:</p>
+<p>We make a list that only takes contacts and add our records in the list before we insert them. We do this because we don’t want to hit Governor Limits (more on it on Day 10). Let’s try this: Make a for loop and create 10 new records in your developer org (Don’t worry, we will delete them later using the <code>delete</code> operation). Make 10 new contacts with last name as. “Test” followed by the number 1 - 10. So your contact list should look like “Test 1”, “Test 2”… “Test 10”.</p>
+
 <pre><code>List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
 
 for(Integer i = 0; i &lt; 10; i ++){
@@ -129,10 +129,12 @@ for(Integer i = 0; i &lt; 10; i ++){
 
 insert finalList;
 </code></pre>
-<p>Why do we initialize con inside the variable? It’s becase of the variable lifecycle. An important thing to know is, the life of a variable when made inside a for loop starts when the loop starts and ends when the loop ends. So when you make a new Contact con inside the loop, it makes a new variable con everytime the loop is run and destroys it at the end of every loop just after it adds it to the list. This is similar to making 100 cups of coffee one at a time. You get your ground coffee and water at the start and once you mix it the “original” state of ground coffee and water doesn’t exist anymore. It’s not a finished product that is added to the tray, and then you start over again, running a life cycle of raw ingredients to processed ingredients.</p>
+<p>We initialize the Contact variable inside the for loop because of how variable lifecycle works. The life of a variable when made inside a for loop starts when the loop starts and ends when the loop ends. So when you make a new <code>Contact con</code> inside the loop, it makes a new instance of <code>con</code> everytime the loop is run and destroys it at the end just after it adds to the list. This is similar to making 10 cups of coffee one at a time. You get your ground coffee and water at the start and once you mix it the “original” state of ground coffee and water doesn’t exist anymore. It’s not a finished product that is added to the tray, and then you start over again, running a life cycle of raw ingredients to processed ingredients.</p>
 <p>What if we want to update a specific Contact or Contacts that meet specific criterias?</p>
+
+
 <h2>Salesforce Object Query Language (SOQL)</h2>
-<p>SOQL or Salesforce Object Query Language is in simple terms, a search engine for your org that collects specific or similar records from specified Objects. In coffee making terms, it’s searching for a specific coffee across your cabinets and putting them down on your counter. Let’s have a look at the syntax:</p>
+<p>SOQL or Salesforce Object Query Language in simple terms is a search engine for your org that collects specific or similar records from specified Objects. In coffee making terms, it’s searching for a specific coffee across your cabinets and putting them down on your counter. Let’s have a look at the syntax:</p>
 <pre><code>[SELECT field_name, field_name2 FROM object WHERE condition AND/OR condition];</code></pre>
 <ul>
 <li><code>[]</code> It’s necessary to encolse an SOQL statement in square brackets</li>
