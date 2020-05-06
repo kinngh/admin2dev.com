@@ -194,7 +194,7 @@ System.debug(ourCapital);</code></pre>
             </ol>
             <p>In both of these cases, it was a result of bad configuration by admins and developers which could have been easily avoided.
             </p>
-            <p>To understand optimal usage for Lists v/s Maps first let us learn about For Loops, then come back to it.</p>
+            <p>To understand optimal usage for Lists v/s Maps first let us learn about For Loops.</p>
 
             <h3>For Loops</h3>
 
@@ -242,10 +242,12 @@ System.debug(ourCapital);</code></pre>
 
 <p>Here's how for loop works in terms of Coffee making. You're weighing your coffee and the first scoop had only 50 grams of coffee out of the 100 grams. A for loop in coffee terms would be:</p>
 
-<pre><code>for (spoon = 0 grams; total_coffee = 100 grams; add another spoon){
+<pre><code>for (spoon = 0 grams; total_coffee > 100 grams; add another spoon){
   spoon.add(50 grams);
   weight.check();
 }</code> </pre>
+
+<p>We start with 0 grams in our spoon, and add 50 grams of coffee with each spoon. Our exit condition is to ensure total coffee in our cup doesn't exceed 100 grams, so we keep adding coffee in 50 gram spoons until our exit condition is met.</p>
 
 
 
