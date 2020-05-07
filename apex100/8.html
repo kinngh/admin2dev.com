@@ -10,15 +10,18 @@
   <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-112097931-2');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
 
 </head>
 
@@ -33,13 +36,13 @@
           </div>
           <div class="header-nav">
             <input id="toggle" class="header-checkbox" type="checkbox">
-						<label class="header-toggle" for="toggle">
-							<span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-							</span>
-						</label>
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
             <nav>
               <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -62,64 +65,46 @@
           </div>
           <div class="post-content">
             <h2>sObjects</h2>
-<p>Every standard and custom object in salesforce can be declared as a data type in Apex. The syntax is:</p>
-<pre><code>sObject variableName = new sObject();</code></pre>
-<p>To populate the fields of any sObject, we enter setup &gt; object manager &gt; fields and relationships and <em>use the FieldName</em></p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src = "../images/apex/8/contact-api-name.png" width = 100%></figure>
-<p>Let’s make a new contact.</p>
-<pre><code>Contact con = new Contact();
+            <p>Every standard and custom object in salesforce can be declared as a data type in Apex. The syntax is:</p>
+            <pre><code>sObject variableName = new sObject();</code></pre>
+            <p>To populate the fields of any sObject, we enter setup &gt; object manager &gt; fields and relationships and <em>use the FieldName</em></p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/8/contact-api-name.png" width=100%></figure>
+            <p>Let’s make a new contact.</p>
+            <pre><code>Contact con = new Contact();
 con.firstName = 'John';
 </code></pre>
-<p>You will notice it won’t let us do this. Let’s open SF org and make a new contact and this is because last name is a required field. Let’s add those in the code.</p>
-<pre><code>Contact con = new Contact();
+            <p>You will notice it won’t let us do this. Let’s open SF org and make a new contact and this is because last name is a required field. Let’s add those in the code.</p>
+            <pre><code>Contact con = new Contact();
 con.firstName = 'John';
 con.lastName = 'Smith';
 </code></pre>
-<p>We have our variables but they’re not commited into the database yet. This is the equivalent of creating a record but not pressing save. To save this in our database, we need to use DML.</p>
-<h2>DML</h2>
-<p>DML stands for <em>Data Manipulation Language</em>. It’s used to manipulate data.</p>
-<ul>
-<li><code>Insert</code> To insert a value.</li>
-<li><code>Update</code> To update a value.</li>
-<li><code>Upsert</code> To update a value, and it it doesn’t exist, insert it. (UPSERT = UPDATE + INSERT).</li>
-<li><code>Delete</code> To delete a value.</li>
-<li><code>Undelete</code> To restore a value from recycle bin.</li>
-</ul>
-<p>Let’s insert the record:</p>
-<pre><code>Contact con = new Contact();
+            <p>We have our variables but they’re not commited into the database yet. This is the equivalent of creating a record but not pressing save. To save this in our database, we need to use DML.</p>
+            <h2>DML</h2>
+            <p>DML stands for <em>Data Manipulation Language</em>, a programming language used for inserting, deleting or modifying data in a database. It's usually a part of a bigger programming language and DML itself is considered a
+              sub-programming language.</p>
+            <ul>
+              <li><code>Insert</code> To insert a value.</li>
+              <li><code>Update</code> To update a value.</li>
+              <li><code>Upsert</code> To update a value, and it it doesn’t exist, insert it. (UPSERT = UPDATE + INSERT).</li>
+              <li><code>Delete</code> To delete a value.</li>
+              <li><code>Undelete</code> To restore a value from recycle bin.</li>
+            </ul>
+            <p>Let’s insert a record:</p>
+            <pre><code>Contact con = new Contact();
 con.firstName = 'Ayye';
 con.lastName = 'Last Name';
 
 insert con;
 </code></pre>
-<p>Now let’s open up org and see our new contact.</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src = "../images/apex/8/new-contact.png" width = 100%></figure>
-<p>When using custom objects we need to add <code>__c</code> to the end.</p>
-<pre><code>Painter__c pai = new Painter__c();
-pai.firstName__c = 'aye';
+            <p>Going back in our org, we now have a new contact named <code>Ayye Last Name</code>.</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/8/new-contact.png" width=100%></figure>
+            <p>When using custom objects or fields, a <code>__c</code> needs to be added at the end.</p>
+            <pre><code>Invoice__c inv = new Invoice__c();
+inv.lastName__c = 'Johnson';
+insert inv;</pre></code>
+            <p>To add multiple entries, initialize an object inside the for loop, update it's values and add them an external list.</p>
 
-insert pai;
-</code></pre>
-<p>To insert multiple entries, we can either make multiple instances of the objects or use a for loop</p>
-<pre><code>Contact con = new Contact();
-con.firstName = 'Ayye';
-con.lastName = 'Last Name';
-
-Contact boi = new Contact();
-con.firstName = 'Ayye';
-con.lastName = 'Last Name';
-
-List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
-
-finalList.add(con);
-finalList.add(boi);
-
-insert finalList;
-
-</code></pre>
-<p>We make a list that only takes contacts and add our records in the list before we insert them. We do this because we don’t want to hit Governor Limits (more on it on Day 10). Let’s try this: Make a for loop and create 10 new records in your developer org (Don’t worry, we will delete them later using the <code>delete</code> operation). Make 10 new contacts with last name as. “Test” followed by the number 1 - 10. So your contact list should look like “Test 1”, “Test 2”… “Test 10”.</p>
-
-<pre><code>List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+            <pre><code>List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
 
 for(Integer i = 0; i &lt; 10; i ++){
     Contact con = new Contact();
@@ -129,56 +114,70 @@ for(Integer i = 0; i &lt; 10; i ++){
 
 insert finalList;
 </code></pre>
-<p>We initialize the Contact variable inside the for loop because of how variable lifecycle works. The life of a variable when made inside a for loop starts when the loop starts and ends when the loop ends. So when you make a new <code>Contact con</code> inside the loop, it makes a new instance of <code>con</code> everytime the loop is run and destroys it at the end just after it adds to the list. This is similar to making 10 cups of coffee one at a time. You get your ground coffee and water at the start and once you mix it the “original” state of ground coffee and water doesn’t exist anymore. It’s not a finished product that is added to the tray, and then you start over again, running a life cycle of raw ingredients to processed ingredients.</p>
-<p>What if we want to update a specific Contact or Contacts that meet specific criterias?</p>
+            <p>We initialize the Contact variable inside the for loop because the life of a variable when made inside a for loop starts when the loop starts and ends when the loop ends. So when you make a new <code>Contact con</code> inside the loop,
+              it makes a new instance of <code>con</code> everytime the loop is run and destroys it at the end just after it adds to the list. This is similar to making 10 cups of coffee one at a time. You get your ground coffee and water at the
+              start and once you mix it the “original” state of ground coffee and water doesn’t exist anymore and then you start over again, running a life cycle of raw ingredients to processed ingredients.</p>
 
 
-<h2>Salesforce Object Query Language (SOQL)</h2>
-<p>SOQL or Salesforce Object Query Language in simple terms is a search engine for your org that collects specific or similar records from specified Objects. In coffee making terms, it’s searching for a specific coffee across your cabinets and putting them down on your counter. Let’s have a look at the syntax:</p>
-<pre><code>[SELECT field_name, field_name2 FROM object WHERE condition AND/OR condition];</code></pre>
-<ul>
-<li><code>[]</code> It’s necessary to encolse an SOQL statement in square brackets</li>
-<li><code>SELECT</code> is the keyword that denotes what to select</li>
-<li><code>field_name</code> is the API / Field name (not label) of the field that we want to search in</li>
-<li><code>FROM</code> is the keyword that denotes where to select from</li>
-<li><code>object</code> is the name of the object. Object__c if it’s a custom object.</li>
-<li><code>WHERE</code> is the keyword that denotes what conditions to search for in the field</li>
-<li><code>condition</code> is what are we looking for in the field(s), separated by <code>,</code> or an <code>AND</code> or <code>OR</code></li>
-</ul>
-<p>Let’s say you want to get some arabica coffee from cabine 1 and the coffee should be in beans form and must be fresh.</p>
-<pre><code>[SELECT coffeePacket FROM Cabinet1 WHERE form = 'ground' AND status = fresh ];</code></pre>
-<p>Now let’s search for the contacts we created earlier.</p>
-<pre><code>[SELECT ID, lastName from contact WHERE lastName = 'Test 1'];</code></pre>
-<p>To store this value, we usually use a List of sObject type. So to store our contact list, we would use</p>
-<pre><code>List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName = 'Test 1'];</code></pre>
-<p>Now we can delete the list using <code>delete con;</code> and the field would be removed! But what if we want to run a search in template form? We use either of these operators:</p>
-<ul>
-<li><code>%</code> means the word length could be anything.</li>
-<li><code>_</code> means we are looking for just one character.</li>
-</ul>
-<p>We also use the <code>LIKE</code> keyword when using template or wildcard searches.</p>
-<p>In coffee terms,</p>
-<p><code>COFF%</code> would return COFFEE (Multi character search)</p>
-<p><code>T_A</code> would return TEA (Single character serach)</p>
-<p>Let’s use this with our Test Contacts.</p>
-<pre><code>List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName LIKE 'Test%'];</code></pre>
-<p>This would return <code>Test 0...Test 10</code></pre>
-<p>But if we are looking to exclude Test 10 from our query, we would use:</p>
-<pre><code>List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName LIKE 'Test _'];</code></pre>
-<p>This would return <code>Test 0...Test 9</code></pre>
-<p>We can also use comparison operators. Let’s have a look:</p>
-<pre><code>List&lt;Opportunity&gt; = [SELECT ID, value FROM opportunity WHERE (value&lt;=100000 AND value &gt;= 50000)];</code></pre>
-<p>This would return all opportunities with values ranging from 50,000 to 100,000.</p>
-<p>There is also an option to use alias values in SOQL. Here’s how:</p>
-<pre><code>[SELECT ID, lastName FROM contact c where c.lastName = 'Test'];</code></pre>
-<p>This is especially handy when dealing with longer custom object names.</p>
-<p>To bring the value of a variable in SOQL query, it must be after a <code>:</code>.  Here’s an example:</p>
-<pre><code>String searchName = 'Young';
+            <h2>Salesforce Object Query Language (SOQL)</h2>
+            <p>SOQL or Salesforce Object Query Language in simple terms is a search engine for your org that collects specific or similar records from specified Objects. In coffee making terms, it’s searching for a specific coffee across your
+              cabinets in the kitchen and putting them down on your counter. Let’s have a look at the syntax:</p>
+            <pre><code>[SELECT field_name, field_name2 FROM object WHERE condition AND/OR condition];</code></pre>
+
+            <ul>
+
+              <li><code>[]</code> It’s necessary to encolse an SOQL statement in square brackets</li>
+              <li><code>SELECT</code> is the keyword that denotes what to select</li>
+              <li><code>field_name</code> is the API / Field name (not label) of the field that we want to search in</li>
+              <li><code>FROM</code> is the keyword that denotes where to select from</li>
+              <li><code>object</code> is the name of the object. Object__c if it’s a custom object.</li>
+              <li><code>WHERE</code> is the keyword that denotes what conditions to search for in the field</li>
+              <li><code>condition</code> is what are we looking for in the field(s), separated by <code>,</code> or an <code>AND</code> or <code>OR</code></li>
+
+            </ul>
+
+            <p>Let’s say you want to get some arabica coffee from cabinet 1 and the coffee should be in beans form and must be fresh.</p>
+            <pre><code>[SELECT arabica FROM Cabinet1 WHERE form = 'ground' AND status = fresh ];</code></pre>
+
+
+            <p>Let's run an actual search on contacts made earlier:</p>
+            <pre><code>[SELECT ID, lastName from contact WHERE lastName = 'Test 1'];</code></pre>
+
+
+            <p>The SOQL query returns a list of results and the data type is the object it searched in.</p>
+            <pre><code>List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName = 'Test 1'];</code></pre>
+            <p>Real life scenarios aren't Test 1, 2 and 3 but take actual names. To search using a template form, we make use of wildcards, these are operators that work similar to fill in the blanks. There are two wildcard operators in SOQL:</p>
+            <ul>
+              <li><code>_</code> means we are searching for one character specifically.</li>
+              <li><code>%</code> means we are searching for multiple characters.</li>
+
+            </ul>
+            <p>To use wildcard operators, replace <code>=</code> with <code>LIKE</code> keyword. In coffee terms</p>
+            <ul>
+              <li><code>COFF%</code> would return COFFEE (Multi character search)</li>
+              <li><code>T_A</code> would return TEA (Single character serach)</li>
+            </ul>
+
+            <p>Let's search for the 10 Test contacts we made earlier:</p>
+            <pre><code>List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName LIKE 'Test%'];</code></pre>
+
+            <p>This would return all values from <code>Test 0...Test 10</code>. But if we are looking to exclude Test 10 from our query, we would use:</p>
+            <pre><code>List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName LIKE 'Test _'];</code></pre>
+
+            <p>This would return <code>Test 0...Test 9</code>
+            <p>We can further run complex queries by introducing comparison operators:</p>
+            <pre><code>List&lt;Opportunity&gt; = [SELECT ID, value FROM opportunity WHERE (value&lt;=100000 AND value &gt;= 50000)];</code></pre>
+
+            <p>This would return all opportunities with values ranging from 50,000 to 100,000. We can also assign nicknames (called alias) to objects in SOQL queries:</p>
+            <pre><code>[SELECT ID, lastName FROM contact c where c.lastName = 'Test'];</code></pre>
+
+            <p>This is especially handy when dealing with longer custom object names and fields, and working with related objects and fields.</p>
+            <p>We can further run more template serches by introducing variables in our SOQL queries just by adding a <code>:</code> before the variable name:</p>
+            <pre><code>String searchName = 'Young';
 List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName = :searchName];
 </code></pre>
-<p>Another thing to note is, almost every query had ID selected in field even when we don’t really use it, it’s because when the queries are returned, value IDs are returned too and you would simply run in an error if you exclude it. Also, every field that you want to select or run queries on, must be included in the <code>SELECT</code> keyword.</p>
 
-<p>We continue with more SOQL functions tomorrow.</p>
+            <p>Usually after the <code>SELECT</code> keyword we include ID in our queries even if we don't use the field. This is because our operations require those fields and it's being handled in the background automatically and I would recommend almost always include ID as a field in your SOQL queries for use in future or while working in teams. </p>
 
 
 
@@ -196,7 +195,7 @@ List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName = :se
       </main>
       <footer class="footer-section global-footer">
         <div class="footer-copyright">
-          &copy; <a href="http://harshdeephura.com" target = "_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
         </div>
       </footer>
     </div>
