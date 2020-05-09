@@ -239,7 +239,115 @@ Integer b = 18;
 Decimal c = 4.0;
 Decimal d = 5.0;
 System.debug(a + b / c * d);</code></pre>
-            Before you run the code, use a pen and paper and calucalte using BODMAS (Bracket, Of, Division, Multiplication, Addition, Subtraction) rule. If you run the code above using BODMAS, you'll get answer as <code> 67.50</code>and the developer console will give you the same result! This is because the developer console follows a specific set of arithmetic operations.</p>
+            Before you run the code, use a pen and paper and calculate using BODMAS and PEMDAS rule before comparing values in the console. Noticed a difference? Just like BODMAS and PEMDAS, Apex has it's own order of arithmetic operations: </p>
+
+            <table>
+
+
+
+                <thead>
+                    <tr>
+                        <th>Precedence</th>
+
+                        <th>Operators</th>
+
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody class="tbody">
+                    <tr>
+                        <td>1</td>
+
+                        <td>{} () ++ --</td>
+
+                        <td>Grouping and prefix increments and decrements</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+
+                        <td>new</span></td>
+
+                        <td>Unary negation, type cast and object creation</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+
+                        <td>* /</td>
+
+                        <td>Multiplication and division</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+
+                        <td>+ -</td>
+
+                        <td>Addition and subtraction</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+
+                        <td>&lt; &lt;= &gt; &gt;=
+instanceof</td>
+
+                        <td>Greater-than and less-than comparisons, reference tests</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>6</td>
+
+                        <td>== !=</td>
+
+                        <td>Comparisons: equal and not-equal</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>7</td>
+
+                        <td>&amp;&amp;</td>
+
+                        <td>Logical AND</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>8</td>
+
+                        <td>||</td>
+
+                        <td>Logical OR</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>9</td>
+
+                        <td>= += -= *= /= &amp;=</td>
+
+                        <td>Assignment operators</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+
+
+
             <p>If we want to follow a specific way of solving an operation, we enclose it in brackets <code>( )</code>. Brackets are always solved inside out.</p>
 
             <h3>String Interpolation</h3>
