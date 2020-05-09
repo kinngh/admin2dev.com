@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 9:<br />Database Class Methods</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <h2>Database Class Methods</h2>
+            <p>Database Class Methods are alternate ways of using DML statements, except Database Class Methods offer more functionality and flexibility.</p>
+            <table >
+              <thead>
+                <tr>
+                  <th>DML Statements</th>
+                  <th>Database Class Methods</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Partial updates are not allowed</td>
+                  <td>Allows for partial updates</td>
+                </tr>
+                <tr>
+                  <td>No way of getting list of successful / failed records</td>
+                  <td>Methods are available to get list of records that were inserted or failed.</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Using Database Class Methods requires knowledge of in-built classes.</p>
+            <ul>
+              <li>Database Class</li>
+              <li>SaveResult Class</li>
+              <li>Error Class</li>
+            </ul>
+            <h2>Database Class</h2>
+            <p>Database Class’ methods allow you to manipulate data into the org database and allow for partial updates, which means you can manipulate multiple records of an Object and
+              the operation would go through even if some fail. The syntax is&quot;</p>
+            <pre><code>Database.statement(Record_Or_List, allOrNone);
+</code></pre>
+            <ul>
+              <li><code>Database</code> is the keyword</li>
+              <li><code>statement</code> is the operation we are doing on a single record or list. This can be <code>insert,</code> <code>update</code>, <code>upsert</code>,
+                <code>delete</code> or<code>undelete</code></li>
+              <li><code>Single_Or_List</code> can be a single record being inserted or a list of objects.</li>
+              <li><code>allOrNone</code> can be either <code>true</code> or <code>false</code> to indicate if the records should be operated on despite some of them failing.</li>
+            </ul>
+            <p>Let’s now insert 2 records in the contact object, one that succeds and the other fails.</p>
+            <pre><code>List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+Contact con = new Contact();
+con.lastName = 'Smith';
+finalList.add(con);
+
+Contact failCon = new Contact();
+failCon.firstName = 'John';
+finalList.add(failCon);
+
+Database.insert(finalList, true);
+</code></pre>
+            <p>When this code is run, it throws an error stating Last Name is a required field, but if the last statement is switched to false, it inserts the values that can be inserted
+              and omits the rest</p>
+            <pre><code>Database.insert(finalList, false);
+</code></pre>
+            <p>On opening our console log and entering “Debug Only” section, there is no log. This is because we need the <code>SaveResult</code> class to save the results.</p>
+            <h2>SaveResult</h2>
+            <p>SaveResult class is the result of an insert or update operation returned by the Database Class. Every Database operation returns an array (arrays are like List, but use
+              <code>[ ]</code> instead of <code>&lt;&gt;</code>) of SaveResult. To use it, we just save the result of a Database operation into a <code>Database.SaveResult[] variableName</code>. Let’s add this to our code and loop over it:</p>
+            <pre><code>List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+Contact con = new Contact();
+con.lastName = 'Smith';
+finalList.add(con);
+
+Contact failCon = new Contact();
+failCon.firstName = 'John';
+finalList.add(failCon);
+
+Database.SaveResult[] resultList = Database.insert(finalList, false); //Allow partial updates
+
+for (Database.SaveResult iterator: resultList){
+    System.debug(iterator);
+}</code></pre>
+            <p>You will get the following in your Debug Only logs:</p>
+            <pre><code>01:53:17:158 USER_DEBUG [14]|DEBUG|Database.SaveResult[getErrors=();getId=0036F00003XBWVJQA5;isSuccess=true;]
+
+01:53:17:167 USER_DEBUG [14]|DEBUG|Database.SaveResult[getErrors=(Database.Error[getFields=(LastName);getMessage=Required fields are missing:[LastName];getStatusCode=REQUIRED_FIELD_MISSING;]);getId=null;isSuccess=false;]</code></pre>
+            <p>You will notice the successful field has <code>getErrors</code>, <code>getId</code> and <code>isSuccess</code> fields, which can actually be used in our code to filter out
+              successful results and get their IDs, and only output the failed fields. Let’s update our for loop to reflect this change and pretty up our logs:</p>
+            <pre><code>for (Database.SaveResult iterator: resultList){
+    if (iterator.isSuccess()){
+        System.debug('Successfuly inserted: ' + iterator.getID());
+    }
+    else {
+        System.debug(iterator);
+    }
+}</code></pre>
+            <p>Great! now to deal with the errors, we make use of the methods available in <code>Error</code> class.</p>
+            <h2>Error</h2>
+            <p>The Error class is used for error reporting and has 3 methods:</p>
+            <ul>
+              <li><code>getFields()</code> to get an array of fields that failed</li>
+              <li><code>getMessage()</code> to get why the record failed</li>
+              <li><code>getStatusCode()</code> to get the status code of the error</li>
+            </ul>
+            <p>This is used in combination with the Database Class and it’s <code>.getErrors()</code> method.</p>
+            <p>Let’s add this in our for loop</p>
+            <pre><code>for (Database.SaveResult iterator: resultList){
+    if (iterator.isSuccess()){
+        System.debug('Successfuly inserted: ' + iterator.getID());
+    }
+    else {
+        for (Database.error errorIterator: iterator.getErrors()){
+            System.debug(errorIterator.getStatusCode() + ' ' + errorIterator.getMessage() );
+            System.debug('The following fields were affected: ' + errorIterator.getFields());
+        }
+    }
+}</code></pre>
+            <p>The log now states:</p>
+            <pre><code>02:10:12:126 USER_DEBUG [15]|DEBUG|Successfuly inserted: 0036F00003XBWWvQAP
+
+02:10:12:143 USER_DEBUG [19]|DEBUG|REQUIRED_FIELD_MISSING Required fields are missing: [LastName]
+
+02:10:12:143 USER_DEBUG [20]|DEBUG|The following fields were affected: (LastName)
+</code></pre>
+            <p>Now out logs are much cleaner and output our errors very clearly! The Database class is much more complex than basic DML statements that allow for partial updates, which
+              we look at tomorrow.</p>
+
+<h3>Summary</h3>
+<ul>
+  <li>Database Class Methods has extended functionality and allows for partial updates</li>
+  <li>SaveResult class allows to save results of the database operations</li>
+  <li>Error class allows to navigate through errors</li>
+  <li>An Array is similar to a list, with the only exception of <code>[ ]</code> instead of <code>&lt; &gt;</code> </li>
+</ul>
+
+
+
+
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 10 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
