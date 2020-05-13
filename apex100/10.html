@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 10:<br />SOSL and Type Casting</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <h2>Salesforce Object Search Language</h2>
+            <p>SOSL (Salesforce Object Search Language) performs text searches in records, and queries multiple types of objects at the same time.</p>
+            <pre><code>FIND {keyword} IN ALL FIELDS RETURNING ObjectName(returnFields);</code></pre>
+            <ul>
+              <li><code>FIND</code> is the keyword to initiate a SOSL query.</li>
+              <li><code>{keyword}</code> is the string we are looking for.</li>
+              <li><code>IN</code> what fields are we looking in</li>
+              <li><code>ALL</code> keyword for searching through all Objects’ fields</li>
+              <li><code>FIELDS</code> keyword stating we are searching in fields</li>
+              <li><code>RETURNING</code> keyword for what values we want to return</li>
+              <li><code>ObjectName(returnFields)</code> returns the fields from Object when there is a match</li>
+            </ul>
+            <p>Let’s run an example in the <em>Query Editor</em> of Developer Console to first see what our query returns. To do this, open Developer Console and select <em>Query
+                Editor</em> from the bottom tab:</p>
+            <pre><code>FIND {Test} IN ALL FIELDS RETURNING Contact(LastName, Phone, Email);</code></pre>
+            <p>This returns a list of all contacts that have test in their last name, field or email. Let’s save this in a List of List of sObjects and then into a variable of Contact
+              array type:</p>
+            <pre><code>List&lt;List&lt;sObject&gt;&gt; searchList = FIND {Test} IN ALL FIELDS RETURNING Contact(LastName, Phone, Email);
+
+Contact[] con = (Contact[])searchList[0];
+</code></pre>
+            <p>In line 1, we make a List of List of sObjects to store all values that out SOSL query returns. The sObject type allows us to store virtually any standard object instead of a
+              specific one.<br>
+              In line 2, we convert our <code>searchList</code> into a Contact Object type. The conversion of a value from one data type to another is called <em>Type Casting</em>.</p>
+            <hr>
+            <h2>Type Casting</h2>
+            <p>The process of changing a value from one data type to another is called Type casting. To put simply in coffee terms, if you grind your coffee beans roughly and want only the
+              coffee dust to pass through, you put the entire mixture through a strainer and allow only coffee dust to get in the other container. The syntax is:</p>
+            <pre><code>dataType variableName = (dataType) valueOrVariableToConvert;
+</code></pre>
+            <ul>
+              <li><code>dataType</code> in both cases is the data type we want to convert the variable/value into</li>
+              <li><code>variableName</code> is the name of converted variable/value</li>
+              <li><code>valueOrVariableToConvert</code> is the variable or value we want to convert.</li>
+            </ul>
+            <p>Let’s convert a simple Decimal into an Integer.</p>
+            <pre><code>Decimal value1 = 45.115;
+Integer value2 = (Integer) value1;
+System.debug('The decimal is: '+ value1 + '. The integer is: ' + value2);
+</code></pre>
+            <p>The console log would output: <code>The decimal is: 45.115. The integer is: 45</code>. </p>
+            <p>Type casting works within reason and can only convert comparable types, for example a
+              String cannot be converted to an Integer even if the value of String is <code>45</code>.</p>
+            <hr>
+            <p>When an SOSL query returns multiple objects, the array is indexed in the same order as the order of Objects returned in the query.</p>
+            <pre><code>List&lt;List&gt; searchList = [FIND 'test*' IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity];
+
+Account[] accList = (Account[])searchList[0];
+Contact[] conList = (Contact[])searchList[1];
+Opportunity[] oppList = (Opportunity[])searchList[2];
+</code></pre>
+            <p>Notice how the counting always starts from 0 and not 1.</p>
+            <h2>SOSL vs SOQL</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>SOSL</th>
+                  <th>SOQL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Search across multiple objects</td>
+                  <td>Search one object at a time</td>
+                </tr>
+                <tr>
+                  <td>Returns a List of List with multiple objects in order</td>
+                  <td>Returns a single List</td>
+                </tr>
+                <tr>
+                  <td>Queries can be run on unrelated objects</td>
+                  <td>Queries can be run on single or related objects only</td>
+                </tr>
+                <tr>
+                  <td>Can run across the entire org if necessary, knowledge of exact location of data is optional</td>
+                  <td>The location of data must be known</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2>Summary</h2>
+            <p>From the official documentation <a href = "https://resources.docs.salesforce.com/sfdc/pdf/salesforce_large_data_volumes_bp.pdf"> available here, page 11</a></p>
+            <h3>Use SOQL when</h3>
+            <ul>
+              <li>You know in which objects or fields the data resides.</li>
+              <li>You want to retrieve data from a single object or from multiple objects that are related to one another.</li>
+              <li>You want to count the number of records that meet specified criteria.</li>
+              <li>You want to sort results as part of the query.</li>
+              <li>You want to retrieve data from number, date, or checkbox fields.</li>
+            </ul>
+            <h3>Use SOSL when</h3>
+            <ul>
+              <li>You don’t know in which object or field the data resides and you want to find it in the most efficient way possible.</li>
+              <li>You want to retrieve multiple objects and fields efficiently, and the objects may or may not be related to one another.</li>
+              <li>You want to retrieve data for a particular division in an organization using the divisions feature, and you want to find it in the most efficient way possible.</li>
+            </ul>
+            <h3>Some additional considerations when using SOQL or SOSL:</h3>
+            <ul>
+              <li>Both SOSL search queries and SOQL WHERE filters can specify text to look for. When a given search can use either language, SOSL is generally faster than SOQL if the
+                search expression uses leading wildcards or a CONTAINS term.</li>
+              <li>In some cases, when multiple WHERE filters are being used in SOQL, indexes cannot be used even though the fields in the WHERE clause may be indexed. In this situation,
+                decompose the single query into multiple queries each with one WHERE filter and then combine the results.</li>
+              <li>Executing a query with a null in a WHERE filter makes it impossible to use indexing. Such queries must scan the entire database to find appropriate records. Design the
+                data model not to rely on nulls as valid field values.</li>
+              <li>If dynamic values are being used for the WHERE field and null values can be passed in, don’t let the query run to determine there are no records; instead check for the
+                nulls and avoid the query if necessary.</li>
+            </ul>
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 11 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
