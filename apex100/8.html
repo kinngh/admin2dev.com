@@ -166,7 +166,7 @@ insert finalList;
 
             <p>This would return <code>Test 0...Test 9</code>
             <p>We can further run complex queries by introducing comparison operators:</p>
-            <pre><code>List&lt;Opportunity&gt; = [SELECT ID, value FROM opportunity WHERE (value&lt;=100000 AND value &gt;= 50000)];</code></pre>
+            <pre><code>List&lt;Opportunity&gt; oppList = [SELECT ID, value FROM opportunity WHERE (value&lt;=100000 AND value &gt;= 50000)];</code></pre>
 
             <p>This would return all opportunities with values ranging from 50,000 to 100,000. We can also assign nicknames (called alias) to objects in SOQL queries:</p>
             <pre><code>[SELECT ID, lastName FROM contact c where c.lastName = 'Test'];</code></pre>

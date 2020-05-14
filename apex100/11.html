@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 11:<br />Apex Triggers and Order of Execution</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <p>When an event takes place in Salesforce, if follows an <em>Order of Execution</em>(Described later in this chapter) that calls Triggers at multiple points. Trigger is one of
+              the many ways to invoke Apex Code. To write a trigger, we select File &gt; New &gt; Apex Trigger (instead of Apex Class) in Developer console. The syntax for writing a Trigger is:</p>
+            <pre><code>trigger TriggerName on Object(triggerEvents){
+    //code
+}
+</code></pre>
+            <ul>
+              <li><code>trigger</code> keyword for initializing a Trigger.</li>
+              <li><code>TriggerName</code> is the name assigned to this Trigger.</li>
+              <li><code>on</code> keyword that defines what object are we running it on.</li>
+              <li><code>Object</code> is the name of the object on which the trigger will run.</li>
+              <li><code>triggerEvents</code> defines <em>when</em> and on <em>what event</em> will the trigger run using the keywords <code>before</code> or <code>after</code> followed by
+                standard DML operations like <code>insert</code>. Multiple trigger events are separated using a <code>,</code>.</li>
+            </ul>
+            <p>There are two key Trigger class methods to know:</p>
+            <ul>
+              <li><code>Trigger.new</code> contains all the values that are new in the object.</li>
+              <li><code>Trigger.old</code> contains all the values that were in the object before being updated.</li>
+            </ul>
+            <p>A real-life example is you take a cup. First you fill it with water, then you pour the water out and add milk in it. <code>Trigger.new</code> will return the value
+              <code>milk</code>, and <code>Trigger.old</code> will return the value <code>water</code> when run on the cup. Let’s write a simple trigger on Contact object that checks if the First Name is empty, and fills it as ‘John’ if it is empty.
+            </p>
+            <pre><code>trigger FirstNamer on Contact(before insert){
+    List&lt;Contact&gt; con = Trigger.new;
+
+    for (Contact iterator: con){
+
+        if(iterator.FirstName == null){
+            iterator.FirstName = 'John';
+        }
+    }
+
+}
+</code></pre>
+            <p>Now let’s head over to our org and make 2 new entries in the Contact object. The first entry should have First and Last Names and the second should have only a Last Name.
+              You will notice the second record where no First name was specified, the value <code>John</code> has now been filled instead. Let’s write a trigger that makes use of <code>Trigger.old</code>.</p>
+            <p>This new trigger runs on the Contact object and if the old First Name of a Contact was <code>John</code>, we want to replace whatever new value the user has put in with
+              <code>Smith</code> instead. So if a person with the name <code>John Cool</code> existed in the database and a user tries to update the first name from <code>John</code> to anything else, the value gets saved as <code>Smith</code>
+              instead.</p>
+            <pre><code>trigger FirstName on Contact(after update){
+
+    List&lt;Contact&gt; con = Trigger.old;
+    List&lt;ID&gt; conId = new List&lt;ID&gt;();
+    List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+    for (Contact iterator: con){
+        if(iterator.FirstName == 'John'){
+            conId.add(iterator.Id);
+        }
+    }
+
+    List&lt;Contact&gt; updateList = [SELECT ID, FirstName FROM Contact WHERE ID = :conId];
+
+    for (Contact iterator: updateList){
+        iterator.FirstName = 'Smith';
+        finalList.add(iterator);
+    }
+
+    update finalList;
+
+}
+</code></pre>
+            <p>While this seems like a lot of code it’s easy to understand with a breakdown:</p>
+            <ul>
+              <li>First we make an <code>after update</code> trigger. The reason behind this is <code>Trigger.old</code> doesn’t exist until a change has occurred in the values.</li>
+              <li>We make 3 lists. <code>con</code> to hold old values. <code>conId</code> to hold the IDs of values we need to update. <code>finalList</code> to update the values.</li>
+              <li>The for loop that runs on <code>con</code> goes over the old values and searches for contacts where the First Name was <code>John</code> and stores just he ID in
+                <code>conId</code> list.</li>
+              <li>Now we run a SOQL query to get all the records with matching IDs that currently exist in our database.</li>
+              <li>The for loop runs over the matches and changes their First Name to <code>Smith Cool</code>.</li>
+            </ul>
+            <p>The first question that arises is <em>When to use Before and After Triggers</em>. For this, we need to understand the <em>Order of Execution</em> first.</p>
+            <hr>
+            <h2></a>Order of Execution</h2>
+            <p>The standard Order of Execution is a sequence of events that occur when an insert, update or upsert operation occurs in Salesforce. All events in the Order of Execution need
+              to successfully execute before data is committed to the database and if there’s a failure, all changes are rolled back and no further events are executed. Below is the Order of Execution in order of occurrence taken directly from
+              Salesforce Documentation available <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm" target="_blank">here</a></p>
+            <div class = "responsive-table"><table>
+              <thead>
+                <tr>
+                  <th>Sequence</th>
+                  <th>Event</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1            </td>
+                  <td>Loads the original record from the database or initializes the record for an upsert statement.</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Loads the new record field values from the request and overwrites the old values.*</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Executes flows that make before-save updates.</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Executes all before triggers.</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Runs most system validation steps again, such as verifying that all required fields have a non-null value, and runs any user-defined validation rules. The only system validation that Salesforce doesn’t run a second time (when
+                    the request comes from a standard UI edit page) is the enforcement of layout-specific rules.</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Executes duplicate rules. If the duplicate rule identifies the record as a duplicate and uses the block action, the record is not saved and no further steps, such as after triggers and workflow rules, are taken.</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Saves the record to the database, but doesn’t commit yet.</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Executes all after triggers.</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Executes assignment rules.</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Executes auto-response rules.</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>Executes workflow rules.</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>If there are workflow field updates, updates the record again.</td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>If the record was updated with workflow field updates, fires before update triggers and after update triggers one more time (and only one more time), in addition to standard validations. Custom validation rules, flows, duplicate
+                    rules, processes, and escalation rules are not run again.</td>
+                </tr>
+                <tr>
+                  <td>14</td>
+                  <td>Executes processes and flows launched via processes and flow trigger workflow actions. When a process or flow executes a DML operation, the affected record goes through the save procedure.</td>
+                </tr>
+                <tr>
+                  <td>15</td>
+                  <td>Executes escalation rules.</td>
+                </tr>
+                <tr>
+                  <td>16</td>
+                  <td>Executes entitlement rules.</td>
+                </tr>
+                <tr>
+                  <td>17</td>
+                  <td>If the record contains a roll-up summary field or is part of a cross-object workflow, performs calculations and updates the roll-up summary field in the parent record. Parent record goes through save procedure.</td>
+                </tr>
+                <tr>
+                  <td>18</td>
+                  <td>If the parent record is updated, and a grandparent record contains a roll-up summary field or is part of a cross-object workflow, performs calculations and updates the roll-up summary field in the grandparent record. Grandparent
+                    record goes through save procedure.</td>
+                </tr>
+                <tr>
+                  <td>19</td>
+                  <td>Executes Criteria Based Sharing evaluation.</td>
+                </tr>
+                <tr>
+                  <td>20</td>
+                  <td>Commits all DML operations to the database.</td>
+                </tr>
+                <tr>
+                  <td>21</td>
+                  <td>Executes post-commit logic, such as sending email.</td>
+                </tr>
+              </tbody>
+            </table></div>
+            <p>Continuation on Sequence 2:</p>
+            <ul>
+              <li>If the request came from a standard UI edit page, Salesforce runs system validation to check the record for:
+                <ul>
+                  <li>Compliance with layout-specific rules</li>
+                  <li>Required values at the layout level and field-definition level</li>
+                  <li>Valid field formats</li>
+                  <li>Maximum field length</li>
+                </ul>
+              </li>
+              <li>When the request comes from other sources, such as an Apex application or a SOAP API call, Salesforce validates only the foreign keys. Before executing a trigger,
+                Salesforce verifies that any custom foreign keys do not refer to the object itself.</li>
+              <li>Salesforce runs user-defined validation rules if multiline items were created, such as quote line items and opportunity line items.</li>
+            </ul>
+            <p>The entire Order of Execution can be broken into 3 smaller tables that are easier to understand:</p>
+            <div class = "responsive-table"><table>
+              <thead>
+                <tr>
+                  <th>Sequence</th>
+                  <th>Event</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Original record is loaded OR new records are initialized</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Field values are loaded into sObjects</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Before triggers are executed</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>System validation rules are run again and custom validation rules are checked</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Duplicate rules are executed</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Record is saved but not committed</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>After triggers are executed</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Assignment rules are executed</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Auto response rules are executed</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Before triggers, system validation rules and after triggers are executed due to workflow field updates</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Processes are executed</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Escalation rules are executed</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Entitlement rules are executed</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Roll-up summary fields and cross object formula fields are updated</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Updated parent and grand parent records are saved</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Criteria based sharing rules are evaluated</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>DML operations are committed to the database</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Post commit logic is executed</td>
+                </tr>
+              </tbody>
+            </table></div>
+            <hr>
+            <p>So now with the knowledge of Order of Execution the answer to <em>How to decide a Before or After Trigger</em> is simple, always use a <code>before</code> trigger unless
+              there is a need to use components like ID that require an <code>after</code> trigger and this is coming purely from my experience and other developers.</p>
+            <p>Now that we know how to write a trigger, we need to optimize and follow the 2 key rules:</p>
+            <h3>1 Trigger. 1 Object.</h3>
+            <p>Never have more than one trigger for every object in the org. Having more than one trigger will eventually cause problems especially in a team environment. This is also to
+              reduce conflicting code and staying within Governor Limits (More on this tomorrow).</p>
+            <h3>Trigger Helper Class</h3>
+            <p>Writing all of the code in the trigger itself results in bigger, complex looking files that may later cause issues. To avoid this we call a class and pass values to it
+              instead, and call it a Helper Class. Let’s rewrite our FirstNamer trigger to use a helper class.</p>
+            <h4>FirstNamer Trigger File</h4>
+            <pre><code>trigger FirstName on Contact(after update){
+    FirstNameHelper.replaceName(trigger.old);
+}
+</code></pre>
+            <h4>FirstNamer Class File</h4>
+            <pre><code>public class FirstNameHelper{
+
+    public static void replaceName(List&lt;Contact&gt; con){
+        List&lt;ID&gt; conId = new List&lt;ID&gt;();
+        List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+        for (Contact iterator: con){
+            if(iterator.FirstName == 'John'){
+                conId.add(iterator.Id);
+            }
+        }
+
+        List&lt;Contact&gt; updateList = [SELECT ID, FirstName FROM Contact WHERE ID = :conId];
+
+        for (Contact iterator: updateList){
+            iterator.FirstName = 'Smith';
+            finalList.add(iterator);
+        }
+
+        update finalList;
+    }
+}
+</code></pre>
+            <p>While most of our code remains the same, we made one big change. In our trigger class, we pass the <code>trigger.old</code> as an input parameter to our helper class, that
+              has a method called <code>replaceName</code> that takes a list of contacts as an input. We know <code>trigger.old</code> will be a list of contacts because we are running it within the context of the <code>Contact</code>
+              object,<code>trigger FirstName on Contact</code>. But what if we want to execute different helper classes at different times?</p>
+            <p>Let’s say in our example, we have a trigger called <code>NameReplacer</code> that runs on the <code>Contact</code> Object and runs at two different times. When it’s
+              <code>before insert</code>, we want to run a method <code>firstName()</code> that replaces first name, and during the <code>after update</code> we want to run a method <code>lastName()</code> that replaces last name. We use Trigger
+              Context Variables to achieve this.</p>
+            <h2>Trigger Context Variables</h2>
+            <p>All triggers allow the developer to access run time context, which roughly means we get to define what processes run at what time. This is available in methods of Trigger
+              class, available <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_context_variables.htm" target="_blank">here in the official documentation</a>:</p>
+            <div class = "responsive-table"><table>
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Usage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>isExecuting</td>
+                  <td>Returns true if the current context for the Apex code is a trigger, not a Visualforce page, a Web service, or an executeanonymous() API call.</td>
+                </tr>
+                <tr>
+                  <td>isInsert</td>
+                  <td>Returns true if this trigger was fired due to an insert operation, from the Salesforce user interface, Apex, or the API.</td>
+                </tr>
+                <tr>
+                  <td>isUpdate</td>
+                  <td>Returns true if this trigger was fired due to an update operation, from the Salesforce user interface, Apex, or the API.</td>
+                </tr>
+                <tr>
+                  <td>isDelete</td>
+                  <td>Returns true if this trigger was fired due to a delete operation, from the Salesforce user interface, Apex, or the API.</td>
+                </tr>
+                <tr>
+                  <td>isBefore</td>
+                  <td>Returns true if this trigger was fired before any record was saved.</td>
+                </tr>
+                <tr>
+                  <td>isAfter</td>
+                  <td>Returns true if this trigger was fired after all records were saved.</td>
+                </tr>
+                <tr>
+                  <td>isUndelete</td>
+                  <td>Returns true if this trigger was fired after a record is recovered from the Recycle Bin. This recovery can occur after an undelete operation from the Salesforce user interface, Apex, or the API.</td>
+                </tr>
+                <tr>
+                  <td>new</td>
+                  <td>Returns a list of the new versions of the sObject records. This sObject list is only available in insert, update, and undelete triggers, and the records can only be modified in before triggers.</td>
+                </tr>
+                <tr>
+                  <td>newMap</td>
+                  <td>A map of IDs to the new versions of the sObject records. This map is only available in before update, after insert, after update, and after undelete triggers.</td>
+                </tr>
+                <tr>
+                  <td>old</td>
+                  <td>Returns a list of the old versions of the sObject records. This sObject list is only available in update and delete triggers.</td>
+                </tr>
+                <tr>
+                  <td>oldMap</td>
+                  <td>A map of IDs to the old versions of the sObject records. This map is only available in update and delete triggers.</td>
+                </tr>
+                <tr>
+                  <td>operationType</td>
+                  <td>Returns an enum of type System.TriggerOperation corresponding to the current operation.Possible values of the System.TriggerOperation enum are: BEFORE_INSERT, BEFORE_UPDATE, BEFORE_DELETE,AFTER_INSERT, AFTER_UPDATE,
+                    AFTER_DELETE, and AFTER_UNDELETE. If you vary your programming logic based on different trigger types, consider using the switch statement with different permutations of unique trigger execution enum states.</td>
+                </tr>
+                <tr>
+                  <td>size</td>
+                  <td>The total number of records in a trigger invocation, both old and new.</td>
+                </tr>
+              </tbody>
+            </table></div>
+            <p>Let’s write our <code>NameReplacer</code> trigger:</p>
+            <pre><code>trigger NameReplacer on Contact(before insert, after update){
+    if (Trigger.isBefore &amp;&amp; Trigger.isInsert){
+        firstName();
+    }
+    if (Trigger.isAfter &amp;&amp; Trigger.isUpdate){
+        lastName();
+    }
+}</code></pre>
+            <p>Alternatively, this can be written in nested <code>if</code> statements:</p>
+            <pre><code>trigger NameReplacer on Contact(before insert, after update){
+    if (Trigger.isBefore){
+        if(Trigger.isInsert){
+            firstName();
+        }
+    }
+
+    if (Trigger.isAfter){
+        if(Trigger.isUpdate){
+            lastName();
+        }
+    }
+}</code></pre>
+            <p>Either ways works and is on the developer to choose which format they prefer. Personally, I prefer nesting inside <code>if</code> statements to keep the file easily
+              readable. We will look into remaining Trigger Context Variables like <code>oldMap</code> and <code>newMap</code> in the next chapter.</p>
+            <p>The next question that comes instantly is <em>Why to write triggers when Flows/Process Builder/Workflow can be used instead?</em>. A very simple answer for functionalities
+              that overlap (like updating a record), is purely on <em>what you prefer</em>. If I am working on an org and I need to update contacts based on a criteria, I will write a trigger and helper class because I am comfortable with it, but my
+              colleague who is an Administrator might end up making a Flow that does the same job. Apart from preferance, Triggers actually excel when it comes to testing more complex automations that can be done using flows, and require less
+              computing power to execute making them faster. Where triggers, or writing Apex in general lacks behind is the fact that <em>you cannot write your code in production</em>. All Apex code needs to be in a sandbox environment and needs to
+              pass 75% code coverage to be moved into production.</p>
+            <p>We look more into Apex Test Classes and other techincal requirements later in the course.</p>
+            <h2>Summary</h2>
+            <ul>
+              <li>Triggers run when a record is manipulated.</li>
+              <li>Triggers should be written with a helper class.</li>
+              <li>Trigger Context Variables let you access run time context.</li>
+              <li>Order of Execution is how a record goes from text on screen to be saved in the database.</li>
+              <li>Use a <code>before</code> trigger by default and <code>after</code> trigger when usage of ID is required.</li>
+            </ul>
+
+
+
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 12 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>

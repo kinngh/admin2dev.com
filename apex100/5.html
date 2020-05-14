@@ -111,7 +111,7 @@ System.ListException: List index out of bounds: 3</code></pre>
 
             <p>This is because all counting starts from 0, so to access the third element, we need to subtract 1 from it because internally the list is stored in the following way:</p>
 
-            <table>
+            <div class = "responsive-table"><table>
               <tr>
                 <th>Index</th>
                 <th>Name</th>
@@ -128,7 +128,7 @@ System.ListException: List index out of bounds: 3</code></pre>
                 <td>2</td>
                 <td>Zerab</td>
               </tr>
-            </table>
+            </table></div>
             <p>Now let's fix the code by removing the last line with:</p>
 
             <pre><code>System.debug(names[0]);
