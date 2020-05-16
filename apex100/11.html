@@ -142,103 +142,107 @@
             <p>The standard Order of Execution is a sequence of events that occur when an insert, update or upsert operation occurs in Salesforce. All events in the Order of Execution need
               to successfully execute before data is committed to the database and if there’s a failure, all changes are rolled back and no further events are executed. Below is the Order of Execution in order of occurrence taken directly from
               Salesforce Documentation available <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm" target="_blank">here</a></p>
-            <div class = "responsive-table"><table>
-              <thead>
-                <tr>
-                  <th>Sequence</th>
-                  <th>Event</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1            </td>
-                  <td>Loads the original record from the database or initializes the record for an upsert statement.</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Loads the new record field values from the request and overwrites the old values.*</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Executes flows that make before-save updates.</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Executes all before triggers.</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Runs most system validation steps again, such as verifying that all required fields have a non-null value, and runs any user-defined validation rules. The only system validation that Salesforce doesn’t run a second time (when
-                    the request comes from a standard UI edit page) is the enforcement of layout-specific rules.</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Executes duplicate rules. If the duplicate rule identifies the record as a duplicate and uses the block action, the record is not saved and no further steps, such as after triggers and workflow rules, are taken.</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>Saves the record to the database, but doesn’t commit yet.</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>Executes all after triggers.</td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>Executes assignment rules.</td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>Executes auto-response rules.</td>
-                </tr>
-                <tr>
-                  <td>11</td>
-                  <td>Executes workflow rules.</td>
-                </tr>
-                <tr>
-                  <td>12</td>
-                  <td>If there are workflow field updates, updates the record again.</td>
-                </tr>
-                <tr>
-                  <td>13</td>
-                  <td>If the record was updated with workflow field updates, fires before update triggers and after update triggers one more time (and only one more time), in addition to standard validations. Custom validation rules, flows, duplicate
-                    rules, processes, and escalation rules are not run again.</td>
-                </tr>
-                <tr>
-                  <td>14</td>
-                  <td>Executes processes and flows launched via processes and flow trigger workflow actions. When a process or flow executes a DML operation, the affected record goes through the save procedure.</td>
-                </tr>
-                <tr>
-                  <td>15</td>
-                  <td>Executes escalation rules.</td>
-                </tr>
-                <tr>
-                  <td>16</td>
-                  <td>Executes entitlement rules.</td>
-                </tr>
-                <tr>
-                  <td>17</td>
-                  <td>If the record contains a roll-up summary field or is part of a cross-object workflow, performs calculations and updates the roll-up summary field in the parent record. Parent record goes through save procedure.</td>
-                </tr>
-                <tr>
-                  <td>18</td>
-                  <td>If the parent record is updated, and a grandparent record contains a roll-up summary field or is part of a cross-object workflow, performs calculations and updates the roll-up summary field in the grandparent record. Grandparent
-                    record goes through save procedure.</td>
-                </tr>
-                <tr>
-                  <td>19</td>
-                  <td>Executes Criteria Based Sharing evaluation.</td>
-                </tr>
-                <tr>
-                  <td>20</td>
-                  <td>Commits all DML operations to the database.</td>
-                </tr>
-                <tr>
-                  <td>21</td>
-                  <td>Executes post-commit logic, such as sending email.</td>
-                </tr>
-              </tbody>
-            </table></div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sequence</th>
+                    <th>Event</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1 </td>
+                    <td>Loads the original record from the database or initializes the record for an upsert statement.</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Loads the new record field values from the request and overwrites the old values.*</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Executes flows that make before-save updates.</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Executes all before triggers.</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Runs most system validation steps again, such as verifying that all required fields have a non-null value, and runs any user-defined validation rules. The only system validation that Salesforce doesn’t run a second time (when
+                      the request comes from a standard UI edit page) is the enforcement of layout-specific rules.</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Executes duplicate rules. If the duplicate rule identifies the record as a duplicate and uses the block action, the record is not saved and no further steps, such as after triggers and workflow rules, are taken.</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>Saves the record to the database, but doesn’t commit yet.</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>Executes all after triggers.</td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>Executes assignment rules.</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>Executes auto-response rules.</td>
+                  </tr>
+                  <tr>
+                    <td>11</td>
+                    <td>Executes workflow rules.</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>If there are workflow field updates, updates the record again.</td>
+                  </tr>
+                  <tr>
+                    <td>13</td>
+                    <td>If the record was updated with workflow field updates, fires before update triggers and after update triggers one more time (and only one more time), in addition to standard validations. Custom validation rules, flows,
+                      duplicate
+                      rules, processes, and escalation rules are not run again.</td>
+                  </tr>
+                  <tr>
+                    <td>14</td>
+                    <td>Executes processes and flows launched via processes and flow trigger workflow actions. When a process or flow executes a DML operation, the affected record goes through the save procedure.</td>
+                  </tr>
+                  <tr>
+                    <td>15</td>
+                    <td>Executes escalation rules.</td>
+                  </tr>
+                  <tr>
+                    <td>16</td>
+                    <td>Executes entitlement rules.</td>
+                  </tr>
+                  <tr>
+                    <td>17</td>
+                    <td>If the record contains a roll-up summary field or is part of a cross-object workflow, performs calculations and updates the roll-up summary field in the parent record. Parent record goes through save procedure.</td>
+                  </tr>
+                  <tr>
+                    <td>18</td>
+                    <td>If the parent record is updated, and a grandparent record contains a roll-up summary field or is part of a cross-object workflow, performs calculations and updates the roll-up summary field in the grandparent record.
+                      Grandparent
+                      record goes through save procedure.</td>
+                  </tr>
+                  <tr>
+                    <td>19</td>
+                    <td>Executes Criteria Based Sharing evaluation.</td>
+                  </tr>
+                  <tr>
+                    <td>20</td>
+                    <td>Commits all DML operations to the database.</td>
+                  </tr>
+                  <tr>
+                    <td>21</td>
+                    <td>Executes post-commit logic, such as sending email.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <p>Continuation on Sequence 2:</p>
             <ul>
               <li>If the request came from a standard UI edit page, Salesforce runs system validation to check the record for:
@@ -254,96 +258,98 @@
               <li>Salesforce runs user-defined validation rules if multiline items were created, such as quote line items and opportunity line items.</li>
             </ul>
             <p>The entire Order of Execution can be broken into 3 smaller tables that are easier to understand:</p>
-            <div class = "responsive-table"><table>
-              <thead>
-                <tr>
-                  <th>Sequence</th>
-                  <th>Event</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Original record is loaded OR new records are initialized</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Field values are loaded into sObjects</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Before triggers are executed</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>System validation rules are run again and custom validation rules are checked</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Duplicate rules are executed</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Record is saved but not committed</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>After triggers are executed</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Assignment rules are executed</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Auto response rules are executed</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Before triggers, system validation rules and after triggers are executed due to workflow field updates</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Processes are executed</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Escalation rules are executed</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Entitlement rules are executed</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Roll-up summary fields and cross object formula fields are updated</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Updated parent and grand parent records are saved</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Criteria based sharing rules are evaluated</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>DML operations are committed to the database</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>Post commit logic is executed</td>
-                </tr>
-              </tbody>
-            </table></div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sequence</th>
+                    <th>Event</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Original record is loaded OR new records are initialized</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Field values are loaded into sObjects</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Before triggers are executed</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>System validation rules are run again and custom validation rules are checked</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Duplicate rules are executed</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Record is saved but not committed</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>After triggers are executed</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Assignment rules are executed</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Auto response rules are executed</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Before triggers, system validation rules and after triggers are executed due to workflow field updates</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Processes are executed</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Escalation rules are executed</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Entitlement rules are executed</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Roll-up summary fields and cross object formula fields are updated</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Updated parent and grand parent records are saved</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Criteria based sharing rules are evaluated</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>DML operations are committed to the database</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>Post commit logic is executed</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <hr>
             <p>So now with the knowledge of Order of Execution the answer to <em>How to decide a Before or After Trigger</em> is simple, always use a <code>before</code> trigger unless
               there is a need to use components like ID that require an <code>after</code> trigger and this is coming purely from my experience and other developers.</p>
@@ -392,69 +398,71 @@
             <h2>Trigger Context Variables</h2>
             <p>All triggers allow the developer to access run time context, which roughly means we get to define what processes run at what time. This is available in methods of Trigger
               class, available <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_context_variables.htm" target="_blank">here in the official documentation</a>:</p>
-            <div class = "responsive-table"><table>
-              <thead>
-                <tr>
-                  <th>Variable</th>
-                  <th>Usage</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>isExecuting</td>
-                  <td>Returns true if the current context for the Apex code is a trigger, not a Visualforce page, a Web service, or an executeanonymous() API call.</td>
-                </tr>
-                <tr>
-                  <td>isInsert</td>
-                  <td>Returns true if this trigger was fired due to an insert operation, from the Salesforce user interface, Apex, or the API.</td>
-                </tr>
-                <tr>
-                  <td>isUpdate</td>
-                  <td>Returns true if this trigger was fired due to an update operation, from the Salesforce user interface, Apex, or the API.</td>
-                </tr>
-                <tr>
-                  <td>isDelete</td>
-                  <td>Returns true if this trigger was fired due to a delete operation, from the Salesforce user interface, Apex, or the API.</td>
-                </tr>
-                <tr>
-                  <td>isBefore</td>
-                  <td>Returns true if this trigger was fired before any record was saved.</td>
-                </tr>
-                <tr>
-                  <td>isAfter</td>
-                  <td>Returns true if this trigger was fired after all records were saved.</td>
-                </tr>
-                <tr>
-                  <td>isUndelete</td>
-                  <td>Returns true if this trigger was fired after a record is recovered from the Recycle Bin. This recovery can occur after an undelete operation from the Salesforce user interface, Apex, or the API.</td>
-                </tr>
-                <tr>
-                  <td>new</td>
-                  <td>Returns a list of the new versions of the sObject records. This sObject list is only available in insert, update, and undelete triggers, and the records can only be modified in before triggers.</td>
-                </tr>
-                <tr>
-                  <td>newMap</td>
-                  <td>A map of IDs to the new versions of the sObject records. This map is only available in before update, after insert, after update, and after undelete triggers.</td>
-                </tr>
-                <tr>
-                  <td>old</td>
-                  <td>Returns a list of the old versions of the sObject records. This sObject list is only available in update and delete triggers.</td>
-                </tr>
-                <tr>
-                  <td>oldMap</td>
-                  <td>A map of IDs to the old versions of the sObject records. This map is only available in update and delete triggers.</td>
-                </tr>
-                <tr>
-                  <td>operationType</td>
-                  <td>Returns an enum of type System.TriggerOperation corresponding to the current operation.Possible values of the System.TriggerOperation enum are: BEFORE_INSERT, BEFORE_UPDATE, BEFORE_DELETE,AFTER_INSERT, AFTER_UPDATE,
-                    AFTER_DELETE, and AFTER_UNDELETE. If you vary your programming logic based on different trigger types, consider using the switch statement with different permutations of unique trigger execution enum states.</td>
-                </tr>
-                <tr>
-                  <td>size</td>
-                  <td>The total number of records in a trigger invocation, both old and new.</td>
-                </tr>
-              </tbody>
-            </table></div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Variable</th>
+                    <th>Usage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>isExecuting</td>
+                    <td>Returns true if the current context for the Apex code is a trigger, not a Visualforce page, a Web service, or an executeanonymous() API call.</td>
+                  </tr>
+                  <tr>
+                    <td>isInsert</td>
+                    <td>Returns true if this trigger was fired due to an insert operation, from the Salesforce user interface, Apex, or the API.</td>
+                  </tr>
+                  <tr>
+                    <td>isUpdate</td>
+                    <td>Returns true if this trigger was fired due to an update operation, from the Salesforce user interface, Apex, or the API.</td>
+                  </tr>
+                  <tr>
+                    <td>isDelete</td>
+                    <td>Returns true if this trigger was fired due to a delete operation, from the Salesforce user interface, Apex, or the API.</td>
+                  </tr>
+                  <tr>
+                    <td>isBefore</td>
+                    <td>Returns true if this trigger was fired before any record was saved.</td>
+                  </tr>
+                  <tr>
+                    <td>isAfter</td>
+                    <td>Returns true if this trigger was fired after all records were saved.</td>
+                  </tr>
+                  <tr>
+                    <td>isUndelete</td>
+                    <td>Returns true if this trigger was fired after a record is recovered from the Recycle Bin. This recovery can occur after an undelete operation from the Salesforce user interface, Apex, or the API.</td>
+                  </tr>
+                  <tr>
+                    <td>new</td>
+                    <td>Returns a list of the new versions of the sObject records. This sObject list is only available in insert, update, and undelete triggers, and the records can only be modified in before triggers.</td>
+                  </tr>
+                  <tr>
+                    <td>newMap</td>
+                    <td>A map of IDs to the new versions of the sObject records. This map is only available in before update, after insert, after update, and after undelete triggers.</td>
+                  </tr>
+                  <tr>
+                    <td>old</td>
+                    <td>Returns a list of the old versions of the sObject records. This sObject list is only available in update and delete triggers.</td>
+                  </tr>
+                  <tr>
+                    <td>oldMap</td>
+                    <td>A map of IDs to the old versions of the sObject records. This map is only available in update and delete triggers.</td>
+                  </tr>
+                  <tr>
+                    <td>operationType</td>
+                    <td>Returns an enum of type System.TriggerOperation corresponding to the current operation.Possible values of the System.TriggerOperation enum are: BEFORE_INSERT, BEFORE_UPDATE, BEFORE_DELETE,AFTER_INSERT, AFTER_UPDATE,
+                      AFTER_DELETE, and AFTER_UNDELETE. If you vary your programming logic based on different trigger types, consider using the switch statement with different permutations of unique trigger execution enum states.</td>
+                  </tr>
+                  <tr>
+                    <td>size</td>
+                    <td>The total number of records in a trigger invocation, both old and new.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <p>Let’s write our <code>NameReplacer</code> trigger:</p>
             <pre><code>trigger NameReplacer on Contact(before insert, after update){
     if (Trigger.isBefore &amp;&amp; Trigger.isInsert){
@@ -496,9 +504,7 @@
             </ul>
 
 
-
-
-            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 12 </a>
+            <a href="12.html" class="global-button"> Day 12 </a>
           </div>
         </article>
 

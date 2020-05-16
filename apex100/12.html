@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 12:<br /> Trigger.oldMap and Trigger.newMap</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <p>Let’s look at our old example where we used <code>Trigger.old</code> and got a list of IDs for values that changed:</p>
+            <pre><code>trigger FirstName on Contact(after update){
+    FirstNameHelper.replaceName(trigger.old);
+}
+</code></pre>
+            <pre><code>public class FirstNameHelper{
+
+    public static void replaceName(List&lt;Contact&gt; con){
+        List&lt;ID&gt; conId = new List&lt;ID&gt;();
+        List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+        for (Contact iterator: con){
+            if(iterator.FirstName == 'John'){
+                conId.add(iterator.Id);
+            }
+        }
+
+        List&lt;Contact&gt; updateList = [SELECT ID, FirstName FROM Contact WHERE ID = :conId];
+
+        for (Contact iterator: updateList){
+            iterator.FirstName = 'Smith';
+            finalList.add(iterator);
+        }
+
+        update finalList;
+    }
+}</code></pre>
+            <p>To quickly sum this up, we first got values from <code>Trigger.old</code>, ran a for loop to see for values where the name was <code>John</code>, got their <code>ID</code>,
+              ran a SOQL query to get values and then a for loop to update the name. This piece of code cam be simplified using <code>Trigger.oldMap</code> which returns a list of IDs of old version of records.</p>
+            <pre><code>trigger FirstName on Contact (before update){
+    FirstNameHelper.repalceName(trigger.oldMap, trigger.new);
+}
+</code></pre>
+            <pre><code>public class FirstNameHelper{
+
+    public static void replaceName(Map&lt;ID, Contact&gt; oldCon, List&lt;Contact&gt; newCon){
+
+        for (Contact iterator: newCon){
+            Contact oldLastName = oldCon.get(iterator.id);
+
+            if (oldLastName.firstName.equals('John')){
+                iterator.firstName = 'Smith';
+            }
+        }
+
+    }
+}</code></pre>
+            <p>Let’s break this code down:</p>
+            <p><strong>FirstName Trigger</strong></p>
+            <ul>
+              <li>We run a <code>before update</code> trigger instead of <code>after update</code></li>
+              <li>We pass two input parameters this time, <code>trigger.oldMap</code> and <code>trigger.new</code></li>
+            </ul>
+            <p><strong>FirstNameHelper Class</strong></p>
+            <ul>
+              <li>Our method <code>replaceName</code> now takes two in parameters, a <code>Map&lt;ID, Contact&gt;</code> and a <code>List&lt;Contact&gt;</code>.
+                <ul>
+                  <li>A <code>trigger.oldMap</code> or <code>trigger.newMap</code> will always return a Map of IDs and sObject type.</li>
+                  <li>A <code>trigger.new</code> or <code>trigger.old</code> will return List of sObject type.</li>
+                </ul>
+              </li>
+              <li>We make a new for loop that runs over the <code>trigger.new</code> values</li>
+              <li>We make a new variable called <code>oldLastName</code> and assign it the <code>ID</code> of values from the <code>trigger.new</code> value
+                <ul>
+                  <li>We are going through values that have been updated and searching for the same <code>ID</code> in our old values. If there’s a match, we assign the value to a new
+                    variable.</li>
+                </ul>
+              </li>
+              <li>Now we check if the old value for FirstName was <code>John</code>.</li>
+              <li>If it was John, we assign it the value <code>Smith</code> instead.</li>
+            </ul>
+            <p>To simplify it further, we have two lists, one labelled new and the other labelled old. Assuming we don’t know what values are there in the list, we first pick up the new
+              list and see if the same value exists in the old list. If it does exist, we then check for it’s values. If the previous value was John, we update the value in our new list to Smith.</p>
+            <p>A quick real life scenario would be while working with Opportunities, we want to assign a new task to the Opportunity owner if the value changes from ‘Needs Analysis’ to
+              ‘Value Proposition’. We check for the old value of the opportunity using <code>Trigger.oldMap</code> and compare it with <code>Trigger.new</code> value and if they are true, we create a new task and assign it to the Opportunity. Go
+              ahead and try it yourself to see if you really understood the concept. Incase you get stuck or need the answer, here’s my code:</p>
+            <h3>Trigger File</h3>
+            <pre><code>trigger oppUpdate on Opportunity(before update){
+    oppUpdateHelper.assignTasker(Trigger.oldMap, Trigger.new);
+}</code></pre>
+            <h3>Trigger Class Helper File</h3>
+            <pre><code>public class oppUpdateHelper {
+
+    public static void assignTasker(Map&lt;ID, Opportunity&gt; oldList, List&lt;Opportunity&gt; newList){
+
+        for(Opportunity iterator: newList){
+
+            Opportunity oldOpp = oldList.get(iterator.id);
+
+            Boolean oldValue = oldOpp.stageName.equals('Needs Analysis');
+            Boolean newValue = iterator.StageName.equals('Value Proposition');
+
+            if(oldValue &amp;&amp; newValue){
+                Task newTask = new Task();
+                newTask.Subject = 'Call regarding ' + iterator.Name + ' opportunity';
+                newTask.WhatId = iterator.id;
+                newTask.Priority = 'Normal';
+                newTask.Status = 'Not Started';
+                newTask.Description = 'Made using Apex Trigger';
+                insert newTask;
+            }
+
+        }
+
+    }
+
+}</code></pre>
+            <p>Quick breakdown:</p>
+            <ul>
+              <li>We make 2 <code>boolean</code> variables that check for values.</li>
+              <li>We run an <code>if</code> statement and the <code>AND</code> operator to check if both values are true.</li>
+              <li>We create a new task, assign the owner of this task to the opportunity and insert it.</li>
+            </ul>
+            <p>Common errors:</p>
+            <ul>
+              <li>A <code>Task</code> needs the <code>Subject</code> field to be added. A common error made by new developers is to omit necessary fields. To get a clearer view on this,
+                make a new Task in your org without code and see what fields are necessary</li>
+              <li>The <code>WhatID</code> field of a <code>Task</code> is used to assign tasks.</li>
+            </ul>
+            <h2>Summary</h2>
+            <ul>
+              <li><code>Trigger.oldMap</code> and <code>Trigger.newMap</code> return a Map of ID and sObjects</li>
+            </ul>
+
+
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 13 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
