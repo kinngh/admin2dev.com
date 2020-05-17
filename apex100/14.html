@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Learn Apex Programming</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <h2>Governor Limits</h2>
+            <p>Salesforce being the multi-tenant environment it is, has to ensure resources are available for everyone to ensure everyone has a smooth experience. These limits are monitored per transaction and per customer and include resources such
+              as CPU Time, Memory, Query Runtime, and Query Return Count, among others.</p>
+            <p>A transaction is a single unit of work. Let's say when you update a record that invokes a trigger, which invokes a flow and an email is sent, will be defined as one transaction.</p>
+            <p>Unlike Database methods where we could catch errors if and when they happened, Governor Limit Exceptions (errors) cannot be caught using code blocks, and if an Apex transaction hits the Governor Limits, the entire change is rolled back
+              and nothing is committed to the database.</p>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Limit</th>
+                    <th>Method</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Total DML Statements</td>
+                    <td>150</td>
+                    <td>limits.getLimitDmlStatements()</td>
+                  </tr>
+                  <tr>
+                    <td>Total Records Processed</td>
+                    <td>10,000</td>
+                    <td>limits.getLimitDmlRows</td>
+                  </tr>
+                  <tr>
+                    <td>Total SOSL Queries</td>
+                    <td>20</td>
+                    <td>limits.getLimitSOSLQueries()</td>
+                  </tr>
+                  <tr>
+                    <td>Total SOQL Queries</td>
+                    <td>100</td>
+                    <td>limits.getLimitQueries()</td>
+                  </tr>
+                  <tr>
+                    <td>Max CPU Time</td>
+                    <td>10,000ms (10 seconds)</td>
+                    <td>limits.getLimitCpuTime()</td>
+                  </tr>
+                  <tr>
+                    <td>HTTP / Web Service Callouts</td>
+                    <td>100</td>
+                    <td>limits.getLimitcallouts()</td>
+                  </tr>
+                  <tr>
+                    <td>Max Future Callouts</td>
+                    <td>50</td>
+                    <td>limits.getLimitFutureCalls()</td>
+                  </tr>
+                  <tr>
+                    <td>Total Heap Size</td>
+                    <td>6MB</td>
+                    <td>limits.getLimitHeapSize()</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>We can check for current Governor Limits by using the methods for each set. Let's run this code:</p>
+            <pre><code>System.debug('Total DML Statements: ' + Limits.getLimitDmlStatements());
+System.debug('Total Records Processed: ' + Limits.getLimitDmlRows());
+System.debug('Total SOSL Queries: ' + Limits.getLimitSOSLQueries());
+System.debug('Total SOQL Queries: ' + Limits.getLimitQueries());
+System.debug('Max CPU Time: ' + Limits.getLimitCpuTime());
+System.debug('HTTP / Web Service Limits: ' + Limits.getLimitCallouts());
+System.debug('Max Future Callouts: ' + Limits.getLimitFutureCalls());
+System.debug('Total Heap Size: ' + Limits.getLimitHeapSize());</code></pre>
+            <p>To check for our current usage, we remove the <code>Limit</code> from our methods, so <code>Limits.getLimitDmlStatements()</code> becomes <code>Limits.getDmlStatements()</code>. Let's write a basic program and see it in action</p>
+            <pre><code>List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+for (Integer i = 1; i&lt;=10; i++){
+	Contact con = new Contact();
+	con.lastName = 'Test ' + i;
+	finalList.add(con);
+}
+
+insert finalList;
+System.debug(Limits.getDmlStatements());</code></pre>
+            <p>The result for this code would be <code>1</code>, but we did process 10 contacts, right? It's because we are inserting multiple contacts using one DML statement. If we add the <code>con</code> object directly, we will see the number go
+              much higher. Let's run this code:</p>
+            <pre><code>for (Integer i = 1; i&lt;=10; i++){
+	Contact con = new Contact();
+	con.lastName = 'Test ' + i;
+	insert con;
+}
+System.debug(Limits.getDmlStatements());</code></pre>
+
+            <p>The result for this code is <code>10</code> because we ran the insert statement 10 times. This is the exact reason why we don't use DML statements inside a loop. What if we exceed the DML limit? Let's try to insert 200 objects inside a
+              loop.</p>
+
+            <pre><code>for (Integer i = 1; i&lt;=200; i++){
+	Contact con = new Contact();
+	con.lastName = 'Test ' + i;
+	insert con;
+}
+System.debug(Limits.getDmlStatements());</code></pre>
+
+            <p>You will get the error:</p>
+            <pre><code>Line: 4, Column: 1
+System.LimitException: Too many DML statements: 151</code></pre>
+            <p>This is because the moment we exceed our Governor Limits, the program stops and there is no way to safeguard from this error except to write better code. But there are scenarios where you might exceed the limits? Let's say your firm
+              acquired a new business and now needs to insert over 100,000 contacts in the Salesforce org and edit their country field to match org's naming system, and as a developer, you are limited to 10,000 records being processed at a time. For
+              this, we use something called <em>Batch Apex</em></p>
+            <h2>Batch Apex</h2>
+            <p>Batch Apex is used when we are working with enormous amounts of data that cross Governor Limits. This is achieved by Batch Apex breaking down the entire query into smaller subsets that works in smaller batches and does not affect
+              regular functioning of the org.</p>
+            <p>To implement Batch Apex, we need to write a class that inherits from <code>Database.batchable</code> interface provided by Salesforce using the <code>implements</code> keyword available to Classes. The class must be <code>global</code>
+              and must implement the <code>start()</code>, <code>execute()</code> and <code>finish()</code> methods.</p>
+            <p>The <code>start()</code> method is all about Querying and collecting the datasets.
+              The <code>execute()</code> method is all about working on the dataset.
+              The <code>finish()</code> method is about what needs to be done after the records have been processes (Like send an email or create a task).</p>
+            <p>Let's look at the syntax and then break it down:</p>
+            <pre><code>global class ClassName implements Database.Batchable&lt;sObject&gt; {
+    global (Database.QueryLocator | Iterable&lt;sObject&gt;) start(Database.BatchableContext bc) {
+    	//Query
+    }
+    global void execute(Database.BatchableContext bc, List&lt;P&gt; records){
+    	//Process
+    }
+    global void finish(Database.BatchableContext bc){
+	    //Post Processing
+    }
+}</code></pre>
+            <p><strong>Class</strong></p>
+            <ul>
+              <li>The classes and methods are defined <code>global</code> so they're available throughout Apex. This is different from public that is only available to the specific application.</li>
+            </ul>
+            <p><strong>start</strong></p>
+            <ul>
+              <li>The start method takes either a Database.QueryLocator or an sObject that can be iterated over</li>
+              <li>Database.BatchableContext is used to get values like JobID()</li>
+              <li>Returns a Query</li>
+            </ul>
+            <p><strong>execute</strong></p>
+            <ul>
+              <li>Database.BatchableContext defines what job are we executing</li>
+              <li>List<P> records is the List returned from <code>start()</code></li>
+            </ul>
+            <p><strong>finish</strong></p>
+            <ul>
+              <li>Database.BatchableContext defines the batch job we are waiting to finish</li>
+            </ul>
+            <p>Let's write some code to better understand what's happening. First let's write our class that implements Database.Batchable. We will leave it on sObject so we are not restricted by the Object we want to use.</p>
+            <pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
+}</code></pre>
+            <p>Now, lets write our <code>start()</code> method that queries for all contacts that have the last name similar to <code>Test</code>:</p>
+            <pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
+
+	global Database.QueryLocator start(Database.BatchableContext bc){
+		return Database.getQueryLocator([SELECT ID, LastName from Contact WHERE LastName LIKE 'Test%']);
+	}
+
+}</code></pre>
+            <p>Database.QueryLocator returns a recordset and is used with Batch Apex and takes an SOQL query as it's parameter, and can return <strong>50 Million</strong> records at a time. There is a similar method called <code>Database.Query</code>
+              that we look into later in this chapter. Now let's manipulate these records in our <code>execute()</code> method:</p>
+            <pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
+
+	global Database.QueryLocator start(Database.BatchableContext bc){
+		return Database.getQueryLocator([SELECT ID, LastName FROM Contact WHERE LastName LIKE 'Test%']);
+	}
+
+	global void execute(Database.BatchableContext bc, List&lt;Contact&gt; conList){
+		List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+		for (Contact iterator: conList){
+			iterator.firstName = iterator.LastName;
+		}
+		update finalList;
+	}
+
+}</code></pre>
+            <p>In our execute method, we again call the same Database.BatchableContext job, and declare a new List of contacts that was returned by our <code>start()</code> method. While the first parameter stays the same, the second parameter is
+              always what's returned by the <code>start()</code> method. If we ran a query on Accounts, our execute method would have <code>List&lt;Account&gt;</code> instead of <code>List&lt;Contact&gt;</code>. In the method, we iterate over what's
+              returned by the start method and make the first name the same as last name, and add it to a list before updating our values. Let's write our <code>finish()</code> method now:</p>
+            <pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
+
+	global Database.QueryLocator start(Database.BatchableContext bc){
+		return Database.getQueryLocator([SELECT ID, LastName FROM Contact WHERE LastName LIKE 'Test%']);
+	}
+
+	global void execute(Database.BatchableContext bc, List&lt;Contact&gt; conList){
+		List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+		for (Contact iterator: conList){
+			iterator.firstName = iterator.LastName;
+		}
+		update finalList;
+	}
+
+	global void finish(Database.BatchableContext bc){
+		System.debug('Batch successfully executed');
+	}
+
+}</code></pre>
+            <p>Now that we have written our Batch Class, we need to run it. To do that, we make a new object of the Batch class and use the <code>Database.execute()</code> method to run it, and assign it to an ID data type. The syntax for it is:</p>
+            <pre><code>BatchClassName variableName = new BatchClassName();
+ID variableName2 = Database.executeBatch(variableName);</code></pre>
+            <p>Now let's run our Batch Class:</p>
+            <pre><code>ClassBatch newBatch = new ClassBatch();
+ID batchId = Database.executeBatch(newBatch);</code></pre>
+            <p>Optionally, we can pass how many records to process in a single batch as a parameter to our <code>Database.execute()</code> method.</p>
+            <pre><code>ClassBatch newBatch = new ClassBatch();
+ID batchId = Database.executeBatch(newBatch, 100);</code></pre>
+            <p>This will run on 100 records at a time, and the variable <code>batchId</code> contains the job ID of the process. Another great thing about using Batch Apex is every batch is a transaction, so every time a batch runs, it resets the
+              Governor Limits, and since every run is a transaction, if a batch fails, it won't affect other batches.</p>
+
+            <h2>Database.GetQueryLocator() and Database.Query()</h2>
+
+            <p><code>Database.Query</code> allows you to make dynamic SOQL queries in runtime and can return up to 50,000 records.</p>
+            <pre><code>String runningObj = 'Contact';
+String queryString = 'SELECT ID, LastName FROM ' + runningObj + ' WHERE LastName LIKE 'Test' LIMIT 100';
+
+Database.Query(queryString);</code></pre>
+            <p><code>Database.GetQueryLocator</code> allows you to run SOQL queries and return up to 50 Million records at a time and is used with batch apex.</p>
+            <p>This does not mean that <code>Database.Query</code> cannot be used in Batch Apex. This is exactly what <code>iterable&lt;sObject&gt;</code> is used for:</p>
+            <pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
+
+
+    global iterable&lt;sObject&gt; start(Database.BatchableContext bc){
+        String qString = 'SELECT ID, LastName FROM Contact WHERE LastName = \'Test\'';
+            return Database.query(qString);
+    }
+
+    global void execute(Database.BatchableContext bc, List&lt;Contact&gt; conList){
+        List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+        for (Contact iterator: conList){
+            iterator.firstName = iterator.LastName;
+        }
+        update finalList;
+    }
+
+    global void finish(Database.BatchableContext bc){
+        System.debug('Batch successfully executed');
+    }
+
+}</code></pre>
+            <p>In the <code>start()</code> method, we now expect a <code>iterable&lt;sObject&gt;</code> return type and are using the <code>Database.query()</code> method to run our SOQL query and the rest of the code remains the same. Now, let's
+              actually build a dynamic SOQL query.</p>
+            <pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
+
+    global String queryString;
+
+    public ClassBatch(String inputString){
+        queryString = inputString;
+    }
+
+    global iterable&lt;sObject&gt; start(Database.BatchableContext bc){
+        return Database.query(queryString);
+    }
+
+    global void execute(Database.BatchableContext bc, List&lt;Contact&gt; conList){
+        List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+        for (Contact iterator: conList){
+            iterator.firstName = iterator.LastName;
+        }
+        update finalList;
+    }
+
+    global void finish(Database.BatchableContext bc){
+        System.debug('Batch successfully executed');
+    }
+
+}</code></pre>
+            <p>A thing to notice here is, we have a method with the exact same name as our Class. This is called an init method, where we initialize a class with parameters. It takes a String as an input parameter and assigns it to an internal global
+              variable which is them used to query. Let's write out execution line:</p>
+            <pre><code>String queryString = 'SELECT id, lastname FROM contact WHERE lastname = \'test\'';
+
+ClassBatch batchVariable = new ClassBatch(queryString);
+Database.executeBatch(batchVariable);</code></pre>
+            <p>Here we first define our query as a string and then create a new object of the class and pass a parameter. This means that <code>batchVariable</code> is an object of the class with <code>queryString</code> as an init method. This code
+              is 'dangerous' on a longer term because it only iterates over Contact objects, and it's extremely easy to forget that and then run into errors.</p>
+            <h2>Summary</h2>
+            <ul>
+              <li>Governor Limits are put in place to ensure there's enough computing resources available for everyone.</li>
+              <li>Batch Apex has three methods, <code>start()</code>, <code>execute()</code> and <code>finish()</code> that must be defined.</li>
+              <li>Batch Apex may not run always run immediately, but will run when enough computing resources are available.</li>
+            </ul>
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 15 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
