@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>100 Days of Apex | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex100/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 15:<br />Batch Class Test</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <p>This quick test is made to test your basic understanding of Batch Apex.</p>
+            <ul>
+              <li>You can look at the syntax, bonus points if you don’t.</li>
+              <li>The test should ideally not take more than 15 minutes to solve.</li>
+              <li>All the criterias must be met.</li>
+              <li>The answer is available at Admin2Dev GitHub Repo.</li>
+              <li>The answer and complete breakdown of the program is available at the end of this page.</li>
+            </ul>
+            <h2>The Test</h2>
+            <h3>Question</h3>
+            <ul>
+              <li>Insert 250 contacts with the last name &quot;Test n&quot; where n is a number starting from 1. For reference, the names should look like <code>Test 1</code>, <code>Test 2</code> .. .<code>Test 250</code>.</li>
+              <li>If a Contact with the last name <code>DeleteBatch</code> is created, it should run a Batch Apex Class that deletes all contacts with the last name &quot;Test n&quot; where n is a number.</li>
+              <li>When the Batch Apex finishes running, it should update the description of &quot;Delete&quot; contact with &quot;Deleted records with ID <code>JobID</code>&quot; where JobID should be the ID of the Batch Apex Class.</li>
+            </ul>
+            <h5>Hint</h5>
+            <ul>
+              <li>Use <code>getJobID()</code> method on <code>Database.batchableContext</code> variable to get the Job ID.</li>
+              <li>Use the escape character <code>\</code> to add <code>'</code> to your Strings. So to write <code>'Test'</code>, you have to write <code> \'Test\'</code> instead.</li>
+              <li>The changes may not be visible instantly. Give it about 5 minutes before you see contacts being deleted and description updates.</li>
+            </ul>
+            <hr />
+            <blockquote>
+              <p>Start a timer and note how long you take to solve. Ideally, it should take ~15 minutes, but don’t worry if you go overboard.</p>
+            </blockquote>
+            <hr />
+            <h2>Answer</h2>
+            <h3>Inserting 250 records</h3>
+            <ul>
+              <li>You can either create a class and call it from Anon Exec Window, or directly insert 250 records without classes.</li>
+            </ul>
+            <pre><code>List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+for(Integer i = 1; i&lt;=250; i++){
+    Contact con = new Contact();
+    con.lastName = 'Test ' + i;
+    finalList.add(con);
+}
+insert finalList;
+
+System.debug('Inserted ' + finalList.size() + ' records.');</code></pre>
+            <h3>Batch Apex</h3>
+            <ul>
+              <li>My Batch Class is named <code>batchDeleter</code>.</li>
+            </ul>
+            <pre><code>global class batchDeleter implements Database.Batchable&lt;sObject&gt; {
+
+    global Database.QueryLocator start(Database.BatchableContext bc) {
+        return Database.getQueryLocator('SELECT Id, LastName FROM Contact WHERE LastName LIKE \'Test%\'');
+    }
+
+    global void execute(Database.BatchableContext bc, List&lt;sObject&gt; deleteList){
+        delete deleteList;
+    }
+    global void finish(Database.BatchableContext bc){
+        List&lt;Contact&gt; con = [SELECT Id, LastName FROM Contact WHERE LastName = 'DeleteBatch' LIMIT 1];
+        List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+        for (Contact iterator: con){
+            iterator.Description = 'Deleted records with ID ' + bc.getJobId();
+            finalList.add(iterator);
+        }
+        update finalList;
+
+    }
+}</code></pre>
+            <ul>
+              <li>First we return all values that have Last Name <code>Test%</code> where <code>%</code> is a wildcard.</li>
+              <li>In the execute method, we simply delete the entire list.</li>
+              <li>In the finish method, we select the 'DeleteBatch' contact and to be really sure we get only 1 value, we use <code>Limit</code> keyword.</li>
+              <li>Now we iterate over our list and update it's description to match the batch job id.
+                <ul>
+                  <li><code>bc</code> comes from the method parameter <code>Database.BatchableContext bc</code> and running <code>.getJobId()</code> returns the ID.</li>
+                </ul>
+              </li>
+              <li>Then the values are commited to the database using the <code>update</code> statement.</li>
+            </ul>
+            <h3>Trigger</h3>
+            <ul>
+              <li>We want the Batch Class to be executed when the record is finished inserting, so writing a trigger with a helper class is the only way we can control our batch class execution.</li>
+            </ul>
+            <h4>Trigger File</h4>
+            <pre><code>trigger LastName on Contact(after insert){
+    if (Trigger.isAfter){
+        if (Trigger.isInsert){
+            LastNameHelper.deleteContacts(trigger.new);
+        }
+    }
+}</code></pre>
+            <h4>Tigger Helper File</h4>
+            <pre><code>public class LastNameHelper{
+
+    public static void deleteContacts(List&lt;Contact&gt; newList){
+
+        for(Contact iterator: newList){
+            if (iterator.LastName == 'DeleteBatch'){
+                batchDeleter runBatch = new batchDeleter();
+                Database.executeBatch(runBatch);
+
+            }
+        }
+
+    }
+}</code></pre>
+            <ul>
+              <li>In our Helper Class, every time a new contact is inserted we use <code>Trigger.new</code> to pass all records, and in the helper class check for last name. If the last name matches our condition, we run the Batch Class.</li>
+            </ul>
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 16 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
