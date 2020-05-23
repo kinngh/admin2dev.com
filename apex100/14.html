@@ -70,6 +70,8 @@
             <p>A transaction is a single unit of work. Let's say when you update a record that invokes a trigger, which invokes a flow and an email is sent, will be defined as one transaction.</p>
             <p>Unlike Database methods where we could catch errors if and when they happened, Governor Limit Exceptions (errors) cannot be caught using code blocks, and if an Apex transaction hits the Governor Limits, the entire change is rolled back
               and nothing is committed to the database.</p>
+
+              <p>In coffee making terms, the amount of coffee you can brew at any given point is limited by the size of your pot, french press and the number of cups you have available. So if you can brew 4 cups of coffee at a time, the process of making 4 cups of coffee at once will be a single transaction and if you try to make 5 cups of coffee, you probably need to remove the extra ingredients before you proceed to avoid spilling.</p>
             <div class="responsive-table">
               <table>
                 <thead>
@@ -171,6 +173,9 @@ System.LimitException: Too many DML statements: 151</code></pre>
             <h2>Batch Apex</h2>
             <p>Batch Apex is used when we are working with enormous amounts of data that cross Governor Limits. This is achieved by Batch Apex breaking down the entire query into smaller subsets that works in smaller batches and does not affect
               regular functioning of the org.</p>
+
+              <p>In coffee making terms, if you can make 4 cups of coffee at once, but there are 9 people who want to drink your coffee, you'll have to run the process thrice (4+4+1) to get 9 cups of coffee.</p>
+
             <p>To implement Batch Apex, we need to write a class that inherits from <code>Database.batchable</code> interface provided by Salesforce using the <code>implements</code> keyword available to Classes. The class must be <code>global</code>
               and must implement the <code>start()</code>, <code>execute()</code> and <code>finish()</code> methods.</p>
             <p>The <code>start()</code> method is all about Querying and collecting the datasets.
@@ -207,7 +212,33 @@ System.LimitException: Too many DML statements: 151</code></pre>
             <ul>
               <li>Database.BatchableContext defines the batch job we are waiting to finish</li>
             </ul>
-            <p>Let's write some code to better understand what's happening. First let's write our class that implements Database.Batchable. We will leave it on sObject so we are not restricted by the Object we want to use.</p>
+<p>Let's make some coffee before we jump on our org.</p>
+<pre><code>global class ClassName implements Database.Batchable&lt;sObject&gt; {
+  global List&lt;items&gt; start(CoffeeBatchNumber batchNumber) {
+    //Query
+    List&lt;items&gt; coffeeItems = new List&lt;items&gt;();
+    List&lt;items&gt;.add(arabicaCoffee);
+    List&lt;items&gt;.add(frenchPress);
+    List&lt;items&gt;.add(water);
+    List&lt;items&gt;.add(boilingPot);
+    List&lt;items&gt;.add(cup);
+  }
+  global void execute(CoffeeBatchNumber batchNumber, List&lt;items&gt; itemList){
+    //Process
+    tableTop = itemList;
+    pot = boil(water);
+    if (water == boiling){
+      frenchPress = brew(coffee);
+    }
+  }
+  global void finish(CoffeeBatchNumber batchNumber){
+    //Post Processing
+    cup = pour(frenchPress);
+    drink;
+  }
+}</code> </pre>
+
+            <p>Now let's write some actual code to better understand what's happening. First let's write our class that implements Database.Batchable. We will leave it on sObject so we are not restricted by the Object we want to use.</p>
             <pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
 }</code></pre>
             <p>Now, lets write our <code>start()</code> method that queries for all contacts that have the last name similar to <code>Test</code>:</p>

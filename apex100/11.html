@@ -65,8 +65,10 @@
           </div>
           <div class="post-content">
 
-            <p>When an event takes place in Salesforce, if follows an <em>Order of Execution</em>(Described later in this chapter) that calls Triggers at multiple points. Trigger is one of
-              the many ways to invoke Apex Code. To write a trigger, we select File &gt; New &gt; Apex Trigger (instead of Apex Class) in Developer console. The syntax for writing a Trigger is:</p>
+            <p>When an event takes place in Salesforce, it follows an <em>Order of Execution</em>(Described later in this chapter) that calls Triggers at multiple points and is one of the many ways to invoke Apex Code. If we see triggers in a coffee
+              making process, it is doing a set of actions when specific events take place. For example, when we put water in the pot to boil, we usually wait for steam to come out before we pour it out, as if something in the brain goes <em>if steam
+                is coming out, pour water</em>.</p>
+            <p> To write a trigger, we select File &gt; New &gt; Apex Trigger (instead of Apex Class) in Developer console. The syntax for writing a Trigger is:</p>
             <pre><code>trigger TriggerName on Object(triggerEvents){
     //code
 }
@@ -139,7 +141,7 @@
             <p>The first question that arises is <em>When to use Before and After Triggers</em>. For this, we need to understand the <em>Order of Execution</em> first.</p>
             <hr>
             <h2></a>Order of Execution</h2>
-            <p>The standard Order of Execution is a sequence of events that occur when an insert, update or upsert operation occurs in Salesforce. All events in the Order of Execution need
+            <p>Just like the coffee making process which follows a specific sequence, the Order of Execution is a sequence of events that occur when an insert, update or upsert operation occurs in Salesforce. All events in the Order of Execution need
               to successfully execute before data is committed to the database and if there’s a failure, all changes are rolled back and no further events are executed. Below is the Order of Execution in order of occurrence taken directly from
               Salesforce Documentation available <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm" target="_blank">here</a></p>
             <div class="responsive-table">
@@ -355,11 +357,14 @@
               there is a need to use components like ID that require an <code>after</code> trigger and this is coming purely from my experience and other developers.</p>
             <p>Now that we know how to write a trigger, we need to optimize and follow the 2 key rules:</p>
             <h3>1 Trigger. 1 Object.</h3>
-            <p>Never have more than one trigger for every object in the org. Having more than one trigger will eventually cause problems especially in a team environment. This is also to
+            <p>Just how 2 people should not drink from the same cup of coffee at the same time, each object should not have more than 1 trigger. Having more than one trigger will eventually cause problems as the code gets complex, especially in a
+              team environment. This is also to
               reduce conflicting code and staying within Governor Limits (More on this tomorrow).</p>
             <h3>Trigger Helper Class</h3>
             <p>Writing all of the code in the trigger itself results in bigger, complex looking files that may later cause issues. To avoid this we call a class and pass values to it
-              instead, and call it a Helper Class. Let’s rewrite our FirstNamer trigger to use a helper class.</p>
+              instead, and call it a Helper Class. Think of it this way, you can directly drink your coffee from the french press or even the pot but a cup reduces the mess of drinking the coffee.</p>
+
+            <p>Let’s rewrite our FirstNamer trigger to use a helper class.</p>
             <h4>FirstNamer Trigger File</h4>
             <pre><code>trigger FirstName on Contact(after update){
     FirstNameHelper.replaceName(trigger.old);
