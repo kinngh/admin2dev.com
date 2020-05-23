@@ -110,7 +110,7 @@ System.debug('The decimal is: '+ value1 + '. The integer is: ' + value2);
               String cannot be converted to an Integer even if the value of String is <code>45</code>.</p>
             <hr>
             <p>When an SOSL query returns multiple objects, the array is indexed in the same order as the order of Objects returned in the query.</p>
-            <pre><code>List&lt;List&gt; searchList = [FIND 'test*' IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity];
+            <pre><code>List&lt;List&lt;sObject&gt;&gt; searchList = [FIND 'test*' IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity];
 
 Account[] accList = (Account[])searchList[0];
 Contact[] conList = (Contact[])searchList[1];
