@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Apex Starter Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex-starter/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 16:<br />Advanced SOQL</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <h2>Advanced SOQL</h2>
+            <p>Now that we know how to write basic SOQL queries, we need to understand how to navigate master-detail relationships using SOQL. This is particularly important because in real world scenarios when you're passing data, you may need
+              information from multiple objects to make sense of data. For example, a random contact won't make much sense to the end user unless its related account is also displayed.</p>
+            <h3>Standard Objects</h3>
+            <h4>Child to Parent:</h4>
+            <pre><code>[SELECT ID, LastName, Account.Name FROM Contact WHERE LastName = 'Test'];</code></pre>
+            <p>This will return one account</p>
+            <h4>Parent to Child:</h4>
+
+            <pre><code>[SELECT ID, Name, (SELECT ID, LastName FROM Contacts) FROM Account WHERE Name = 'GenePoint'];</code></pre>
+
+            <p>This will return all contacts related to that account. Also notice how instead of Contact we used Contacts, this is because every subquery must be called by its plural name.</p>
+            <p>Relationship queries can get a little tricky to store and access. Let's take our parent to child example where we are returning all contacts related to the GenePoint account and store it in a List of Account and output it in logs.</p>
+            <pre><code>List&amp;lt;Account&amp;gt; finalList = [SELECT ID, Name, (SELECT ID, LastName FROM Contacts) FROM Account WHERE Name = 'GenePoint'];
+
+System.debug(finalList);</code></pre>
+            <p>You will notice your log not returning the Contacts, but only information on the Account:</p>
+            <pre><code>22:54:11:021 USER_DEBUG [5]|DEBUG|(Account:{Id=0016F00002x0YX7QAM, Name=GenePoint})
+            </code></pre>
+            <p>This is because we need to manually call the subquery results, the syntax for which is:</p>
+            <p>The syntax for calling a subquery is:</p>
+            <pre><code>listName[0].subQueryObject;</code></pre>
+            <ul>
+              <li><code>listName</code> is the name of the list.</li>
+              <li><code>[0]</code> denotes we are accessing the first object in the list.</li>
+              <li><code>subQueryObject</code> is the plural name of the Object we used in the nested query.</li>
+            </ul>
+
+            <p>Now let's add this to our code</p>
+
+            <pre><code>List&amp;lt;Account&amp;gt; finalList = [SELECT ID, Name, (SELECT ID, LastName FROM Contacts) FROM Account WHERE Name = 'GenePoint'];
+
+System.debug(finalList);
+
+System.debug(finalList[0].Contacts);</code></pre>
+            <p>Now our log will show the results (formatted for easier reading):</p>
+            <pre><code>22:54:11:021 USER_DEBUG [5]|DEBUG|(Account:{Id=0016F00002x0YX7QAM, Name=GenePoint})
+
+22:54:11:021 USER_DEBUG [6]|DEBUG|
+
+(Contact:{AccountId=0016F00002x0YX7QAM, Id=0036F00002nVJwYQAW, LastName=Frank},
+
+Contact:{AccountId=0016F00002x0YX7QAM, Id=0036F00003XE2FLQA1, LastName=final})
+            </code></pre>
+            <h3>Custom Objects</h3>
+            <p>Navigation through relationships in Custom objects gets a little different from standard objects. This is done so that in future if a new Object is released it doesn't break existing code. When navigation through custom objects, we
+              need to add <code>__r</code> at the end of our object name instead of <code>__c</code>.</p>
+            <p>For easier understanding, let's assume Account and Contact are custom objects.</p>
+            <h4>Child to Parent:</h4>
+            <pre><code>[SELECT ID, LastName__c, Account__r.Name__c FROM Contact WHERE LastName = 'Test'];</code></pre>
+            <p>We call <code>LastName</code> with <code>__c</code> because it's a custom field, <code>Account</code> with <code>__r</code> because it's a custom object and it's <code>Name</code> field using <code>__c</code> because it's a custom
+              field.</p>
+            <h4>Parent to Child:</h4>
+            <pre><code>[SELECT Name__c, (SELECT ID, LastName FROM Contact__r) FROM Account__c WHERE Name__c = 'GenePoint'];
+            </code></pre>
+            <p>To output this data in log, we follow the same syntax as we did with sObjects.</p>
+            <pre><code>List&amp;lt;Account__c&amp;gt; finalList = [SELECT Name__c, (SELECT ID, LastName FROM Contact__r) FROM Account__c WHERE Name__c = 'GenePoint'];
+
+System.debug(finalList);
+
+System.debug(finalList[0].Contact__r);</code></pre>
+            <p>In a parent to child relationship, we call our root (or outer query) using the <code>__c</code> as we would normally, but our subquery uses <code>__r</code> because it's a custom object and we use <code>__r</code> instead of its plural
+              name to future-proof our code. Note that you cannot call a custom object using it's plural name so there are no options here. </p>
+            <p>Also notice how in Line 3 we use <code>Contact__r</code> instead of <code>Contact__c</code>. For easier
+              understanding, this is because our data type is of <code>Contact__r</code> and not <code>Contact__c</code>.</p>
+            <h2>Summary</h2>
+            <ul>
+              <li>SOQL can be used to navigate through relationships.</li>
+              <li>Custom objects use <code>__r</code> while standard objects use their plural name when navigating Parent to Child relationships.</li>
+            </ul>
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 17 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
