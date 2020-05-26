@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Apex Starter Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex-starter/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 17<br />Advanced SOQL Test</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>Test where the trigger bulk updates all contacts of an account</p>
+            <p>This quick test is made to test your basic understanding of Batch Apex.</p>
+            <ul>
+              <li>You can look at the syntax, bonus points if you don’t.</li>
+              <li>The test should ideally not take more than 10 minutes to solve.</li>
+              <li>All the criterias must be met.</li>
+              <li>The answer is available at <a href="https://github.com/Admin2Dev/answers" target="_blank">Admin2Dev GitHub Repo</a>.</li>
+              <li>The answer and complete breakdown of the program is available at the end of this page.</li>
+            </ul>
+            <h2>The Test</h2>
+            <h3>Question</h3>
+            <p>Write a class <code>conUpdater</code> that has a method <code>updateAccount()</code> that takes 2 <code>String</code> as parameter. The first parameter is Account name and the second is Description String. The method should update all
+              the associated contact's description fields of the Account to the description string that was taken as the parameter only if the account exists.</p>
+            <h3>Hint</h3>
+            <ul>
+              <li>Check if the Account exists</li>
+              <li>Update the <code>contact.description</code> field to the String</li>
+              <li>Check the size of List by using <code>List.size()</code> that returns an Integer value.</li>
+            </ul>
+            <blockquote>Start a timer and note how long you take to solve. Ideally, it should take ~10 minutes, but don’t worry if you go overboard.</blockquote>
+
+            <h2>Answer</h2>
+            <h3>conUpdater Class</h3>
+            <pre><code>public class conUpdater {
+    public static void updateAccount(String accString, String descString){
+
+      List&amp;lt;Account&amp;gt; accList = [SELECT ID, Name, (SELECT ID, Description FROM Contacts) FROM Account WHERE Name = :accString];
+
+      List&amp;lt;Contact&amp;gt; finalList = new List&amp;lt;Contact&amp;gt;();
+
+      if (accList.size() &amp;gt; 0){
+        for(Contact iterator: accList[0].contacts){
+          iterator.description = descString;
+          finalList.add(iterator);
+        }
+
+      update finalList;
+      }
+      else{
+        System.debug('Account does not exist');
+      }
+
+    }
+
+}</code></pre>
+            <ul>
+              <li>We first declare our two strings that are inputs, <code>accString</code> and <code>descString</code>.</li>
+              <li>The <code>accList</code> stores the return value, the <code>finalList</code> is used to update our final values.</li>
+              <li>We check if the size of <code>accList</code> is more than 0, which assures that we did have some values returned.</li>
+              <li>We run a for loop on the contacts part of the list (ensuring we use plural) and update the values.</li>
+              <li>If the account does not exist, we simply output that the account doesnt not exist and do nothing.</li>
+            </ul>
+
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 18 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
