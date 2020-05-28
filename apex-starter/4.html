@@ -300,16 +300,18 @@ if (a==4 || a == 5){
 
             <p>Here's an example</p>
             <pre><code>Integer a = 10;
-when 10{
-  System.debug('A is 10');
-}
-when 20{
-  a++;
-  System.debug('A is ' + a);
-}
-when else {
-  a *= 40;
-  System.debug('A is ' + a);
+switch on a{
+  when 10{
+    System.debug('A is 10');
+  }
+  when 20{
+    a++;
+    System.debug('A is ' + a);
+  }
+  when else {
+    a *= 40;
+    System.debug('A is ' + a);
+  }
 }</code> </pre>
 
 
