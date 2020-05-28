@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -261,6 +262,7 @@ System.LimitException: Too many DML statements: 151</code></pre>
 		List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
 		for (Contact iterator: conList){
 			iterator.firstName = iterator.LastName;
+      finalList.add(iterator);
 		}
 		update finalList;
 	}
@@ -279,6 +281,7 @@ System.LimitException: Too many DML statements: 151</code></pre>
 		List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
 		for (Contact iterator: conList){
 			iterator.firstName = iterator.LastName;
+      finalList.add(iterator);
 		}
 		update finalList;
 	}
@@ -321,6 +324,7 @@ Database.Query(queryString);</code></pre>
         List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
         for (Contact iterator: conList){
             iterator.firstName = iterator.LastName;
+            finalList.add(iterator);
         }
         update finalList;
     }
@@ -348,6 +352,7 @@ Database.Query(queryString);</code></pre>
         List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
         for (Contact iterator: conList){
             iterator.firstName = iterator.LastName;
+            finalList.add(iterator);
         }
         update finalList;
     }
