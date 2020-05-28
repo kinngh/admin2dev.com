@@ -7,7 +7,7 @@
   <title>Apex Starter Course | Admin2Dev</title>
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&display=swap&subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -199,20 +199,20 @@ public class CalculatorTest {
 </blockquote>
 <h2>Tests for Batch Class</h2>
 <p>Let's write a test class for our <code>ClassBatch</code> Class we wrote earlier in this course. Incase you forgot, here's the code:</p>
-<pre><code>global class ClassBatch implements Database.Batchable&amp;lt;sObject&amp;gt;{
+<pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
 
 
-    global iterable&amp;lt;sObject&amp;gt; start(Database.BatchableContext bc){
+    global iterable&lt;sObject&gt; start(Database.BatchableContext bc){
     	 //return all contacts where the last name is Test
 
         String qString = 'SELECT ID, LastName FROM Contact WHERE LastName = \'Test\'';
         return Database.query(qString);
     }
 
-    global void execute(Database.BatchableContext bc, List&amp;lt;Contact&amp;gt; conList){
+    global void execute(Database.BatchableContext bc, List&lt;Contact&gt; conList){
 		 //Make the first name and last name the same
 
-        List&amp;lt;Contact&amp;gt; finalList = new List&amp;lt;Contact&amp;gt;();
+        List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
         for (Contact iterator: conList){
             iterator.firstName = iterator.LastName;
         }
@@ -247,8 +247,8 @@ public class ClassBatchTest {
 public class ClassBatchTest {
 
     @testSetup static void createTestData(){
-		List&amp;lt;Contact&amp;gt; finalList = new List&amp;lt;Contact&amp;gt;();
-        for(Integer i = 1; i&amp;lt;=3; i++){
+		List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+        for(Integer i = 1; i&lt;=3; i++){
             Contact iterator = new Contact();
             iterator.firstName = 'Name '+ i;
             iterator.lastName = 'Test';
@@ -266,8 +266,8 @@ public class ClassBatchTest {
 public class ClassBatchTest {
 
     @testSetup static void createTestData(){
-		List&amp;lt;Contact&amp;gt; finalList = new List&amp;lt;Contact&amp;gt;();
-        for(Integer i = 1; i&amp;lt;=3; i++){
+		List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+        for(Integer i = 1; i&lt;=3; i++){
             Contact iterator = new Contact();
             iterator.firstName = 'Name '+ i;
             iterator.lastName = 'Test';
