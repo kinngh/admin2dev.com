@@ -261,8 +261,8 @@ System.LimitException: Too many DML statements: 151</code></pre>
 	global void execute(Database.BatchableContext bc, List&lt;Contact&gt; conList){
 		List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
 		for (Contact iterator: conList){
-			iterator.firstName = iterator.LastName;
-      finalList.add(iterator);
+        iterator.firstName = iterator.LastName;
+        finalList.add(iterator);
 		}
 		update finalList;
 	}
