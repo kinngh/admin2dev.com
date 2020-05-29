@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Apex Starter Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-112097931-2');
+</script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.svg" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+						<label class="header-toggle" for="toggle">
+							<span>
+								<span class="bar"></span>
+								<span class="bar"></span>
+								<span class="bar"></span>
+							</span>
+						</label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex-starter/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 19:<br />Apex Test Class Test</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <h1>Day 19</h1>
+            <p>This quick test is made to test your basic understanding of Apex Class Tests and importance of writing code tests.</p>
+            <ul>
+            <li>You can look at the syntax, bonus points if you don’t.</li>
+            <li>The test should ideally not take more than 10 minutes to solve.</li>
+            <li>All the criterias must be met.</li>
+            <li>The answer is available at Admin2Dev GitHub Repo.</li>
+            <li>The answer and complete breakdown of the program is available at the end of this page.</li>
+            </ul>
+            <h2>The Test</h2>
+            <h3>Question</h3>
+            <ul>
+            <li>Write a batch class that, when executed, changes the First Name of contacts to <code>Batch Test</code> if the last name is <code>Test</code> and <code>Batch Test 2</code> if the last name is <code>Test 2</code>.</li>
+            <li>Write a test class with 100% code coverage.</li>
+            </ul>
+            <blockquote>
+            <p>Start a timer and note how long you take to solve. Ideally, it should take ~10 minutes, but don’t worry if you go overboard.</p>
+            </blockquote>
+            <h2>Answer</h2>
+            <h3>Batch Class</h3>
+            <pre><code>global class NameChanger implements Database.Batchable&lt;sObject&gt; {
+                global Database.QueryLocator start(Database.BatchableContext bc) {
+                    // collect the batches of records or objects to be passed to execute
+
+                    return Database.getQueryLocator('SELECT Id, LastName FROM Contact WHERE LastName = \'Test\' OR LastName = \'Test 2\' '); //Use the OR operator to get both Test and Test 2 values.
+                }
+                global void execute(Database.BatchableContext bc, List&lt;Contact&gt; conList){
+                    //Process records
+
+                    List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+                    for (Contact iterator: conList){
+                        if (iterator.LastName == 'Test'){ //Check for lastName
+                            iterator.FirstName = 'Batch Test';
+                        }
+                        else { //If lastName isn't Test, it's Test 2 because that's what the SOQL Query calls for
+                            iterator.FirstName = 'Batch Test 2';
+                        }
+
+                        finalList.add(iterator);
+                    }
+
+                    update finalList;
+
+
+                }
+                global void finish(Database.BatchableContext bc){
+                    // execute any post-processing operations
+                }
+            }
+            </code></pre>
+            <h3>Test Class</h3>
+            <pre><code>@isTest
+            public class NameChangerTest {
+
+                @testSetup static void insertingData(){
+            		 //Create test data
+                    List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+                    for (Integer i = 1; i&lt;=5; i++){
+                        Contact con = new Contact();
+                        con.lastName = 'Test';
+                        finalList.add(con);
+                    }
+                    for (Integer i = 1; i&lt;=5; i++){
+                        Contact con = new Contact();
+                        con.lastName = 'Test 2';
+                        finalList.add(con);
+                    }
+
+                    insert finalList;
+                }
+
+                static testmethod void NameChangerTestMethod(){
+                    //execute batch in test()
+                    Test.startTest();
+                    NameChanger tester = new NameChanger();
+                    Id JobId = Database.executeBatch(tester);
+                    Test.stopTest();
+
+                    System.assertEquals(5, [SELECT count() FROM Contact WHERE LastName = 'Test' AND FirstName = 'Batch Test'], 'Failed Test Name Check');
+                    System.assertEquals(5, [SELECT count() FROM Contact WHERE LastName = 'Test 2' AND FirstName = 'Batch Test 2'], 'Failed Test Name 2 Check');
+                }
+
+            }
+            </code></pre>
+
+<a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 20 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target = "_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>

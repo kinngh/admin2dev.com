@@ -2315,7 +2315,7 @@ _:lang(x)::-moz-placeholder, .loop-item-wrap {
 .post-title-wrap {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  max-width: 740px;
+  max-width: 900px;
   margin: 0 auto;
   padding-right: 50px
 }
@@ -2488,7 +2488,7 @@ _:lang(x)::-moz-placeholder, .loop-item-wrap {
 }
 
 .post-content {
-  max-width: 740px;
+  max-width: 900px;
   margin: 0 auto 15vh;
   padding-right: 15px;
   padding-left: 15px;
