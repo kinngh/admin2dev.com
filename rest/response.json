@@ -1,0 +1,8 @@
+{
+  "bird": {
+    "id": 1,
+    "name": "chicken",
+    "food": "wheat",
+    "product": "eggs"
+  }
+}

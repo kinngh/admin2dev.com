@@ -1,0 +1,7 @@
+{
+  "animal": {
+    "name": "cow",
+    "food": "grass",
+    "product": "milk"
+  }
+}
