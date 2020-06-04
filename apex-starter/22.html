@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Apex Starter Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.png" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex-starter/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 22:<br />REST API Class and Making Snippets</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>NOTE: This can be very confusing at first, take your time in understanding what's happening.</p>
+            <p>Let's break down this chapter in two parts:
+              First, we will write the entire code and call a REST API
+              Second, we make a template to make REST API calls so we can resuse the block of code over and over again.</p>
+            <h1>Part 1</h1>
+            <p>Before we even write the code, we need to <code>whitelist</code> the doman we will be making calls to. In our case, we will be running calls to <code>https://admin2dev.com</code> . Head over to <code>Setup</code> and in Quick Find Box
+              search for <code>Remote Site</code> and add new remote site.</p>
+            <p>Now that the domain is whitelisted, let's access our JSON available at <a href="https://admin2dev.com/rest/response.json" target="_blank">https://admin2dev.com/rest/response.json</a> . While this is a static link, this is exactly how a response would
+              work. First, let's make a GET call from Postman and see what the response is:</p>
+            <pre><code>{
+  	&quot;bird&quot;: {
+  		&quot;id&quot;: 1,
+  		&quot;name&quot;: &quot;chicken&quot;,
+  		&quot;food&quot;: &quot;wheat&quot;,
+  		&quot;product&quot;: &quot;eggs&quot;
+  	}
+  }</code></pre>
+            <p>Let's break down this JSON:</p>
+            <ul>
+              <li>We have 1 object called <code>bird</code>
+                <ul>
+                  <li>It has 4 values. 1 <code>Integer</code> called <strong>id</strong> and 3 <code>String</code> called <strong>name</strong>, <strong>food</strong> and <strong>product</strong></li>
+                </ul>
+              </li>
+            </ul>
+            <p>For this, we first write a class named <code>Bird</code> and declare variables named as they are in the JSON with their respective data types.</p>
+            <pre><code>public class responseClass{
+
+  	public class Bird {
+          public Integer id;
+          public String name, food, product;
+      }
+
+  }</code></pre>
+            <blockquote>
+              <p>The name of the variables must exactly match the ones in the JSON file.</p>
+            </blockquote>
+            <p>Since these values are inside an object, we need to make another class that holds the object as a class:</p>
+            <pre><code>public class responseClass{
+
+
+      public class JSONResponse {
+          public Bird bird;
+      }
+
+      public class Bird {
+          public Integer id;
+          public String name, food, product;
+      }
+  }</code></pre>
+            <p>What we have done here is recreate the JSON in Apex terms. The <code>public Bird bird</code> defines the variable <code>bird</code> as a <code>Bird</code> class type so now it has access to <code>id</code>, <code>name</code>,
+              <code>food</code> and <code>product</code>. This is the most important step of dealing with JSON response, as it should be structured and named exactly as the main JSON file. In the background, what we have done in Apex terms is</p>
+            <pre><code>class Bird(){
+  	Integer Id;
+  	String name, food, product;
+  }</code></pre>
+            <p>I usually name the parent class <code>JSONResponse</code> because that's the class we will be using to navigate our JSON response.</p>
+            <p>Now we make a method, where we build and make our HTTP request:</p>
+            <pre><code>Http http = new Http();
+  HttpRequest request = new HttpRequest();
+
+  request.setEndpoint('https://admin2dev.com/rest/response.json');
+  request.setMethod('GET');</code></pre>
+            <p>Now we need to make the request and store it in a <code>HttpResponse</code> type variable:</p>
+            <pre><code>HttpResponse response = http.send(request);</code></pre>
+            <p>Now our class should look something like this:</p>
+            <pre><code>public class responseClass {
+
+      public class JSONResponse {
+          public Bird bird;
+      }
+
+      public class Bird {
+          public Integer id;
+          public String name, food, product;
+      }
+
+      public static String methodName() {
+
+
+          Http http = new Http();
+          HttpRequest request = new HttpRequest();
+
+          request.setEndpoint('https://admin2dev.com/rest/response.json');
+          request.setMethod('GET');
+
+          HttpResponse response = http.send(request);
+
+      }
+  }</code></pre>
+            <p>Great! Now that we have made the call and saved the response, we need to navigate the JSON. This process is called JSON Deserialization where we get values from the JSON and store it in variables.</p>
+            <p>For this, we make a new variable of type JSONResponse, and type cast the response to JSONResponse type (if you forgot, take a look back on Day 10).</p>
+            <pre><code>JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);</code></pre>
+            <p>Now we get to our value by using <code>result</code> variable that contains our deserialized JSON, followed by the JSONResponse variable <code>bird</code>, followed by the key we are trying to access:</p>
+            <pre><code>return result.bird.name;</code></pre>
+            <p>Our end code should look something like this:</p>
+            <pre><code>public class responseClass {
+
+      public class JSONResponse {
+          public Bird bird;
+      }
+
+      public class Bird {
+          public Integer id;
+          public String name, food, product;
+      }
+
+      public static String methodName() {
+
+
+          Http http = new Http();
+          HttpRequest request = new HttpRequest();
+          request.setEndpoint('https://admin2dev.com/rest/response.json');
+          request.setMethod('GET');
+          HttpResponse response = http.send(request);
+
+          JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+          return result.bird.name;
+
+      }
+  }</code></pre>
+            <p>So here's what we did:</p>
+            <ul>
+              <li>Made a <code>JSONResponse</code> class that holds the JSON Object</li>
+              <li>Made a class named after the JSON Object (<code>Bird</code>) that holds the values</li>
+              <li>Made a method to:
+                <ul>
+                  <li>First make the HTTP Call</li>
+                  <li>Built a HTTP Request with <em>what</em> and <em>where</em> we are making the call</li>
+                  <li>Stored the HTTP Response</li>
+                  <li>Made a variable that holds the response when it's deserialized</li>
+                  <li>Navigated the result and returned it</li>
+                </ul>
+              </li>
+            </ul>
+            <p>While this is a lot to digest, let's turn it into a <em>snippet</em>, a template of sorts that can be reused like fill in the blanks.</p>
+            <h1>Part 2</h1>
+            <p>It is possible to pretty much avoid writing so much code. This is why every efficient developer creates their set of <em>snippets</em> they use. Over the years, I personally have built snippets for my iOS / macOS apps (Swift), AI
+              (Python) and Apex / Visualforce components. Let's see how to turn this specific code into a snippet:</p>
+            <pre><code>public class responseClass {
+
+      public class JSONResponse { //create JSON structure class
+      	//Define values as is with data types
+      	//Ensure name of the variables matches the JSON keys
+      }
+
+  	public static String methodName() {
+
+          //Make the Request and save it
+
+          String requestURL = 'http://url-goes-here.com/';
+          String requestType = 'GET'; //GET POST PATCH PUT DELETE
+
+          Http http = new Http();
+          HttpRequest request = new HttpRequest();
+          request.setEndpoint(requestURL);
+          request.setMethod(requestType);
+          HttpResponse response = http.send(request);
+
+          // Deserialize based on result type class
+          JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+          return result.JSONObject.Key_Name //Replace JSONObject with value from JSONResponse and Key_Name with the key you're accessing in the said JSON
+
+     }
+  }</code></pre>
+            <p>Now this snippet is a simple copy paste away to making a call to simple JSON File. You'll notice how a lot of the code that we wrote was bunch of code that was <em>as is</em>, meaning we don't really need to remember what we're doing
+              here, and can be turned into a <em>template</em> or a <em>snippet</em> to get things done. In this particular example, we only need to update the <code>JSONResponse</code>, <code>requestURL</code>, <code>requestType</code> and the
+              <code>return</code> value at the end, which is much simpler than remembering to define HTTP variables and calling and saving responses over and over again.</p>
+            <p>Making snippets is really important since it reduces your work load by a chunk, letting you reuse your code through multiple orgs without having to modify much. It is still, however, important to know what each line of code does and
+              properly comment your code so at a later date if there are any changes to the way Apex works, it's easy to update your snippet library.</p>
+            <p>I have my snippet library stored and organized in my private repo that I usually refer to, which now is open sourced and available with documentation at <a
+                href="https://github.com/Admin2Dev/apex-snippets" target="_blank">https://github.com/Admin2Dev/apex-snippets</a> that covers commonly used classes along with tests! Feel free to <code>fork</code> the code which allows you to copy the code in your
+              github repo and make changes to it!</p>
+            <p>Let's try with a new JSON response! Here's the URL: <a href="https://admin2dev.com/rest/response2.json" target="_blank">https://admin2dev.com/rest/response2.json</a> . Use the snippet above to return any value from the response. Incase you get stuck,
+              here's the JSON and the code:</p>
+            <p>First, we use Postman to get the JSON:</p>
+            <pre><code>{
+  	&quot;animal&quot;: {
+  		&quot;name&quot;: &quot;cow&quot;,
+  		&quot;food&quot;: &quot;grass&quot;,
+  		&quot;product&quot;: &quot;milk&quot;
+  	}
+  }</code></pre>
+            <p>Now we copy paste the <em>snippet</em> and change the class name:</p>
+            <pre><code>public class httpResponseClass {
+
+      public class JSONResponse { //create JSON structure class
+      	//Define values as is with data types
+      	//Ensure name of the variables matches the JSON keys
+      }
+
+  	public static String methodName() {
+
+          //Make the Request and save it
+
+          String requestURL = 'http://url-goes-here.com/';
+          String requestType = 'GET'; //GET POST PATCH PUT DELETE
+
+          Http http = new Http();
+          HttpRequest request = new HttpRequest();
+          request.setEndpoint(requestURL);
+          request.setMethod(requestType);
+          HttpResponse response = http.send(request);
+
+          // Deserialize based on result type class
+          JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+          return result.JSONObject.Key_Name //Replace JSONObject with value from JSONResponse and Key_Name with the key you're accessing in the said JSON
+
+     }
+  }</code></pre>
+            <p>Now we build our JSON structure and store it</p>
+            <pre><code>public class JSONResponse{
+  	public Animal animal;
+  }
+  public class Animal{
+  	String name, food, product;
+  }</code></pre>
+            <p>Now we update the <code>requestURL</code> to <code>https://admin2dev.com/rest/response2.json</code>, <code>JSONObject</code> to <code>animal</code> and <code>KEY_NAME_GOES_HERE</code> to <code>name</code>, <code>food</code> or
+              <code>product</code>. The final code for this would be:</p>
+            <pre><code>public class httpResponseClass {
+
+      public class JSONResponse{
+      	public Animal animal;
+  	}
+  	public class Animal{
+  		String name, food, product;
+  	}
+
+  	public static String methodName() {
+
+          //Make the Request and save it
+
+          String requestURL = 'https://admin2dev.com/rest/response2.json';
+          String requestType = 'GET'; //GET POST PATCH PUT DELETE
+
+          Http http = new Http();
+          HttpRequest request = new HttpRequest();
+          request.setEndpoint(requestURL);
+          request.setMethod(requestType);
+          HttpResponse response = http.send(request);
+
+          // Deserialize based on result type class
+          JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+          return result.animal.name; //Replace JSONObjec with value from JSONResponse and Key_Name with the key you're accessing in the said JSON
+
+     }
+  }</code></pre>
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 23 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>

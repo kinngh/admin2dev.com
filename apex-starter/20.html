@@ -10,15 +10,18 @@
   <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-112097931-2');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
 
 </head>
 
@@ -33,13 +36,13 @@
           </div>
           <div class="header-nav">
             <input id="toggle" class="header-checkbox" type="checkbox">
-						<label class="header-toggle" for="toggle">
-							<span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-							</span>
-						</label>
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
             <nav>
               <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -61,18 +64,20 @@
             </div>
           </div>
           <div class="post-content">
-            <p>Most of us have a morning routine, whether it's waking up early and making breakfast for the entire family and leaving for work or waking up 5 minutes before you're supposed to leave and have coffee as breakfast and leaving in rush. There are certain activities that need to happen on a regular basis and even at work, it could be sending an email with today's update on opportunities, or monthly revenue stats or annual reports on how the company is performing. To automate our code, we use <em>Scheduled Apex</em>.</p>
-            <p>As the name suggests, Scheduled Apex runs a task at specific time frames as defined by the developer. A Scheduled Class implements  <em>Schedulable</em> and has an <code>execute()</code> method. Let's take a look at the syntax:</p>
+            <p>Most of us have a morning routine, whether it's waking up early and making breakfast for the entire family and leaving for work or waking up 5 minutes before you're supposed to leave and have coffee as breakfast and leaving in rush.
+              There are certain activities that need to happen on a regular basis and even at work, it could be sending an email with today's update on opportunities, or monthly revenue stats or annual reports on how the company is performing. To
+              automate our code, we use <em>Scheduled Apex</em>.</p>
+            <p>As the name suggests, Scheduled Apex runs a task at specific time frames as defined by the developer. A Scheduled Class implements <em>Schedulable</em> and has an <code>execute()</code> method. Let's take a look at the syntax:</p>
             <pre><code>global class SomeClass implements Schedulable {
                 global void execute(SchedulableContext ctx) {
                     //Code Here
                 }
             }</code></pre>
             <ul>
-            <li>A schedule class is always <code>global</code></li>
-            <li>The class must implement <code>Schedulable</code></li>
-            <li>The Class must have an <code>execute()</code> method.</li>
-            <li>The <code>SchedulableContext ctx</code> is just like the Batch Class' <code>Database.BatchableContext bc</code>, it is the jobID of the schedule class.</li>
+              <li>A schedule class is always <code>global</code></li>
+              <li>The class must implement <code>Schedulable</code></li>
+              <li>The Class must have an <code>execute()</code> method.</li>
+              <li>The <code>SchedulableContext ctx</code> is just like the Batch Class' <code>Database.BatchableContext bc</code>, it is the jobID of the schedule class.</li>
             </ul>
             <p>It's good practice to call your Batch Class / Apex Class from your Schedule Class instead of filling it up with code. Let's call a Batch Class:</p>
             <pre><code>global class ClassSchedule implements Schedulable {
@@ -87,137 +92,149 @@
             <p>To schedule a class, we first make a new instance.</p>
             <pre><code>ClassSchedule schClass = new ClassSchedule();</code></pre>
             <p>Now, we setup time using a very specific format.
-            <code>Seconds Minutes Hours Day_Of_Month Month Day_Of_Week Optional_Year</code>.</p>
+              <code>Seconds Minutes Hours Day_Of_Month Month Day_Of_Week Optional_Year</code>.</p>
             <p>Here's the markup on values:</p>
-            <div class="responsive-table"><table>
-            <thead>
-            <tr>
-            <th>Name</th>
-            <th>Values</th>
-            <th>SpecialCharacters</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td>Seconds</td>
-            <td>0–59</td>
-            <td>None</td>
-            </tr>
-            <tr>
-            <td>Minutes</td>
-            <td>0–59</td>
-            <td>None</td>
-            </tr>
-            <tr>
-            <td>Hours</td>
-            <td>0–23</td>
-            <td>None</td>
-            </tr>
-            <tr>
-            <td>Day_of_month</td>
-            <td>1–31</td>
-            <td>, - * ? / L W</td>
-            </tr>
-            <tr>
-            <td>Month</td>
-            <td>1–12 or First three letters of months (JAN - DEC)</td>
-            <td>, - * /</td>
-            </tr>
-            <tr>
-            <td>Day_of_week</td>
-            <td>1–7 or First three letters of the day (SUN - SAT)</td>
-            <td>, - * ? / L #</td>
-            </tr>
-            <tr>
-            <td>optional_year</td>
-            <td>null or 1970–2099</td>
-            <td>, - * /</td>
-            </tr>
-            </tbody>
-            </table></div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Values</th>
+                    <th>SpecialCharacters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Seconds</td>
+                    <td>0–59</td>
+                    <td>None</td>
+                  </tr>
+                  <tr>
+                    <td>Minutes</td>
+                    <td>0–59</td>
+                    <td>None</td>
+                  </tr>
+                  <tr>
+                    <td>Hours</td>
+                    <td>0–23</td>
+                    <td>None</td>
+                  </tr>
+                  <tr>
+                    <td>Day_of_month</td>
+                    <td>1–31</td>
+                    <td>, - * ? / L W</td>
+                  </tr>
+                  <tr>
+                    <td>Month</td>
+                    <td>1–12 or First three letters of months (JAN - DEC)</td>
+                    <td>, - * /</td>
+                  </tr>
+                  <tr>
+                    <td>Day_of_week</td>
+                    <td>1–7 or First three letters of the day (SUN - SAT)</td>
+                    <td>, - * ? / L #</td>
+                  </tr>
+                  <tr>
+                    <td>optional_year</td>
+                    <td>null or 1970–2099</td>
+                    <td>, - * /</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <p>Break down of special characters:</p>
-            <div class="responsive-table"><table>
-            <thead>
-            <tr>
-            <th>Special Character</th>
-            <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td>,</td>
-            <td>Delimits values. For example, use <code>JAN, MAR, APR</code> to specify more than one month.</td>
-            </tr>
-            <tr>
-            <td>-</td>
-            <td>Specifies a range. For example, use <code>JAN-MAR</code> to specify more than one month.</td>
-            </tr>
-            <tr>
-            <td>*</td>
-            <td>Specifies all values. For example, if Month is specified as <code>*</code>, the job is scheduled for every month.</td>
-            </tr>
-            <tr>
-            <td>?</td>
-            <td>Specifies no specific value. This is only available for <code>Day_of_month</code>and <code>Day_of_week</code>, and is generally used when specifying a value for one and not the other.</td>
-            </tr>
-            <tr>
-            <td>/</td>
-            <td>Specifies increments. The number before the slash specifies when the intervals will begin, and the number after the slash is the interval amount. For example, if you specify <code>1/5</code> for Day_of_month, the Apex class runs every fifth day of the month, starting on the first of the month.</td>
-            </tr>
-            <tr>
-            <td>L</td>
-            <td>Specifies the end of a range (last). This is only available for <code>Day_of_month</code> and <code>Day_of_week</code>. When used with Day of month, L always means the last day of the month, such as January 31, February 29 for leap years, and so on. When used with Day_of_week by itself, it always means 7 or SAT. When used with a Day_of_week value, it means the last of that type of day in the month. For example, if you specify 2L, you are specifying the last Monday of the month. Do not use a range of values with L as the results might be unexpected.</td>
-            </tr>
-            <tr>
-            <td>W</td>
-            <td>Specifies the nearest weekday (Monday-Friday) of the given day. This is only available for <code>Day_of_month</code>. For example, if you specify <code>20W</code>, and the 20th is a Saturday, the class runs on the 19th. If you specify 1W, and the first is a Saturday, the class does not run in the previous month, but on the third, which is the following Monday. Use the L and W together to specify the last weekday of the month.</td>
-            </tr>
-            <tr>
-            <td>#</td>
-            <td>Specifies the nth day of the month, in the format weekday#day_of_month. This is only available for Day_of_week. The number before the # specifies weekday (SUN-SAT). The number after the # specifies the day of the month. For example, specifying 2#2 means the class runs on the second Monday of every month.</td>
-            </tr>
-            </tbody>
-            </table></div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Special Character</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>,</td>
+                    <td>Delimits values. For example, use <code>JAN, MAR, APR</code> to specify more than one month.</td>
+                  </tr>
+                  <tr>
+                    <td>-</td>
+                    <td>Specifies a range. For example, use <code>JAN-MAR</code> to specify more than one month.</td>
+                  </tr>
+                  <tr>
+                    <td>*</td>
+                    <td>Specifies all values. For example, if Month is specified as <code>*</code>, the job is scheduled for every month.</td>
+                  </tr>
+                  <tr>
+                    <td>?</td>
+                    <td>Specifies no specific value. This is only available for <code>Day_of_month</code>and <code>Day_of_week</code>, and is generally used when specifying a value for one and not the other.</td>
+                  </tr>
+                  <tr>
+                    <td>/</td>
+                    <td>Specifies increments. The number before the slash specifies when the intervals will begin, and the number after the slash is the interval amount. For example, if you specify <code>1/5</code> for Day_of_month, the Apex class
+                      runs every fifth day of the month, starting on the first of the month.</td>
+                  </tr>
+                  <tr>
+                    <td>L</td>
+                    <td>Specifies the end of a range (last). This is only available for <code>Day_of_month</code> and <code>Day_of_week</code>. When used with Day of month, L always means the last day of the month, such as January 31, February 29 for
+                      leap years, and so on. When used with Day_of_week by itself, it always means 7 or SAT. When used with a Day_of_week value, it means the last of that type of day in the month. For example, if you specify 2L, you are specifying
+                      the last Monday of the month. Do not use a range of values with L as the results might be unexpected.</td>
+                  </tr>
+                  <tr>
+                    <td>W</td>
+                    <td>Specifies the nearest weekday (Monday-Friday) of the given day. This is only available for <code>Day_of_month</code>. For example, if you specify <code>20W</code>, and the 20th is a Saturday, the class runs on the 19th. If you
+                      specify 1W, and the first is a Saturday, the class does not run in the previous month, but on the third, which is the following Monday. Use the L and W together to specify the last weekday of the month.</td>
+                  </tr>
+                  <tr>
+                    <td>#</td>
+                    <td>Specifies the nth day of the month, in the format weekday#day_of_month. This is only available for Day_of_week. The number before the # specifies weekday (SUN-SAT). The number after the # specifies the day of the month. For
+                      example, specifying 2#2 means the class runs on the second Monday of every month.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <p>Understanding the tables could be a little difficult, so let's take some examples:</p>
-            <div class="responsive-table"><table>
-            <thead>
-            <tr>
-            <th>Expression</th>
-            <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td><code>0 0 13 * * ?</code></td>
-            <td>Class runs every day at 1 PM.</td>
-            </tr>
-            <tr>
-            <td><code>0 0 22 ? * 6L</code></td>
-            <td>Class runs the last Friday of every month at 10 PM.</td>
-            </tr>
-            <tr>
-            <td><code>0 0 10 ? * MON-FRI</code></td>
-            <td>Class runs Monday through Friday at 10 AM.</td>
-            </tr>
-            <tr>
-            <td><code>0 0 20 * * ? 2010</code></td>
-            <td>Class runs every day at 8 PM during the year 2010.</td>
-            </tr>
-            </tbody>
-            </table></div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Expression</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>0 0 13 * * ?</code></td>
+                    <td>Class runs every day at 1 PM.</td>
+                  </tr>
+                  <tr>
+                    <td><code>0 0 22 ? * 6L</code></td>
+                    <td>Class runs the last Friday of every month at 10 PM.</td>
+                  </tr>
+                  <tr>
+                    <td><code>0 0 10 ? * MON-FRI</code></td>
+                    <td>Class runs Monday through Friday at 10 AM.</td>
+                  </tr>
+                  <tr>
+                    <td><code>0 0 20 * * ? 2010</code></td>
+                    <td>Class runs every day at 8 PM during the year 2010.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <p>I am writing this at 3:52AM and I want to schedule my class to run 4AM everyday</p>
             <pre><code>String sch = '0 0 4 * * ?';</code></pre>
             <ul>
-            <li>First two values denoting seconds and horus is <code>0</code> and the third value is <code>4</code> so that means the time is <code>04:00</code> or 4AM.</li>
-            <li>The next two values are <code>*</code> denoting we want Day_of_the month and Month to be <em>all</em> values, so 1st through 31st, Jan to Dec.</li>
-            <li>The Day_of_week is a <code>?</code> denoting we don't want to specify a value <em>because we have already specified values for our day_of_month value so this does not require a value</em></li>
-            <li>The year is omitted because it's an optional value.</li>
+              <li>First two values denoting seconds and horus is <code>0</code> and the third value is <code>4</code> so that means the time is <code>04:00</code> or 4AM.</li>
+              <li>The next two values are <code>*</code> denoting we want Day_of_the month and Month to be <em>all</em> values, so 1st through 31st, Jan to Dec.</li>
+              <li>The Day_of_week is a <code>?</code> denoting we don't want to specify a value <em>because we have already specified values for our day_of_month value so this does not require a value</em></li>
+              <li>The year is omitted because it's an optional value.</li>
             </ul>
-            <p>This might take some time to understand and I still refer to this chart and spend a solid minute writing <em>when</em> to run so don't worry if you don't get it right away. Now that we have <em>what</em> and <em>when</em> to run, let's actually execute it. To do this, we use the <code>System.schedule()</code> class method that takes three parameters:</p>
+            <p>This might take some time to understand and I still refer to this chart and spend a solid minute writing <em>when</em> to run so don't worry if you don't get it right away. Now that we have <em>what</em> and <em>when</em> to run, let's
+              actually execute it. To do this, we use the <code>System.schedule()</code> class method that takes three parameters:</p>
             <ul>
-            <li>Name (String) of the job.</li>
-            <li>Time (String) called a Cron Time.</li>
-            <li>Scheduled Class (variable).</li>
+              <li>Name (String) of the job.</li>
+              <li>Time (String) called a Cron Time.</li>
+              <li>Scheduled Class (variable).</li>
             </ul>
             <p>Just like our Batch Class execution, we save the ID in a variable. Let's write it all together in an Anon Exec window:</p>
             <pre><code>ClassSchedule classer = new ClassSchedule();
@@ -225,12 +242,15 @@
             String jobId = system.schedule('classScheduler', sch, classer);
             System.debug(jobId);</code></pre>
             <p>After our code runs, head over to Setup and search for <em>Scheduled Jobs</em> and you will notice there's a new job scheduled for the time you specified! (I ran mine on 3:55AM because I was restless.)</p>
-<figure class="kg-card kg-width-full kg-card-hascaption"><img src="../images/apex/20/1.png" width=100% alt="Scheduled Class in Setup">
-                        </figure>
-            <p>There is a delete option here to delete the scheduled job. It is possible to reschedule the class from code, but I've seen experienced developers delete the job and schedule a new one for the class so it avoids confusion. Now that we know how to write a Schedule Class, let's write Test Class for it.</p>
+            <figure class="kg-card kg-width-full kg-card-hascaption"><img src="../images/apex/20/1.png" width=100% alt="Scheduled Class in Setup">
+            </figure>
+            <p>There is a delete option here to delete the scheduled job. It is possible to reschedule the class from code, but I've seen experienced developers delete the job and schedule a new one for the class so it avoids confusion. Now that we
+              know how to write a Schedule Class, let's write Test Class for it.</p>
             <h2>Test Class</h2>
-            <p>Personally, writing a test class for scheduled class feels like a formality just because most scheduled classes I've written over the last year called a Batch Class and those classes had Tests written already, but since we always aim for 100% code coverage, we just need to call the Scheduled Class once. I've also seen developers follow the same practice.</p>
-            <p>For this, we need to define a <em>Time</em> string, but call the Scheduled class inside the <code>Test.startTest()</code> and <code>Test.stopTest()</code> because <em>this forces the scheduled class to run immediately on the test database</em> because we really don't want to wait for testing it.</p>
+            <p>Personally, writing a test class for scheduled class feels like a formality just because most scheduled classes I've written over the last year called a Batch Class and those classes had Tests written already, but since we always aim
+              for 100% code coverage, we just need to call the Scheduled Class once. I've also seen developers follow the same practice.</p>
+            <p>For this, we need to define a <em>Time</em> string, but call the Scheduled class inside the <code>Test.startTest()</code> and <code>Test.stopTest()</code> because <em>this forces the scheduled class to run immediately on the test
+                database</em> because we really don't want to wait for testing it.</p>
             <pre><code>@isTest
             public class ClassScheduleTest {
                 public static String sch_test = '0 32 4 * * ?'; //define time
@@ -248,19 +268,19 @@
             <p>Scheduled classes do have certain limitations that we will discuss when we look into making HTTP calls from Apex classes.</p>
             <h2>Summary</h2>
             <ul>
-            <li>Scheduled classes are run on the time frame set by the developer.</li>
-            <li>The class always runs based on user's timezone</li>
-            <li>Writing test classes for scheduled classes is mostly redundant and a practical approach is to write a test class for the classes it's calling and a name-sake test for the said scheduled class just to achieve 100% code coverage.</li>
+              <li>Scheduled classes are run on the time frame set by the developer.</li>
+              <li>The class always runs based on user's timezone</li>
+              <li>Writing test classes for scheduled classes is mostly redundant and a practical approach is to write a test class for the classes it's calling and a name-sake test for the said scheduled class just to achieve 100% code coverage.</li>
             </ul>
 
-<a href = "21.html" class = "global-button"> Day 21 </a>
+            <a href="21.html" class="global-button"> Day 21 </a>
           </div>
         </article>
 
       </main>
       <footer class="footer-section global-footer">
         <div class="footer-copyright">
-          &copy; <a href="http://harshdeephura.com" target = "_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
         </div>
       </footer>
     </div>

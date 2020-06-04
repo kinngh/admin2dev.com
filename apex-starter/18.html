@@ -10,15 +10,18 @@
   <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-112097931-2');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
 
 </head>
 
@@ -33,13 +36,13 @@
           </div>
           <div class="header-nav">
             <input id="toggle" class="header-checkbox" type="checkbox">
-						<label class="header-toggle" for="toggle">
-							<span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-							</span>
-						</label>
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
             <nav>
               <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -62,48 +65,53 @@
           </div>
           <div class="post-content">
 
-            <p>So far we have been writing code on the fly, without worrying if the code would break and that's really not a good practice. In production, your users will find interestingly creative ways to break your code and I learnt it the hard way (on other platforms). Salesforce doesn't allow developers to write code directly in production. Instead, all of the code goes into the developer environment first and must have 75% code coverage. This means, at least 75% of every single line of code written must be executed by the test class and are not counted towards the code limit of the org.</p>
-<h2>Test Class Basics</h2>
-<p>Every test class is marked as test by using <code>@isTest</code> before declaring the class and for better structure, every test class keeps the same name as the class we are writing it for and has the word <code>Test</code> at the end of it. Let's write our test class for <code>FirstName</code> Class:</p>
-<pre><code>@isTest
+            <p>So far we have been writing code on the fly, without worrying if the code would break and that's really not a good practice. In production, your users will find interestingly creative ways to break your code and I learnt it the hard
+              way (on other platforms). Salesforce doesn't allow developers to write code directly in production. Instead, all of the code goes into the developer environment first and must have 75% code coverage. This means, at least 75% of every
+              single line of code written must be executed by the test class and are not counted towards the code limit of the org.</p>
+            <h2>Test Class Basics</h2>
+            <p>Every test class is marked as test by using <code>@isTest</code> before declaring the class and for better structure, every test class keeps the same name as the class we are writing it for and has the word <code>Test</code> at the end
+              of it. Let's write our test class for <code>FirstName</code> Class:</p>
+            <pre><code>@isTest
 public class FirstNameTest{
 
 }
 </code></pre>
-<p>Every method we write for our test class is marked with <code>testmethod</code>:</p>
-<pre><code>@isTest
+            <p>Every method we write for our test class is marked with <code>testmethod</code>:</p>
+            <pre><code>@isTest
 public class FirstNameTest{
 	static testmethod void methodName(){
 	}
 }
 </code></pre>
-<p>Alternatively, test methods can be marked with <code>@isTest</code> too:</p>
-<pre><code>@isTest
+            <p>Alternatively, test methods can be marked with <code>@isTest</code> too:</p>
+            <pre><code>@isTest
 public class FirstnameTest{
 	@isTest static void methodName(){
 	}
 }
 </code></pre>
-<p>Both ways of declaring a test method are correct and is compeltely on you to choose. I prefer using the <code>testmethod</code> keyword unless there is a need to use <code>@isTest</code> parameters. We cover it later in the course. The visibility (public/private/global) of the method doesn't matter and is ommited.</p>
-<p>Just like <code>System.debug()</code> is essential to output logs in console, we use <code>System.assertEquals()</code> to compare two values, and it returns a <code>Boolean</code>. There are two ways of using it:</p>
-<pre><code>System.assertEquals(expectedValue, givenValue);
+            <p>Both ways of declaring a test method are correct and is compeltely on you to choose. I prefer using the <code>testmethod</code> keyword unless there is a need to use <code>@isTest</code> parameters. We cover it later in the course. The
+              visibility (public/private/global) of the method doesn't matter and is ommited.</p>
+            <p>Just like <code>System.debug()</code> is essential to output logs in console, we use <code>System.assertEquals()</code> to compare two values, and it returns a <code>Boolean</code>. There are two ways of using it:</p>
+            <pre><code>System.assertEquals(expectedValue, givenValue);
 
 System.assetEquals(expectedValue, givenValue, String_If_Value_Is_False);
 </code></pre>
-<p><code>System.assertEquals</code> compares <code>expectedValue</code> and  <code>givenValue</code>. If the values are same it returns <code>true</code> and <code>false</code> if they are different. Let's look at few examples:</p>
-<pre><code>Integer a = 1, b = 2;
+            <p><code>System.assertEquals</code> compares <code>expectedValue</code> and <code>givenValue</code>. If the values are same it returns <code>true</code> and <code>false</code> if they are different. Let's look at few examples:</p>
+            <pre><code>Integer a = 1, b = 2;
 System.assertEquals(a, b); //This will be false
 </code></pre>
-<p>When you run this in Exec Anon window, you'll be greeted with an error:</p>
-<pre><code>Line: 2, Column: 1
+            <p>When you run this in Exec Anon window, you'll be greeted with an error:</p>
+            <pre><code>Line: 2, Column: 1
 System.AssertException: Assertion Failed: The values are not same: Expected: 1, Actual: 2
 </code></pre>
-<p>On line 2 when we compare values of a and b, the console was expecting the value of b to be 1, but got 2 instead. Now let's replace the value of a with 2 instead and check:</p>
-<pre><code>Integer b = 2;
+            <p>On line 2 when we compare values of a and b, the console was expecting the value of b to be 1, but got 2 instead. Now let's replace the value of a with 2 instead and check:</p>
+            <pre><code>Integer b = 2;
 System.assertEquals(2, b);
 </code></pre>
-<p>To see the optional String parameter in action, we have to write a class. Let's write a class <code>calculator</code> that has a method <code>addition</code> which takes two <code>Integer</code> as parameter and adds them and sees if the final result is <code>4</code>.</p>
-<pre><code>public class Calculator {
+            <p>To see the optional String parameter in action, we have to write a class. Let's write a class <code>calculator</code> that has a method <code>addition</code> which takes two <code>Integer</code> as parameter and adds them and sees if
+              the final result is <code>4</code>.</p>
+            <pre><code>public class Calculator {
 
     public static void addition(Integer a, Integer b){
         Integer c = a + b;
@@ -112,21 +120,21 @@ System.assertEquals(2, b);
 
 }
 </code></pre>
-<p>Now in Exec Anon window let's call the class. First, let's add 2 and 2 so we know our code actually runs&quot;</p>
-<pre><code>calculator.addition(2, 2);
+            <p>Now in Exec Anon window let's call the class. First, let's add 2 and 2 so we know our code actually runs&quot;</p>
+            <pre><code>calculator.addition(2, 2);
 </code></pre>
-<p>Great! Now let's add <code>2</code> and <code>5</code>.</p>
-<pre><code>calculator.addition(2, 5);
+            <p>Great! Now let's add <code>2</code> and <code>5</code>.</p>
+            <pre><code>calculator.addition(2, 5);
 </code></pre>
-<p>You'll notice you'll be greeted with an error:</p>
-<pre><code>Line: 5, Column: 1
+            <p>You'll notice you'll be greeted with an error:</p>
+            <pre><code>Line: 5, Column: 1
 System.AssertException: Assertion Failed: The result is not 4: Expected: 4, Actual: 7
 </code></pre>
-<p>We wanted this code block to fail and that's exactly what happened <em>The result is not 4</em> is the third optional string from<code>System.assertEqual()</code> .</p>
-<p>Now that we know most of the basics, let's write a test class for an Apex Class.</p>
-<h2>Tests for Apex Class</h2>
-<p>Let's use the same caluclator class but add in <code>multiplication</code> method too! The <code>Calculator</code> class should look something like this:</p>
-<pre><code>public class Calculator{
+            <p>We wanted this code block to fail and that's exactly what happened <em>The result is not 4</em> is the third optional string from<code>System.assertEqual()</code> .</p>
+            <p>Now that we know most of the basics, let's write a test class for an Apex Class.</p>
+            <h2>Tests for Apex Class</h2>
+            <p>Let's use the same caluclator class but add in <code>multiplication</code> method too! The <code>Calculator</code> class should look something like this:</p>
+            <pre><code>public class Calculator{
 
     public static Integer addition(Integer a, Integer b){
         return a+b;
@@ -137,8 +145,9 @@ System.AssertException: Assertion Failed: The result is not 4: Expected: 4, Actu
     }
 }
 </code></pre>
-<p>The <code>addition</code> method returns the sum of a and b, while the <code>multiplication</code> method returns the product of a and b. Now let's write a test class. For this, create a new class and name it <code>CalculatorTest</code> and mark it as a test class using the <code>@isTest</code>. Now, let's write our <code>additionTest</code> method that checks for values using <code>System.assertEquals()</code>.</p>
-<pre><code>@isTest
+            <p>The <code>addition</code> method returns the sum of a and b, while the <code>multiplication</code> method returns the product of a and b. Now let's write a test class. For this, create a new class and name it
+              <code>CalculatorTest</code> and mark it as a test class using the <code>@isTest</code>. Now, let's write our <code>additionTest</code> method that checks for values using <code>System.assertEquals()</code>.</p>
+            <pre><code>@isTest
 public class CalculatorTest {
     static testmethod void additionTest(){
         Integer result = Calculator.addition(2,2);
@@ -147,39 +156,43 @@ public class CalculatorTest {
 
 }
 </code></pre>
-<p>Let's break this code down first:</p>
-<ul>
-<li>We create a test class named <code>CalculatorTest</code></li>
-<li>We have a testmethod called <code>additionTest()</code></li>
-<li>We save the result from <code>Calculator.addition</code> in an Integer called <code>result</code></li>
-<li>We compare values to see if the result we were expecting (4) was the same as what the class returned (<code>result</code>)</li>
-</ul>
-<p>Now to run our test, we go to <code>Test</code> menu of Developer Console, and click on <code>New Run</code>. This will open a new popup. Select the <code>CalculatorTest</code> from the left most window pane, then select <code>additionTest</code> and click on <code>Run</code> on bottom right.</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/18/1.png" width=100% alt="Test Popup">
-</figure>
-<p>To see the results of the test, we select the <code>Test</code> in the bottom pane. This will show all the tests we ran this session. Click on the test run and select the <code>Calculator</code> from the bottom right pane.</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/18/2.png" width=100% alt="Test Bottom Space">
-</figure>
-<p>Notice how it says</p>
-<div class="responsive-table"><table>
-<thead>
-<tr>
-<th>Class</th>
-<th>Percent</th>
-<th>Lines</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Calculator</td>
-<td>50%</td>
-<td>2/4</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>This means out of the 4 lines of code we wrote in our <code>Calculator</code> class (class declarations are not counted here, only the user written code), only 2 lines of code ran. Double clicking on this would open up the class and highlight what lines of code ran and what didn't. This is particularly useful to see what lines of code were missed out and in our case, the two lines of <code>multiplication</code> method didn't run. Let's add to our Test Classs to cover it.</p>
-<pre><code>@isTest
+            <p>Let's break this code down first:</p>
+            <ul>
+              <li>We create a test class named <code>CalculatorTest</code></li>
+              <li>We have a testmethod called <code>additionTest()</code></li>
+              <li>We save the result from <code>Calculator.addition</code> in an Integer called <code>result</code></li>
+              <li>We compare values to see if the result we were expecting (4) was the same as what the class returned (<code>result</code>)</li>
+            </ul>
+            <p>Now to run our test, we go to <code>Test</code> menu of Developer Console, and click on <code>New Run</code>. This will open a new popup. Select the <code>CalculatorTest</code> from the left most window pane, then select
+              <code>additionTest</code> and click on <code>Run</code> on bottom right.</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/18/1.png" width=100% alt="Test Popup">
+            </figure>
+            <p>To see the results of the test, we select the <code>Test</code> in the bottom pane. This will show all the tests we ran this session. Click on the test run and select the <code>Calculator</code> from the bottom right pane.</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/18/2.png" width=100% alt="Test Bottom Space">
+            </figure>
+            <p>Notice how it says</p>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Class</th>
+                    <th>Percent</th>
+                    <th>Lines</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Calculator</td>
+                    <td>50%</td>
+                    <td>2/4</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>This means out of the 4 lines of code we wrote in our <code>Calculator</code> class (class declarations are not counted here, only the user written code), only 2 lines of code ran. Double clicking on this would open up the class and
+              highlight what lines of code ran and what didn't. This is particularly useful to see what lines of code were missed out and in our case, the two lines of <code>multiplication</code> method didn't run. Let's add to our Test Classs to
+              cover it.</p>
+            <pre><code>@isTest
 public class CalculatorTest {
     static testmethod void additionTest(){
         Integer result = Calculator.addition(2,2);
@@ -193,13 +206,13 @@ public class CalculatorTest {
 
 }
 </code></pre>
-<p>Head over to <code>Test</code> and Run a new test to see the results. Now we have 100% code coverage! To practice more, write tests for classes we have written through out the course.</p>
-<blockquote>
-  Use Test &gt; Clear Test Data to clear your test logs.
-</blockquote>
-<h2>Tests for Batch Class</h2>
-<p>Let's write a test class for our <code>ClassBatch</code> Class we wrote earlier in this course. Incase you forgot, here's the code:</p>
-<pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
+            <p>Head over to <code>Test</code> and Run a new test to see the results. Now we have 100% code coverage! To practice more, write tests for classes we have written through out the course.</p>
+            <blockquote>
+              Use Test &gt; Clear Test Data to clear your test logs.
+            </blockquote>
+            <h2>Tests for Batch Class</h2>
+            <p>Let's write a test class for our <code>ClassBatch</code> Class we wrote earlier in this course. Incase you forgot, here's the code:</p>
+            <pre><code>global class ClassBatch implements Database.Batchable&lt;sObject&gt;{
 
 
     global iterable&lt;sObject&gt; start(Database.BatchableContext bc){
@@ -225,15 +238,18 @@ public class CalculatorTest {
 
 }
 </code></pre>
-<p>Writing test methods for Batch classes is a little different than writing for regular classes. When we run a test class, it creates data in a separate database from the org to avoid changes being made on the production database. Think of it like this, when you are trying a new way of making coffee, like shifting from using the good old french press to using an espresso machine, you make much smaller quantity than usual to avoid wasting your coffee and taste testing the new method.</p>
-<p>To write a test class for our <code>ClassBatch</code>, we first make a new class file.</p>
-<pre><code>@isTest
+            <p>Writing test methods for Batch classes is a little different than writing for regular classes. When we run a test class, it creates data in a separate database from the org to avoid changes being made on the production database. Think
+              of it like this, when you are trying a new way of making coffee, like shifting from using the good old french press to using an espresso machine, you make much smaller quantity than usual to avoid wasting your coffee and taste testing
+              the new method.</p>
+            <p>To write a test class for our <code>ClassBatch</code>, we first make a new class file.</p>
+            <pre><code>@isTest
 public class ClassBatchTest {
 
 }
 </code></pre>
-<p>Now we need to create some test data. For this, we need to create a new method and declare it as <code>@testSetup</code>. Marking a method with <code>@testSetup</code> makes it the first method to run in the test class, despite it's position in the code (Remember code always runs line by line).</p>
-<pre><code>@isTest
+            <p>Now we need to create some test data. For this, we need to create a new method and declare it as <code>@testSetup</code>. Marking a method with <code>@testSetup</code> makes it the first method to run in the test class, despite it's
+              position in the code (Remember code always runs line by line).</p>
+            <pre><code>@isTest
 public class ClassBatchTest {
 
     @testSetup static void createTestData(){
@@ -242,8 +258,8 @@ public class ClassBatchTest {
 
 }
 </code></pre>
-<p>Now let's make a loop that inserts 3 contacts with the last name <code>Test</code> and name <code>Name 1</code>, <code>Name 2</code> and <code>Name 3</code>.</p>
-<pre><code>@isTest
+            <p>Now let's make a loop that inserts 3 contacts with the last name <code>Test</code> and name <code>Name 1</code>, <code>Name 2</code> and <code>Name 3</code>.</p>
+            <pre><code>@isTest
 public class ClassBatchTest {
 
     @testSetup static void createTestData(){
@@ -260,9 +276,9 @@ public class ClassBatchTest {
 
 }
 </code></pre>
-<p>This inserts three records in our <code>test</code> database that's not directly accessible from the org because the database is only available as the testing process is running and is destroyed after it's done.</p>
-<p>Now, let's write our <code>testmethod</code> method. We will be using the <code>Test.startTest()</code> and <code>Test.stopTest();</code> here. These methods denote <em>when the test is starting/ending</em>.</p>
-<pre><code>@isTest
+            <p>This inserts three records in our <code>test</code> database that's not directly accessible from the org because the database is only available as the testing process is running and is destroyed after it's done.</p>
+            <p>Now, let's write our <code>testmethod</code> method. We will be using the <code>Test.startTest()</code> and <code>Test.stopTest();</code> here. These methods denote <em>when the test is starting/ending</em>.</p>
+            <pre><code>@isTest
 public class ClassBatchTest {
 
     @testSetup static void createTestData(){
@@ -292,37 +308,37 @@ public class ClassBatchTest {
 
 }
 </code></pre>
-<p>Let's breakdown the <code>batchTester()</code> method:</p>
-<ul>
-<li>We run our batch class inside the <code>Test.startTest()</code> and <code>Test.stopTest()</code> because we want to run it as a test and reset governor limits.</li>
-<li>We use three <code>System.assertEquals()</code> to ensure our test ran successfully:
-<ul>
-<li>The first one checks to see if the 3 new records we created were succesfully inserted.</li>
-<li>The second one checks if the first names were updated after we ran the batch class, denoting the batch class ran successfully</li>
-<li>The third one is a redudant check to ensure contacts where first and last name are test exist in the database and result to 3 because that's the number of contacts we inserted in the test database.</li>
-</ul>
-</li>
-</ul>
-<p>This might seem complicated at first, but really, all we are doing is creating dummy content and seeing if the values it returns is same as the expected value.</p>
-<h2>Summary</h2>
-<ul>
-<li>Test classes are necessary and must have 75% code coverage before deploying to production</li>
-<li><code>System.assertEquals</code> compares a given value to expected value and returns <code>Boolean</code> based on the outcome</li>
-<li>All test classes must be marked with <code>@isTest</code></li>
-<li>All test methods must be marked with <code>testMethod</code> or <code>@isTest</code></li>
-<li><code>Test.startTest()</code> and <code>Test.stopTest()</code> denote start/stop of a test insdie a method</li>
-</ul>
+            <p>Let's breakdown the <code>batchTester()</code> method:</p>
+            <ul>
+              <li>We run our batch class inside the <code>Test.startTest()</code> and <code>Test.stopTest()</code> because we want to run it as a test and reset governor limits.</li>
+              <li>We use three <code>System.assertEquals()</code> to ensure our test ran successfully:
+                <ul>
+                  <li>The first one checks to see if the 3 new records we created were succesfully inserted.</li>
+                  <li>The second one checks if the first names were updated after we ran the batch class, denoting the batch class ran successfully</li>
+                  <li>The third one is a redudant check to ensure contacts where first and last name are test exist in the database and result to 3 because that's the number of contacts we inserted in the test database.</li>
+                </ul>
+              </li>
+            </ul>
+            <p>This might seem complicated at first, but really, all we are doing is creating dummy content and seeing if the values it returns is same as the expected value.</p>
+            <h2>Summary</h2>
+            <ul>
+              <li>Test classes are necessary and must have 75% code coverage before deploying to production</li>
+              <li><code>System.assertEquals</code> compares a given value to expected value and returns <code>Boolean</code> based on the outcome</li>
+              <li>All test classes must be marked with <code>@isTest</code></li>
+              <li>All test methods must be marked with <code>testMethod</code> or <code>@isTest</code></li>
+              <li><code>Test.startTest()</code> and <code>Test.stopTest()</code> denote start/stop of a test insdie a method</li>
+            </ul>
 
 
 
-            <a href = "19.html" class = "global-button"> Day 19 </a>
+            <a href="19.html" class="global-button"> Day 19 </a>
           </div>
         </article>
 
       </main>
       <footer class="footer-section global-footer">
         <div class="footer-copyright">
-          &copy; <a href="http://harshdeephura.com" target = "_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
         </div>
       </footer>
     </div>

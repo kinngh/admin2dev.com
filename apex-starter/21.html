@@ -10,15 +10,18 @@
   <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-112097931-2');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
 
 </head>
 
@@ -33,13 +36,13 @@
           </div>
           <div class="header-nav">
             <input id="toggle" class="header-checkbox" type="checkbox">
-						<label class="header-toggle" for="toggle">
-							<span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-							</span>
-						</label>
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
             <nav>
               <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -61,78 +64,90 @@
             </div>
           </div>
           <div class="post-content">
-            <p>You walk into your local Coffee Shop, walk in the door and the cashier greets you. You're a regular there. You order your &quot;regular&quot; and the cashier seems to know what you mean by it. They make you a <em>Super Large Frappuccino with Hazelnut drips and Whipped cream</em>. You take it to your &quot;regular&quot; table and once you're done, you greet the cashier and staff goodbye and go on with your day.</p>
-<p>Apart from the fact that you now know my regular coffee order, the entire process was eased up because of one tool that everyone in the coffee shop including you understood: Communication. Usually taken for granted, you can understand this entire course and everyone around you (or well, most of them) because of this nifty little tool, it could be the language you speak, the written message you pass around or just a head nod.</p>
-<p>So far, we've been working with ourselves in isolation and it's time we venture out to the outside world. It will be scary at first, but as time passes by you'll get good with your communication as a developer.</p>
-<p>The tool in our communication set is understanding what an API is.</p>
-<p><strong>API</strong> or <strong>Application Programmable Interface</strong> is a middleware for two or more applications on the web to talk to each other. This is the same as using a language to talk to another person. APIs take an input, process it and output the result, the same as asking the cashier for the <em>regular</em> order (the input), the cashier which clearly understands what you're talking about and processes your end output, or the coffee. There are a lot of things that goes into making a good API like writing great documentation which includes clear instructions on the kind of inputs the API takes, what it processes and what it doesn't, and how the structure of the end result would look like. There are a lot of things that go into making an API good, but for now let's focus on understanding and using APIs.</p>
-<p>Just like real life languages with a lot of variations and branches, APIs come in two <em>languages</em>:</p>
-<ul>
-<li>REST</li>
-<li>POST</li>
-</ul>
-<p>In today's chapter we will be talking about the REST API.</p>
-<p><strong>REST</strong> or <strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer is the more common API style used on the internet because of it's structure and ease of use. There are a lot of concepts about what REST API really is, but for now let's talk in plain english before we dive into techincal terms.</p>
-<p>Let's see an API in action. For this we need two things:</p>
-<ul>
-<li>Something to make the REST API calls and show their output.</li>
-<li>A server that accepts and returns REST calls.</li>
-</ul>
-<p>To run our REST API queries, we will be using <a href="https://postman.com" target="_blank">Postman</a>. Head over to their website, sign up for an account and download the program for your platform.</p>
-<p>To see the API in action, we will be using <a href="https://openweathermap.org" target="_blank">Open Weather Map</a> to get current weather of our location or any city. Head over to their website and signup for an account.</p>
-<p>Now in Open Weather Map, head over to the <a href="https://openweathermap.org/api" target="_blank">API Section</a> and you will be greeted with a page that shows you &quot;Current and weather forecast weather data collection&quot;. We will be using the <code>Current Weather Data</code> collection. Open the <a href="https://openweathermap.org/current" target="
+            <p>You walk into your local Coffee Shop, walk in the door and the cashier greets you. You're a regular there. You order your &quot;regular&quot; and the cashier seems to know what you mean by it. They make you a <em>Super Large
+                Frappuccino with Hazelnut drips and Whipped cream</em>. You take it to your &quot;regular&quot; table and once you're done, you greet the cashier and staff goodbye and go on with your day.</p>
+            <p>Apart from the fact that you now know my regular coffee order, the entire process was eased up because of one tool that everyone in the coffee shop including you understood: Communication. Usually taken for granted, you can understand
+              this entire course and everyone around you (or well, most of them) because of this nifty little tool, it could be the language you speak, the written message you pass around or just a head nod.</p>
+            <p>So far, we've been working with ourselves in isolation and it's time we venture out to the outside world. It will be scary at first, but as time passes by you'll get good with your communication as a developer.</p>
+            <p>The tool in our communication set is understanding what an API is.</p>
+            <p><strong>API</strong> or <strong>Application Programmable Interface</strong> is a middleware for two or more applications on the web to talk to each other. This is the same as using a language to talk to another person. APIs take an
+              input, process it and output the result, the same as asking the cashier for the <em>regular</em> order (the input), the cashier which clearly understands what you're talking about and processes your end output, or the coffee. There are
+              a lot of things that goes into making a good API like writing great documentation which includes clear instructions on the kind of inputs the API takes, what it processes and what it doesn't, and how the structure of the end result
+              would look like. There are a lot of things that go into making an API good, but for now let's focus on understanding and using APIs.</p>
+            <p>Just like real life languages with a lot of variations and branches, APIs come in two <em>languages</em>:</p>
+            <ul>
+              <li>REST</li>
+              <li>POST</li>
+            </ul>
+            <p>In today's chapter we will be talking about the REST API.</p>
+            <p><strong>REST</strong> or <strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer is the more common API style used on the internet because of it's structure and ease of use. There are a lot of concepts about
+              what REST API really is, but for now let's talk in plain english before we dive into techincal terms.</p>
+            <p>Let's see an API in action. For this we need two things:</p>
+            <ul>
+              <li>Something to make the REST API calls and show their output.</li>
+              <li>A server that accepts and returns REST calls.</li>
+            </ul>
+            <p>To run our REST API queries, we will be using <a href="https://postman.com" target="_blank">Postman</a>. Head over to their website, sign up for an account and download the program for your platform.</p>
+            <p>To see the API in action, we will be using <a href="https://openweathermap.org" target="_blank">Open Weather Map</a> to get current weather of our location or any city. Head over to their website and signup for an account.</p>
+            <p>Now in Open Weather Map, head over to the <a href="https://openweathermap.org/api" target="_blank">API Section</a> and you will be greeted with a page that shows you &quot;Current and weather forecast weather data collection&quot;. We
+              will be using the <code>Current Weather Data</code> collection. Open the <a href="https://openweathermap.org/current" target="
   _blank">API Doc</a> and try not to panic.</p>
-<p>First we need the <strong>API URL</strong>. In the <em>By City Name</em> section, you'll be greeted with 3 URLs:</p>
-<ul>
-<li>
-<p><code>api.openweathermap.org/data/2.5/weather?q={city name}&amp;appid={your api key}</code></p>
-</li>
-<li>
-<p><code>api.openweathermap.org/data/2.5/weather?q={city name},{state code}&amp;appid={your api key}</code></p>
-</li>
-<li>
-<p><code>api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&amp;appid={your api key}</code></p>
-</li>
-</ul>
-<p>For a REST API, we usually first get hold of the URL. We will be using the first URL. Let's copy that and open Postman.</p>
-<p>After logging in to Postman, you'll be greeted with the welcome screen. (You can click on settings &gt; themes and switch to dark mode):
-</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/1.png" width=100% alt="">
-</figure>
-<p>Click on New &gt; Request and fill out the request name and description.
-</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/2.png" width=100% alt="">
-</figure>
-<p>This is for your use and identification so the values here won't interfere with the end result. I am naming it <em>Weather Data</em> and creating a new collection called <em>Open Stuff</em>. You'll now be greeted with this screen:
-</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/3.png" width=100% alt="">
-</figure>
-<p>In the <em>request URL</em> section, we first ensure the request is set to GET (we talk about this later in this chapter) and copy the first URL from Open Weather Data</p>
-<pre><code>api.openweathermap.org/data/2.5/weather?q={city name}&amp;appid={your api key}
+            <p>First we need the <strong>API URL</strong>. In the <em>By City Name</em> section, you'll be greeted with 3 URLs:</p>
+            <ul>
+              <li>
+                <p><code>api.openweathermap.org/data/2.5/weather?q={city name}&amp;appid={your api key}</code></p>
+              </li>
+              <li>
+                <p><code>api.openweathermap.org/data/2.5/weather?q={city name},{state code}&amp;appid={your api key}</code></p>
+              </li>
+              <li>
+                <p><code>api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&amp;appid={your api key}</code></p>
+              </li>
+            </ul>
+            <p>For a REST API, we usually first get hold of the URL. We will be using the first URL. Let's copy that and open Postman.</p>
+            <p>After logging in to Postman, you'll be greeted with the welcome screen. (You can click on settings &gt; themes and switch to dark mode):
+            </p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/1.png" width=100% alt="">
+            </figure>
+            <p>Click on New &gt; Request and fill out the request name and description.
+            </p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/2.png" width=100% alt="">
+            </figure>
+            <p>This is for your use and identification so the values here won't interfere with the end result. I am naming it <em>Weather Data</em> and creating a new collection called <em>Open Stuff</em>. You'll now be greeted with this screen:
+            </p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/3.png" width=100% alt="">
+            </figure>
+            <p>In the <em>request URL</em> section, we first ensure the request is set to GET (we talk about this later in this chapter) and copy the first URL from Open Weather Data</p>
+            <pre><code>api.openweathermap.org/data/2.5/weather?q={city name}&amp;appid={your api key}
 </code></pre>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/4.png" width=100% alt="">
-</figure>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/4.png" width=100% alt="">
+            </figure>
 
-<p>
-You'll notice Postman automatically updates the parameters. A REST API's URL takes in parameters as it's input strings. If this were an apex method, it would look something like this:</p>
-<pre><code>public static String weather(String q, String appId){
+            <p>
+              You'll notice Postman automatically updates the parameters. A REST API's URL takes in parameters as it's input strings. If this were an apex method, it would look something like this:</p>
+            <pre><code>public static String weather(String q, String appId){
 	String weather = getWeather(q);
 	return weather;
 }
 </code></pre>
-<p>For the <code>q</code> or city name parameter, write the city you want to get weather for. I'll go with Birmingham (UK)
-</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/5.png" width=100% alt="">
-</figure>
-<p>Now we need to get our API key. This is the equivalent of a password and must be kept a secret because using this key your limits are calculated. Let's say if your API key were to leak, not only can anyone can now access data behind the API, all requests made are now counted towards your limits even if someone else did it. So let's keep it a secret. To get your API Key, sign in to Open Weather Map and head over to your <a href="https://home.openweathermap.org/api_keys" target="_blank">API Keys</a> in your <a href="https://home.openweathermap.org/api_keys" target="_blank">dashboard</a>. Give your API key a name and click on generate.
-</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/6.png" width=100% alt="">
-</figure>
-<p>Copy your API key (I reset mine so it doesn't exist, please don't use this one) and update it in Postman. Now we have our city and API key ready, let's click on send! If you get the &quot;Invalid API key&quot; error, wait for 5 minutes as it takes a while for new API keys to work.
-</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/7.png" width=100% alt="">
-</figure>
-<p>This response is in a JSON format. <strong>JSON</strong> or <strong>J</strong>ava <strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation, a language that stores data in an organised, key-value format (just like Maps in Apex). Let's break down this JSON and learn what it really is:</p>
-<pre><code>{
+            <p>For the <code>q</code> or city name parameter, write the city you want to get weather for. I'll go with Birmingham (UK)
+            </p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/5.png" width=100% alt="">
+            </figure>
+            <p>Now we need to get our API key. This is the equivalent of a password and must be kept a secret because using this key your limits are calculated. Let's say if your API key were to leak, not only can anyone can now access data behind
+              the API, all requests made are now counted towards your limits even if someone else did it. So let's keep it a secret. To get your API Key, sign in to Open Weather Map and head over to your <a
+                href="https://home.openweathermap.org/api_keys" target="_blank">API Keys</a> in your <a href="https://home.openweathermap.org/api_keys" target="_blank">dashboard</a>. Give your API key a name and click on generate.
+            </p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/6.png" width=100% alt="">
+            </figure>
+            <p>Copy your API key (I reset mine so it doesn't exist, please don't use this one) and update it in Postman. Now we have our city and API key ready, let's click on send! If you get the &quot;Invalid API key&quot; error, wait for 5 minutes
+              as it takes a while for new API keys to work.
+            </p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/21/7.png" width=100% alt="">
+            </figure>
+            <p>This response is in a JSON format. <strong>JSON</strong> or <strong>J</strong>ava <strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation, a language that stores data in an organised, key-value format (just like Maps
+              in Apex). Let's break down this JSON and learn what it really is:</p>
+            <pre><code>{
     &quot;coord&quot;: {
         &quot;lon&quot;: -86.8,
         &quot;lat&quot;: 33.52
@@ -176,20 +191,21 @@ You'll notice Postman automatically updates the parameters. A REST API's URL tak
     &quot;cod&quot;: 200
 }
 </code></pre>
-<p>Open the <a href="https://openweathermap.org/current#parameter" target="_blank">documentation</a> and head over to the &quot;Parameter&quot; section (if you click on the link it directly takes you there) where you have an example API and <em>Parameters</em> describing what each field means.</p>
-<p>This is how a JSON File is structured:</p>
-<ul>
-<li>Key Value pairs just like a Map in Apex, separated by <code>,</code>.</li>
-</ul>
-<pre><code>    &quot;timezone&quot;: -18000,
+            <p>Open the <a href="https://openweathermap.org/current#parameter" target="_blank">documentation</a> and head over to the &quot;Parameter&quot; section (if you click on the link it directly takes you there) where you have an example API
+              and <em>Parameters</em> describing what each field means.</p>
+            <p>This is how a JSON File is structured:</p>
+            <ul>
+              <li>Key Value pairs just like a Map in Apex, separated by <code>,</code>.</li>
+            </ul>
+            <pre><code>    &quot;timezone&quot;: -18000,
     &quot;id&quot;: 4049979,
     &quot;name&quot;: &quot;Birmingham&quot;,
     &quot;cod&quot;: 200
 </code></pre>
-<ul>
-<li>Objects are stored between <code>{ }</code></li>
-</ul>
-<pre><code>&quot;main&quot;: {
+            <ul>
+              <li>Objects are stored between <code>{ }</code></li>
+            </ul>
+            <pre><code>&quot;main&quot;: {
         &quot;temp&quot;: 301.55,
         &quot;feels_like&quot;: 298.78,
         &quot;temp_min&quot;: 299.26,
@@ -198,10 +214,10 @@ You'll notice Postman automatically updates the parameters. A REST API's URL tak
         &quot;humidity&quot;: 35
     }
 </code></pre>
-<ul>
-<li>Arrays are stored between <code>[ ]</code></li>
-</ul>
-<pre><code> &quot;weather&quot;: [
+            <ul>
+              <li>Arrays are stored between <code>[ ]</code></li>
+            </ul>
+            <pre><code> &quot;weather&quot;: [
         {
             &quot;id&quot;: 800,
             &quot;main&quot;: &quot;Clear&quot;,
@@ -210,8 +226,8 @@ You'll notice Postman automatically updates the parameters. A REST API's URL tak
         }
     ]
 </code></pre>
-<p>Let's write a JSON File for a Contact with 3 Opportunities and associated to Account GenePoint:</p>
-<pre><code>{
+            <p>Let's write a JSON File for a Contact with 3 Opportunities and associated to Account GenePoint:</p>
+            <pre><code>{
 	&quot;Name&quot;: {
 		&quot;firstName&quot;: &quot;John&quot;,
 		&quot;lastName&quot;: &quot;Smith&quot;
@@ -236,20 +252,20 @@ You'll notice Postman automatically updates the parameters. A REST API's URL tak
 }
 
 </code></pre>
-<p>Let's break this down:</p>
-<ul>
-<li>First we have the <code>Name</code> object with 2 key value pairs <code>firstName</code> and <code>lastName</code>.</li>
-<li>We now have an <code>Opportunity Array</code> that holds values for 3 key value pairs <code>Name</code>, <code>Close Date</code> and <code>Amount</code></li>
-<li>We have a key value pair <code>Account</code> that holds the value <code>GenePoint</code></li>
-</ul>
-<p>Think of it this way:</p>
-<ul>
-<li>Data is stored in key value pairs</li>
-<li>If there's more than 1 key value pair for something, we define it as an object and store it between <code>{ }</code></li>
-<li>If there are groups of information about a single object, but define different instances, we store it in an array between <code>[ ]</code></li>
-</ul>
-<p>Coming back to our Open Weather Data response, we can now understand the JSON, but in the case of <code>Birmingham</code>, notice how the JSON returned:</p>
-<pre><code>    &quot;sys&quot;: {
+            <p>Let's break this down:</p>
+            <ul>
+              <li>First we have the <code>Name</code> object with 2 key value pairs <code>firstName</code> and <code>lastName</code>.</li>
+              <li>We now have an <code>Opportunity Array</code> that holds values for 3 key value pairs <code>Name</code>, <code>Close Date</code> and <code>Amount</code></li>
+              <li>We have a key value pair <code>Account</code> that holds the value <code>GenePoint</code></li>
+            </ul>
+            <p>Think of it this way:</p>
+            <ul>
+              <li>Data is stored in key value pairs</li>
+              <li>If there's more than 1 key value pair for something, we define it as an object and store it between <code>{ }</code></li>
+              <li>If there are groups of information about a single object, but define different instances, we store it in an array between <code>[ ]</code></li>
+            </ul>
+            <p>Coming back to our Open Weather Data response, we can now understand the JSON, but in the case of <code>Birmingham</code>, notice how the JSON returned:</p>
+            <pre><code>    &quot;sys&quot;: {
         &quot;type&quot;: 1,
         &quot;id&quot;: 3436,
         &quot;country&quot;: &quot;US&quot;,
@@ -257,62 +273,65 @@ You'll notice Postman automatically updates the parameters. A REST API's URL tak
         &quot;sunset&quot;: 1590972705
     },
 </code></pre>
-<p><code>&quot;country&quot;: &quot;US&quot;</code> means there exists a Birmingham in US, while we were looking for Birmingham in the UK! The people at Open Weather Data knew this would be an issue that's why they have additional URLs to access the same information:</p>
-<ul>
-<li><code>api.openweathermap.org/data/2.5/weather?q={city name},{state code}&amp;appid={your api key}</code></li>
-</ul>
-<p>This let's us define the state and city name, reducing chance of errors. This is an example of <em>good API design</em>, equivalent to our &quot;I'll have the regulars&quot; coffee order.</p>
-<p>Just like Apex has DML statements, REST has it's own version of DML Statements. Remember when we made a <code>GET</code> request in Postman to get information on the URL? That was the equivalent of running a <code>[SELECT all_info FROM Current Weather Data WHERE City = 'Birmingham']</code>. Here are some common DML statements used in REST API calls:</p>
-<table>
-<thead>
-<tr>
-<th>REST Call</th>
-<th>Apex / Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>[SELECT]</code></td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>insert</code></td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>Roughly <code>upsert</code>. A Put call can create or replace information.</td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>Used to edit minor details. Most similar to an <code>update</code></td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td><code>delete</code></td>
-</tr>
-</tbody>
-</table>
-<h2>Summary</h2>
-<ul>
-<li>APIs are how applications over the internet interact with each other</li>
-<li>REST and POST are two &quot;languages&quot; of API</li>
-<li>REST is more commonly used because of ease of use and understanding</li>
-<li>REST has it's own set of DML statements just like Apex</li>
-<li>JSON is a format to store data in an organised way</li>
-</ul>
+            <p><code>&quot;country&quot;: &quot;US&quot;</code> means there exists a Birmingham in US, while we were looking for Birmingham in the UK! The people at Open Weather Data knew this would be an issue that's why they have additional URLs to
+              access the same information:</p>
+            <ul>
+              <li><code>api.openweathermap.org/data/2.5/weather?q={city name},{state code}&amp;appid={your api key}</code></li>
+            </ul>
+            <p>This let's us define the state and city name, reducing chance of errors. This is an example of <em>good API design</em>, equivalent to our &quot;I'll have the regulars&quot; coffee order.</p>
+            <p>Just like Apex has DML statements, REST has it's own version of DML Statements. Remember when we made a <code>GET</code> request in Postman to get information on the URL? That was the equivalent of running a <code>[SELECT all_info FROM
+                Current Weather Data WHERE City = 'Birmingham']</code>. Here are some common DML statements used in REST API calls:</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>REST Call</th>
+                  <th>Apex / Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>GET</td>
+                  <td><code>[SELECT]</code></td>
+                </tr>
+                <tr>
+                  <td>POST</td>
+                  <td><code>insert</code></td>
+                </tr>
+                <tr>
+                  <td>PUT</td>
+                  <td>Roughly <code>upsert</code>. A Put call can create or replace information.</td>
+                </tr>
+                <tr>
+                  <td>PATCH</td>
+                  <td>Used to edit minor details. Most similar to an <code>update</code></td>
+                </tr>
+                <tr>
+                  <td>DELETE</td>
+                  <td><code>delete</code></td>
+                </tr>
+              </tbody>
+            </table>
+            <h2>Summary</h2>
+            <ul>
+              <li>APIs are how applications over the internet interact with each other</li>
+              <li>REST and POST are two &quot;languages&quot; of API</li>
+              <li>REST is more commonly used because of ease of use and understanding</li>
+              <li>REST has it's own set of DML statements just like Apex</li>
+              <li>JSON is a format to store data in an organised way</li>
+            </ul>
 
 
 
 
-            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 22 </a>
+
+            <a href="22.html" class="global-button"> Day 22 </a>
           </div>
         </article>
 
       </main>
       <footer class="footer-section global-footer">
         <div class="footer-copyright">
-          &copy; <a href="http://harshdeephura.com" target = "_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
         </div>
       </footer>
     </div>
