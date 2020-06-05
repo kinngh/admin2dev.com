@@ -71,7 +71,8 @@
             <h1>Part 1</h1>
             <p>Before we even write the code, we need to <code>whitelist</code> the doman we will be making calls to. In our case, we will be running calls to <code>https://admin2dev.com</code> . Head over to <code>Setup</code> and in Quick Find Box
               search for <code>Remote Site</code> and add new remote site.</p>
-            <p>Now that the domain is whitelisted, let's access our JSON available at <a href="https://admin2dev.com/rest/response.json" target="_blank">https://admin2dev.com/rest/response.json</a> . While this is a static link, this is exactly how a response would
+            <p>Now that the domain is whitelisted, let's access our JSON available at <a href="https://admin2dev.com/rest/response.json" target="_blank">https://admin2dev.com/rest/response.json</a> . While this is a static link, this is exactly how a
+              response would
               work. First, let's make a GET call from Postman and see what the response is:</p>
             <pre><code>{
   	&quot;bird&quot;: {
@@ -234,10 +235,11 @@
               <code>return</code> value at the end, which is much simpler than remembering to define HTTP variables and calling and saving responses over and over again.</p>
             <p>Making snippets is really important since it reduces your work load by a chunk, letting you reuse your code through multiple orgs without having to modify much. It is still, however, important to know what each line of code does and
               properly comment your code so at a later date if there are any changes to the way Apex works, it's easy to update your snippet library.</p>
-            <p>I have my snippet library stored and organized in my private repo that I usually refer to, which now is open sourced and available with documentation at <a
-                href="https://github.com/Admin2Dev/apex-snippets" target="_blank">https://github.com/Admin2Dev/apex-snippets</a> that covers commonly used classes along with tests! Feel free to <code>fork</code> the code which allows you to copy the code in your
+            <p>I have my snippet library stored and organized in my private repo that I usually refer to, which now is open sourced and available with documentation at <a href="https://github.com/Admin2Dev/apex-snippets"
+                target="_blank">https://github.com/Admin2Dev/apex-snippets</a> that covers commonly used classes along with tests! Feel free to <code>fork</code> the code which allows you to copy the code in your
               github repo and make changes to it!</p>
-            <p>Let's try with a new JSON response! Here's the URL: <a href="https://admin2dev.com/rest/response2.json" target="_blank">https://admin2dev.com/rest/response2.json</a> . Use the snippet above to return any value from the response. Incase you get stuck,
+            <p>Let's try with a new JSON response! Here's the URL: <a href="https://admin2dev.com/rest/response2.json" target="_blank">https://admin2dev.com/rest/response2.json</a> . Use the snippet above to return any value from the response. Incase
+              you get stuck,
               here's the JSON and the code:</p>
             <p>First, we use Postman to get the JSON:</p>
             <pre><code>{
@@ -312,7 +314,13 @@
      }
   }</code></pre>
 
-            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 23 </a>
+  <h1>Summary</h1>
+  <ul>
+    <li>It's important to have JSON Keys named exactly in vairables.</li>
+    <li>There are multiple ways to deserialize a JSON but we cover it here by creting classes becuase it gives us clarity on JSON Structure.</li>
+  </ul>
+
+            <a href="23.html" class="global-button"> Day 23 </a>
           </div>
         </article>
 

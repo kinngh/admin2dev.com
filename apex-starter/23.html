@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Apex Starter Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.png" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex-starter/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 23:<br />REST API Class, Mock Class and Test Class</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>Let's deal with some more complicated JSONs today. Use Postman to make a call to <a href="https://admin2dev.com/rest/response3.json">https://admin2dev.com/rest/response3.json</a></p>
+            <pre><code>{
+	&quot;Name&quot;: {
+		&quot;firstName&quot;: &quot;John&quot;,
+		&quot;lastName&quot;: &quot;Smith&quot;
+	},
+	&quot;Deals&quot;: [
+		{
+			&quot;Name&quot;: &quot;Opportunity Name&quot;,
+			&quot;CloseDate&quot;: &quot;03022020&quot;,
+			&quot;Amount&quot;: 2200
+		},
+		{
+			&quot;Name&quot;: &quot;Opportunity 2 Name&quot;,
+			&quot;CloseDate&quot;: &quot;03122020&quot;,
+			&quot;Amount&quot;: 3000
+		},
+		{
+			&quot;Name&quot;: &quot;Opportunity 3 Name&quot;,
+			&quot;CloseDate&quot;: &quot;12062020&quot;,
+			&quot;Amount&quot;: 800
+		}
+	],
+	&quot;Account&quot;: &quot;GenePoint&quot;
+}</code></pre>
+            <p>Now we have a complicated JSON file here, given we have an object, a key value pair and an array in our top level. Let's focus on just writing the classes for this JSON here.</p>
+            <p>First, we deal with the <code>Account</code> key value pair. Since it's on the top level with no objects, we can directly define it as a <code>String</code>.</p>
+            <pre><code>public class JSONResponse{
+	public String Account;
+}</code></pre>
+            <p>Now, let's deal with the <code>Name</code> object that has two key value pairs named <code>firstName</code> and <code>lastName</code>. We know how to deal with this, make a new class with the name <code>Name</code> and in our
+              <code>JSONResponse</code> class, define a variable with <code>Name</code> class.</p>
+            <pre><code>public class JSONResponse{
+	public String Account;
+	public Name name;
+}
+
+public class Name{
+	public String firstName, lastName;
+}</code></pre>
+            <p>Now dealing with arrays is simple, we define a new class, the same way we would for an object but in our <code>JSONResponse</code> when we declare a variable of that class type, we declare it as a <code>List&lt;ClassName&gt;</code>.
+              Let's take a look:</p>
+            <pre><code>public class JSONResponse{
+	public String Account;
+	public Name name;
+	public List&lt;Deals&gt; deals;
+}
+
+public class Name{
+	public String firstName, lastName;
+}
+
+public class Deals{
+	public String Name, CloseDate;
+	public Integer Amount;
+}</code></pre>
+            <p>Our JSON Structure is done! Now when we want to access values inside the <code>Deals</code> array, we would access it the same way as we would with a List. To return the <code>Amount</code> for <code>Opportunity 2 Name</code> we would:
+            </p>
+            <pre><code>return response.Deals[1].Amount;</code></pre>
+            <p>and change the return type of our <code>methodName()</code> to Integer instead of String. Here's the full class:</p>
+            <pre><code>public class ComplexResponseClass {
+
+    public class JSONResponse { //create JSON structure class
+        public Name name;
+        public List&lt;Deals&gt; deals;
+        public String Account;
+    }
+
+    public class Name{
+        public String firstName, lastName;
+    }
+    public class Deals{
+        public String name, CloseDate;
+        public Integer amount;
+    }
+
+    public static Integer methodName() {
+
+        //Make the Request and save it
+
+        String requestURL = 'https://admin2dev.com/rest/response3.json';
+        String requestType = 'GET'; //GET POST PATCH PUT DELETE
+
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(requestURL);
+        request.setMethod(requestType);
+        HttpResponse response = http.send(request);
+
+        // Deserialize based on result type class
+        JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+        return result.Deals[1].Amount;
+
+    }
+}</code></pre>
+            <h2>Test and Mock Class</h2>
+            <p>Writing test classes for API calls is a little different than writing tests for other classes. There's an additional class that must be written, called the <code>Mock Class</code>. A mock class is a class that simulates a JSON response
+              because Test classes aren't allowed to make HTTP Calls.</p>
+            <p>First, let's look at Mock Class for the class we just wrote</p>
+            <h3>Mock Class</h3>
+            <p>First, open Postman and make an API Call. Now change the preview to <em>Preview</em> so it looks something like this:</p>
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/23/1.png" width=100% alt="">
+            </figure>
+            <p>Copy the whole JSON that's now in a single line. Now let's get down to writing our Mock Class.</p>
+            <p>First, make a test class that implements <code>HttpCalloutMock</code></p>
+            <pre><code>@isTest
+global class ComplexResponseCLassMock implements HttpCalloutMock{
+
+}</code></pre>
+            <p>Now, we need to build a response. For this, we create a new method that returns <code>HTTPResponse</code> and takes a <code>HTTPRequest</code> as an input parameter:</p>
+            <pre><code>@isTest
+global class ComplexResponseClassMock implements HttpCalloutMock{
+	global HTTPResponse respond(HTTPRequest request){
+	}
+
+}</code></pre>
+            <p>Now we build our response and return it. For this, we create a new variable of <code>HttpResponse</code> type and use <code>.setStatusCode()</code> and <code>.setBody()</code> to set the code and JSON, and then return it:</p>
+            <pre><code>@isTest
+global class ComplexResponseClassMock implements HttpCalloutMock {
+	global HTTPResponse respond(HTTPRequest request) {
+
+        HttpResponse response = new Httpresponse();
+        response.setStatusCode(200);
+        response.setBody('JSON IN ONE LINE GOES HERE'); //This is what the mock repsonse will be
+        return response;
+    }
+
+}</code></pre>
+            <p>A status code of <code>200</code> means the request was successful and everything went as it should You can read more about it on <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank">Mozilla Developer
+                Network</a>. Now let's create a new string and store our JSON and set that variable in
+              <code>response.setBody()</code> to make our code easy to understand and create a snippet:</p>
+            <pre><code>@isTest
+global class ComplexResponseClassMock implements HttpCalloutMock {
+	global HTTPResponse respond(HTTPRequest request) {
+
+        HttpResponse response = new Httpresponse();
+        String responseJSON = '{ &quot;Name&quot;: { &quot;firstName&quot;: &quot;John&quot;, &quot;lastName&quot;: &quot;Smith&quot; }, &quot;Deals&quot;: [{ &quot;Name&quot;: &quot;Opportunity Name&quot;, &quot;CloseDate&quot;: &quot;03022020&quot;, &quot;Amount&quot;: 2200 }, { &quot;Name&quot;: &quot;Opportunity 2 Name&quot;, &quot;CloseDate&quot;: &quot;03122020&quot;, &quot;Amount&quot;: 3000 }, { &quot;Name&quot;: &quot;Opportunity 3 Name&quot;, &quot;CloseDate&quot;: &quot;12062020&quot;, &quot;Amount&quot;: 800 } ], &quot;Account&quot;: &quot;GenePoint&quot; }';
+
+
+        response.setStatusCode(200);
+        response.setBody(responseJSON); //This is what the mock repsonse will be
+        return response;
+    }
+
+}</code></pre>
+            <p>The value for <code>responseJSON</code> is simply what we want this class to return. A good practice is to copy an example response and build test class on it. Now a snippet for making a mock response class would be:</p>
+            <pre><code>@isTest
+global class ClassNameMock implements HttpCalloutMock {
+	global HTTPResponse respond(HTTPRequest request) {
+
+        HttpResponse response = new Httpresponse();
+        String responseJSON = 'JSON in one line goes here';
+        response.setStatusCode(200);
+        response.setBody(responseJSON); //This is what the mock repsonse will be
+        return response;
+    }
+
+}
+</code></pre>
+            <p>Now let's write our test class:</p>
+            <h2>Test Class</h2>
+            <p>For our tester class, we simply call the mock response class</p>
+            <pre><code>@isTest
+public class ComplexResponseTest {
+    static testmethod void testerClass(){
+
+        Test.setMock(HttpCalloutMock.class, new ComplexResponseClassMock()); //This line makes the call to mock response class
+        //No Test.start / end necessary
+        System.assertEquals('03022020', ComplexResponseClass.methodName()); //Verify the values are correct
+
+    }
+
+}</code></pre>
+            <p>A quick breakdown:</p>
+            <ul>
+              <li>Define a Test class</li>
+              <li>Define a testmethod
+                <ul>
+                  <li>Call the mock class by making a new instance of the class by using <code>Test.setMock(HttpCalloutMock.class, ew ComplexResponseClassMock());</code></li>
+                </ul>
+              </li>
+            </ul>
+            <p>A snippet for this would be:</p>
+            <pre><code>@isTest
+public class myClassTest {
+    static testmethod void testerClass(){
+
+        Test.setMock(HttpCalloutMock.class, new ClassMock()); //Replace ClassMock with the Mock Class Name
+
+    }
+
+}</code></pre>
+            <p>And that's it! Now we run the test class and verify code coverage.</p>
+            <h1>Summary</h1>
+            <ul>
+              <li>Every API Call must have a Mock and Test Class</li>
+              <li>A Mock Class simulates a valid API response</li>
+              <li>A Test Class calls the Mock Class and verifies values by calling the main class.</li>
+            </ul>
+
+
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 23 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
