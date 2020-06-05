@@ -3,19 +3,19 @@
 		"firstName": "John",
 		"lastName": "Smith"
 	},
-	"Opportinity": [{
+	"Deals": [{
 			"Name": "Opportunity Name",
-			"Close Date": "03022020",
+			"CloseDate": "03022020",
 			"Amount": 2200
 		},
 		{
 			"Name": "Opportunity 2 Name",
-			"Close Date": "03122020",
+			"CloseDate": "03122020",
 			"Amount": 3000
 		},
 		{
 			"Name": "Opportunity 3 Name",
-			"Close Date": "12062020",
+			"CloseDate": "12062020",
 			"Amount": 800
 		}
 	],
