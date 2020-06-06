@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Apex Starter Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-112097931-2');
+</script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.png" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+						<label class="header-toggle" for="toggle">
+							<span>
+								<span class="bar"></span>
+								<span class="bar"></span>
+								<span class="bar"></span>
+							</span>
+						</label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex-starter/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 24:<br />REST API Class, Mock Class and Test Class Test</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>This quick test is made to test your basic understanding of making REST calls from Apex classes.</p>
+<ul>
+<li>You can look at the syntax, bonus points if you don’t.</li>
+<li>The test should ideally not take more than 20 minutes to solve.</li>
+<li>All the criteria must be met.</li>
+<li>The answer is available at <a href="https://github.com/Admin2Dev/answers"target="_blank"> Admin2Dev GitHub Repo</a>.</li>
+<li>The answer and complete breakdown of the program is available at the end of this page.</li>
+</ul>
+<h1>The Test</h1>
+<h2>Question</h2>
+<p>Parse a response from Open Weather Map as described in <a href="./21.html">Day 21</a> of the course. The Class-method should take 1 parameter and output the following in log:</p>
+<pre><code>At {city name}, {country name} the weather is currently {temperature in Celsius} or {temperature in Fahrenheit}. The weather seems {weather.description}. Have a nice day!</code></pre>
+<p>An example response would be: <code>At London, GB the weather is currently 11.43C or 52.574F. The weather seems broken clouds. Have a nice day!</code></p>
+<p>Also write a Mock and Test Class with 100% code coverage.</p>
+<h2>Hint</h2>
+<ul>
+<li>You don't need to structure the entire JSON, just bits you want to access</li>
+<li>Read the documentation available <a href="https://openweathermap.org/current">here</a></li>
+<li>Return a Map in your method and parse it in <code>System.debug()</code>;</li>
+</ul>
+<blockquote>
+<p>Start a timer and note how long you take to solve. Ideally, it should take ~20 minutes, but don’t worry if you go overboard.</p>
+</blockquote>
+<h1>Answer</h1>
+<p>First whitelist the domain <code>https://api.openweathermap.org</code> instead of just <code>https://openweathermap.org</code> or it will throw errors.</p>
+<h2>OpenWeatherMap Class</h2>
+<pre><code>public class OpenWeatherMap {
+
+	//Creating the JSON Structure
+
+    public class JSONResponse{
+        public List&lt;Weather&gt; weather;
+        public sys sys;
+        public string name; //city name
+        public main main;
+
+    }
+
+    public class Weather {
+        public String description; //description of weather
+    }
+
+    public class sys{
+        public String country; //country name
+    }
+
+    public class main {
+        public Decimal temp; //Temperature in Kelvin
+    }
+
+
+
+    public static String getTemperature(String city){ //get temp of a city
+        String inputUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&amp;appid=f335bb76cf2491f6faef107ae2c265f3'; //first build the URL
+        return makeRequest(inputUrl);
+    }
+
+    private static String makeRequest(String inputUrl){
+
+        String requestType = 'GET';
+
+        //Build the request
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(inputUrl);
+        request.setMethod(requestType);
+
+        //Make the request
+        HttpResponse response = http.send(request);
+
+        //Deserialize the JSON
+        JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+
+        String finalString =  'At ' + result.name + ', ' + result.sys.country + ' the weather is currently ' + (result.main.temp - 273.15) + 'C or ' + ((result.main.temp - 273.15) * 9/5 + 32)+ 'F. The weather seems ' + result.weather[0].description + '. Have a nice day!';
+        return finalString;
+    }
+
+}</code></pre>
+<ul>
+<li>While returning the temperature values, we need to convert the temperature from K to C and F. The formulas are a quick search away!</li>
+</ul>
+<h2>OpenWeatherMapMock Class</h2>
+<pre><code>@isTest
+global class OpenWeatherMapMock implements HttpCalloutMock {
+	global HTTPResponse respond(HTTPRequest request) {
+
+        String responseJSON = '{&quot;coord&quot;:{&quot;lon&quot;:-0.13,&quot;lat&quot;:51.51},&quot;weather&quot;:[{&quot;id&quot;:803,&quot;main&quot;:&quot;Clouds&quot;,&quot;description&quot;:&quot;broken clouds&quot;,&quot;icon&quot;:&quot;04n&quot;}],&quot;base&quot;:&quot;stations&quot;,&quot;main&quot;:{&quot;temp&quot;:284.58,&quot;feels_like&quot;:282.54,&quot;temp_min&quot;:284.26,&quot;temp_max&quot;:285.37,&quot;pressure&quot;:998,&quot;humidity&quot;:58},&quot;wind&quot;:{&quot;speed&quot;:0.89,&quot;deg&quot;:274,&quot;gust&quot;:4.02},&quot;clouds&quot;:{&quot;all&quot;:55},&quot;dt&quot;:1591396997,&quot;sys&quot;:{&quot;type&quot;:3,&quot;id&quot;:2019646,&quot;country&quot;:&quot;GB&quot;,&quot;sunrise&quot;:1591328769,&quot;sunset&quot;:1591387939},&quot;timezone&quot;:3600,&quot;id&quot;:2643743,&quot;name&quot;:&quot;London&quot;,&quot;cod&quot;:200}';
+
+        HttpResponse response = new Httpresponse();
+        response.setStatusCode(200);
+        response.setBody(responseJSON); //This is what the mock repsonse will be
+        return response;
+    }
+
+}</code></pre>
+<h2>OpenWeatherMapTest Class</h2>
+<pre><code>@isTest
+public class OpenWeatherMapTest {
+    static testmethod void testerClass(){
+
+        Test.setMock(HttpCalloutMock.class, new OpenWeatherMapMock()); //This line makes the call to mock response class
+
+        System.assertEquals('At London, GB the weather is currently 11.43C or 52.574F. The weather seems broken clouds. Have a nice day!', OpenWeatherMap.getTemperature('London'));
+
+    }
+
+}</code></pre>
+
+
+<a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 25 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target = "_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
