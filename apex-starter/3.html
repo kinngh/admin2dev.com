@@ -10,15 +10,39 @@
   <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 
-  gtag('config', 'UA-112097931-2');
-</script>
+  <meta property="og:site_name" content="Admin2Dev" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Developer Console, Arithmetic Operations, String Interpolation and Code Refactoring" /> <!-- Content Title-->
+  <meta property="og:description" content="Learn the basics of using the Salesforce Developer Console, running arithmetic operations on numbers, String interpolation and how to refactor code for efficient writing" /> <!-- Content Description -->
+  <meta property="og:url" content="https://admin2dev.com/" />
+
+
+  <meta property="article:author" content="https://twitter.com/theharshdeep" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce Developer Console, Arithmetic Operations, String Interpolation and Code Refactoring" /> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Learn the basics of using the Salesforce Developer Console, running arithmetic operations on numbers, String interpolation and how to refactor code for efficient writing" /> <!-- Twitter description -->
+  <meta name="twitter:url" content="https://admin2dev.com" />
+  <meta name="twitter:label1" content="Written by" />
+  <meta name="twitter:data1" content="Harshdeep Singh Hura" />
+  <meta name="twitter:label2" content="Filed under" />
+  <meta name="twitter:data2" content="Apex Tutorials" />
+  <meta name="twitter:site" content="@theharshdeep" />
+  <meta name="twitter:creator" content="@theharshdeep" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
 
 </head>
 
@@ -104,7 +128,8 @@
             </ol>
 
             <h3>Writing code</h3>
-            <p>Now that we know where we write our code, let's write some of our first programs! Head over to Debug > Open execute anonymous window. This window allows us to write snippets of code. Alternativelt, you can press <code>Ctrl</code> and <code>E</code> to open quicker.</p>
+            <p>Now that we know where we write our code, let's write some of our first programs! Head over to Debug > Open execute anonymous window. This window allows us to write snippets of code. Alternativelt, you can press <code>Ctrl</code> and
+              <code>E</code> to open quicker.</p>
             <p>Let's make 2 integers and add them:</p>
             <pre><code>Integer a = 5;
 Integer b = 4;
@@ -241,108 +266,110 @@ Decimal d = 5.0;
 System.debug(a + b / c * d);</code></pre>
             Before you run the code, use a pen and paper and calculate using BODMAS and PEMDAS rule before comparing values in the console. Noticed a difference? Just like BODMAS and PEMDAS, Apex has it's own order of arithmetic operations: </p>
 
-            <div class = "responsive-table"><table>
+            <div class="responsive-table">
+              <table>
 
 
 
                 <thead>
-                    <tr>
-                        <th>Precedence</th>
+                  <tr>
+                    <th>Precedence</th>
 
-                        <th>Operators</th>
+                    <th>Operators</th>
 
-                        <th>Description</th>
+                    <th>Description</th>
 
-                    </tr>
+                  </tr>
 
                 </thead>
 
                 <tbody class="tbody">
-                    <tr>
-                        <td>1</td>
+                  <tr>
+                    <td>1</td>
 
-                        <td>{} () ++ --</td>
+                    <td>{} () ++ --</td>
 
-                        <td>Grouping and prefix increments and decrements</td>
+                    <td>Grouping and prefix increments and decrements</td>
 
-                    </tr>
+                  </tr>
 
-                    <tr>
-                        <td>2</td>
+                  <tr>
+                    <td>2</td>
 
-                        <td>new</span></td>
+                    <td>new</span></td>
 
-                        <td>Unary negation, type cast and object creation</td>
+                    <td>Unary negation, type cast and object creation</td>
 
-                    </tr>
+                  </tr>
 
-                    <tr>
-                        <td>3</td>
+                  <tr>
+                    <td>3</td>
 
-                        <td>* /</td>
+                    <td>* /</td>
 
-                        <td>Multiplication and division</td>
+                    <td>Multiplication and division</td>
 
-                    </tr>
+                  </tr>
 
-                    <tr>
-                        <td>4</td>
+                  <tr>
+                    <td>4</td>
 
-                        <td>+ -</td>
+                    <td>+ -</td>
 
-                        <td>Addition and subtraction</td>
+                    <td>Addition and subtraction</td>
 
-                    </tr>
+                  </tr>
 
-                    <tr>
-                        <td>5</td>
+                  <tr>
+                    <td>5</td>
 
-                        <td>&lt; &lt;= &gt; &gt;=
-instanceof</td>
+                    <td>&lt; &lt;= &gt; &gt;=
+                      instanceof</td>
 
-                        <td>Greater-than and less-than comparisons, reference tests</td>
+                    <td>Greater-than and less-than comparisons, reference tests</td>
 
-                    </tr>
+                  </tr>
 
-                    <tr>
-                        <td>6</td>
+                  <tr>
+                    <td>6</td>
 
-                        <td>== !=</td>
+                    <td>== !=</td>
 
-                        <td>Comparisons: equal and not-equal</td>
+                    <td>Comparisons: equal and not-equal</td>
 
-                    </tr>
+                  </tr>
 
-                    <tr>
-                        <td>7</td>
+                  <tr>
+                    <td>7</td>
 
-                        <td>&amp;&amp;</td>
+                    <td>&amp;&amp;</td>
 
-                        <td>Logical AND</td>
+                    <td>Logical AND</td>
 
-                    </tr>
+                  </tr>
 
-                    <tr>
-                        <td>8</td>
+                  <tr>
+                    <td>8</td>
 
-                        <td>||</td>
+                    <td>||</td>
 
-                        <td>Logical OR</td>
+                    <td>Logical OR</td>
 
-                    </tr>
+                  </tr>
 
-                    <tr>
-                        <td>9</td>
+                  <tr>
+                    <td>9</td>
 
-                        <td>= += -= *= /= &amp;=</td>
+                    <td>= += -= *= /= &amp;=</td>
 
-                        <td>Assignment operators</td>
+                    <td>Assignment operators</td>
 
-                    </tr>
+                  </tr>
 
                 </tbody>
 
-            </table></div>
+              </table>
+            </div>
 
 
 
@@ -369,7 +396,8 @@ System.debug(answer);</code> </pre>
 
             <h3>Code Refactoring</h3>
             <p>While brewing your own coffee is fun, the cleaning up process can be <i>mildly</i> infurating because you ended up using 5 cups, 2 bowls, a pot, a french press, few spoons and a measuring cup which needs to be cleaned up. To deal with
-              this, most of us would simply use less utensils. This can be done by using only 1 cup for measuring and rewiring our entire coffee making process to make less mess. This applies to code too. Let's take a look at a simple addition example:
+              this, most of us would simply use less utensils. This can be done by using only 1 cup for measuring and rewiring our entire coffee making process to make less mess. This applies to code too. Let's take a look at a simple addition
+              example:
             <pre><code>integer a = 4;
 integer b = 5;
 integer c = a + b;
@@ -398,17 +426,17 @@ System.debug(a+b);</code></pre>
             <p>Code refactoring is important because Salesforce orgs run on a multi-tenant environment. This is similar to living in an apartment with strangers and sharing hallways and kitchen but having a personal room. Similarly, multiple orgs run
               on a server and use shared computing resources with limits called as <i>Governor Limits</i>. We will explore governor limits in depth later in this course.</p>
 
-              <h4>Refactoring Arithmetic Operations</h4>
-              <p>Certain arithmetic operations can be rewritten for ease of readibility. This will come handy when using loops.</p>
-              <ul>
-                <li><code>++</code> adds 1 to the value and assign it back to the variable.</li>
-                <li><code>--</code> subtracts 1 from the value and assign it back to the variable.</li>
-                <li><code>*=</code> multiplies the variable with the number on the right and assign it back to the variable.</li>
-                <p><code>a *= 10;</code> is equivalent to <code>a = a * 10;</code></p>
-                <li><code>/=</code> divides the variable with the number on the right and assign it back to the variable.</li>
-                <p><code>a /= 10;</code> is equivalent to <code>a = a / 10;</code></p>
+            <h4>Refactoring Arithmetic Operations</h4>
+            <p>Certain arithmetic operations can be rewritten for ease of readibility. This will come handy when using loops.</p>
+            <ul>
+              <li><code>++</code> adds 1 to the value and assign it back to the variable.</li>
+              <li><code>--</code> subtracts 1 from the value and assign it back to the variable.</li>
+              <li><code>*=</code> multiplies the variable with the number on the right and assign it back to the variable.</li>
+              <p><code>a *= 10;</code> is equivalent to <code>a = a * 10;</code></p>
+              <li><code>/=</code> divides the variable with the number on the right and assign it back to the variable.</li>
+              <p><code>a /= 10;</code> is equivalent to <code>a = a / 10;</code></p>
 
-              </ul>
+            </ul>
 
 
             <h3>Summary</h3>
