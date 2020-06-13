@@ -10,21 +10,19 @@
   <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
 
-<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 
   <meta property="og:site_name" content="Admin2Dev" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="REST API Class, Mock Class and Test Class Test" /> <!-- Content Title-->
-  <meta property="og:description"
-    content="Test your knowledge on what you've learnt" /> <!-- Content Description -->
+  <meta property="og:description" content="Test your knowledge on what you've learnt" /> <!-- Content Description -->
   <meta property="og:url" content="https://admin2dev.com/" />
 
 
   <meta property="article:author" content="https://twitter.com/theharshdeep" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="REST API Class, Mock Class and Test Class Test" /> <!-- Twitter Title -->
-  <meta name="twitter:description"
-    content="Test your knowledge on what you've learnt" /> <!-- Twitter description -->
+  <meta name="twitter:description" content="Test your knowledge on what you've learnt" /> <!-- Twitter description -->
   <meta name="twitter:url" content="https://admin2dev.com" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="Harshdeep Singh Hura" />
@@ -34,14 +32,17 @@
   <meta name="twitter:creator" content="@theharshdeep" />
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-112097931-2');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
 
 </head>
 
@@ -56,13 +57,13 @@
           </div>
           <div class="header-nav">
             <input id="toggle" class="header-checkbox" type="checkbox">
-						<label class="header-toggle" for="toggle">
-							<span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-								<span class="bar"></span>
-							</span>
-						</label>
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
             <nav>
               <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -85,32 +86,32 @@
           </div>
           <div class="post-content">
             <p>This quick test is made to test your basic understanding of making REST calls from Apex classes.</p>
-<ul>
-<li>You can look at the syntax, bonus points if you don’t.</li>
-<li>The test should ideally not take more than 20 minutes to solve.</li>
-<li>All the criteria must be met.</li>
-<li>The answer is available at <a href="https://github.com/Admin2Dev/answers"target="_blank"> Admin2Dev GitHub Repo</a>.</li>
-<li>The answer and complete breakdown of the program is available at the end of this page.</li>
-</ul>
-<h1>The Test</h1>
-<h2>Question</h2>
-<p>Parse a response from Open Weather Map as described in <a href="./21.html">Day 21</a> of the course. The Class-method should take 1 parameter and output the following in log:</p>
-<pre><code>At {city name}, {country name} the weather is currently {temperature in Celsius} or {temperature in Fahrenheit}. The weather seems {weather.description}. Have a nice day!</code></pre>
-<p>An example response would be: <code>At London, GB the weather is currently 11.43C or 52.574F. The weather seems broken clouds. Have a nice day!</code></p>
-<p>Also write a Mock and Test Class with 100% code coverage.</p>
-<h2>Hint</h2>
-<ul>
-<li>You don't need to structure the entire JSON, just bits you want to access</li>
-<li>Read the documentation available <a href="https://openweathermap.org/current">here</a></li>
-<li>Return a Map in your method and parse it in <code>System.debug()</code>;</li>
-</ul>
-<blockquote>
-<p>Start a timer and note how long you take to solve. Ideally, it should take ~20 minutes, but don’t worry if you go overboard.</p>
-</blockquote>
-<h1>Answer</h1>
-<p>First whitelist the domain <code>https://api.openweathermap.org</code> instead of just <code>https://openweathermap.org</code> or it will throw errors.</p>
-<h2>OpenWeatherMap Class</h2>
-<pre><code>public class OpenWeatherMap {
+            <ul>
+              <li>You can look at the syntax, bonus points if you don’t.</li>
+              <li>The test should ideally not take more than 20 minutes to solve.</li>
+              <li>All the criteria must be met.</li>
+              <li>The answer is available at <a href="https://github.com/Admin2Dev/answers" target="_blank"> Admin2Dev GitHub Repo</a>.</li>
+              <li>The answer and complete breakdown of the program is available at the end of this page.</li>
+            </ul>
+            <h1>The Test</h1>
+            <h2>Question</h2>
+            <p>Parse a response from Open Weather Map as described in <a href="./21.html">Day 21</a> of the course. The Class-method should take 1 parameter and output the following in log:</p>
+            <pre><code>At {city name}, {country name} the weather is currently {temperature in Celsius} or {temperature in Fahrenheit}. The weather seems {weather.description}. Have a nice day!</code></pre>
+            <p>An example response would be: <code>At London, GB the weather is currently 11.43C or 52.574F. The weather seems broken clouds. Have a nice day!</code></p>
+            <p>Also write a Mock and Test Class with 100% code coverage.</p>
+            <h2>Hint</h2>
+            <ul>
+              <li>You don't need to structure the entire JSON, just bits you want to access</li>
+              <li>Read the documentation available <a href="https://openweathermap.org/current">here</a></li>
+              <li>Return a Map in your method and parse it in <code>System.debug()</code>;</li>
+            </ul>
+            <blockquote>
+              <p>Start a timer and note how long you take to solve. Ideally, it should take ~20 minutes, but don’t worry if you go overboard.</p>
+            </blockquote>
+            <h1>Answer</h1>
+            <p>First whitelist the domain <code>https://api.openweathermap.org</code> instead of just <code>https://openweathermap.org</code> or it will throw errors.</p>
+            <h2>OpenWeatherMap Class</h2>
+            <pre><code>public class OpenWeatherMap {
 
 	//Creating the JSON Structure
 
@@ -162,11 +163,11 @@
     }
 
 }</code></pre>
-<ul>
-<li>While returning the temperature values, we need to convert the temperature from K to C and F. The formulas are a quick search away!</li>
-</ul>
-<h2>OpenWeatherMapMock Class</h2>
-<pre><code>@isTest
+            <ul>
+              <li>While returning the temperature values, we need to convert the temperature from K to C and F. The formulas are a quick search away!</li>
+            </ul>
+            <h2>OpenWeatherMapMock Class</h2>
+            <pre><code>@isTest
 global class OpenWeatherMapMock implements HttpCalloutMock {
 	global HTTPResponse respond(HTTPRequest request) {
 
@@ -179,8 +180,8 @@ global class OpenWeatherMapMock implements HttpCalloutMock {
     }
 
 }</code></pre>
-<h2>OpenWeatherMapTest Class</h2>
-<pre><code>@isTest
+            <h2>OpenWeatherMapTest Class</h2>
+            <pre><code>@isTest
 public class OpenWeatherMapTest {
     static testmethod void testerClass(){
 
@@ -193,14 +194,14 @@ public class OpenWeatherMapTest {
 }</code></pre>
 
 
-<a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 25 </a>
+            <a href="25.html" class="global-button"> Day 25 </a>
           </div>
         </article>
 
       </main>
       <footer class="footer-section global-footer">
         <div class="footer-copyright">
-          &copy; <a href="http://harshdeephura.com" target = "_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
         </div>
       </footer>
     </div>

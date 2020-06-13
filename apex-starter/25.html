@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Apex Starter Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/screen_v=dedafe7ddd.css">
+
+  <!-- New Code-->
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+
+  <meta property="og:site_name" content="Admin2Dev" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Error Handling" /> <!-- Content Title-->
+  <meta property="og:description" content="Using conditionals to handle errors in code" /> <!-- Content Description -->
+  <meta property="og:url" content="https://admin2dev.com/" />
+
+
+  <meta property="article:author" content="https://twitter.com/theharshdeep" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Error Handling" /> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Using conditionals to handle errors in code" /> <!-- Twitter description -->
+  <meta name="twitter:url" content="https://admin2dev.com" />
+  <meta name="twitter:label1" content="Written by" />
+  <meta name="twitter:data1" content="Harshdeep Singh Hura" />
+  <meta name="twitter:label2" content="Filed under" />
+  <meta name="twitter:data2" content="Apex Tutorials" />
+  <meta name="twitter:site" content="@theharshdeep" />
+  <meta name="twitter:creator" content="@theharshdeep" />
+
+  <!-- New Code-->
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.png" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../apex-starter/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Day 25:<br />Error Handling</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <p>At this point, we have covered most basic Apex concepts that a beginner should know! Now, we talk about concepts and paradigms around Error handling and writing better code.</p>
+            <h2>Using Conditionals</h2>
+            <p>So far we have written most of our code knowing what the inputs and outputs will be but the moment your code goes in production, end users will find the most creative of ways to break your code. To avoid this, we use conditionals.
+              Let's look at our code from Day 15: Batch Apex Test.</p>
+            <p>Quick TL;DR, we wrote a trigger and batch class to delete all contacts with the last name <code>Test n</code> where n is a number, whenever a contact with the last name <code>DeleteBatch</code> is created. Here's how the code can be
+              broken:</p>
+            <ul>
+              <li>A new contact with the name <code>DeleteBatch</code> is created.</li>
+              <li>The org doesn't have enough resources to allocate for Batch class, so it doesn't trigger immediately.</li>
+              <li>The end user decides to delete the contact <code>DeleteBatch</code>.</li>
+              <li>The Batch Class runs, and now it's looking for a contact with the last name <code>DeleteBatch</code> to update it's description with the <code>JobID</code>.</li>
+              <li>The contact doesn't exist, so the batch class returns an error, and rolls back all changes.</li>
+              <li>The end user reports this as an error stating &quot;We have a bad developer who has no idea what they're doing&quot;.</li>
+            </ul>
+            <p>Let's deal with this before it actually happens, using a simple <code>if</code> block. First, let's see bring back our Batch Class:</p>
+            <pre><code>global class batchDeleter implements Database.Batchable&lt;sObject&gt; {
+
+                global Database.QueryLocator start(Database.BatchableContext bc) {
+                    return Database.getQueryLocator('SELECT Id, LastName FROM Contact WHERE LastName LIKE \'Test%\'');
+                }
+
+                global void execute(Database.BatchableContext bc, List&lt;sObject&gt; deleteList){
+                    delete deleteList;
+                }
+                global void finish(Database.BatchableContext bc){
+                    List&lt;Contact&gt; con = [SELECT Id, LastName FROM Contact WHERE LastName = 'DeleteBatch' LIMIT 1];
+                    List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+                    for (Contact iterator: con){
+                        iterator.Description = 'Deleted records with ID ' + bc.getJobId();
+                        finalList.add(iterator);
+                    }
+                    update finalList;
+
+                }
+            }
+            </code></pre>
+            <p>We are concerned with the <code>finish</code> method here, since that's where the error can occur. When we are running SOQL query to find the <code>DeleteBatch</code> contact, it is possible the SOQL query returns <code>null</code> or
+              nothing. Which means, the size of the list <code>con</code> will be 0. So we need to write an if condition, that checks for the size of <code>con</code> list and updates the description of the contact only if the value of the list is
+              greater than 0.</p>
+            <pre><code>global void finish(Database.BatchableContext bc){
+            	List&lt;Contact&gt; con = [SELECT Id, LastName FROM Contact WHERE LastName = 'DeleteBatch' LIMIT 1];
+            	List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
+
+            	if (con.size() &gt; 0){ //check for size of list
+            		for (Contact iterator: con){
+            			iterator.description = 'Deleted records with ID ' + bc.getJobId();
+            			finalList.add(iterator);
+            		}
+            		update finalList;
+            	}
+
+            }
+            </code></pre>
+            <p>And now we have dealt with yet another <em>logical bug</em> in our code!</p>
+            <blockquote>
+              <p>Remember, just because the IDE doesn't show any problems, doesn't mean you really don't have any problems. It only shows you possible syntax errors, not logical errors.</p>
+            </blockquote>
+            <h2>Networking</h2>
+            <p>While making REST Calls is straight forward with snippets, they need to be modified just a little bit to ensure we can handle errors well. Apart from using an <code>if</code> condition, we also need to make use of <code>future</code>
+              callouts.</p>
+            <p>A future callout marks a method, and in over-simplified lanaguge, as &quot;this will take some time to run, please hold on&quot;. This is necessary for methods that make web calls since the server could sometimes take an extra moment
+              to respond. Let's bring in our code from Day 22:</p>
+            <pre><code>public class httpResponseClass {
+
+                  public class JSONResponse{
+                  	public Animal animal;
+              	}
+              	public class Animal{
+              		String name, food, product;
+              	}
+
+              	public static String methodName() {
+
+                      //Make the Request and save it
+
+                      String requestURL = 'https://admin2dev.com/rest/response2.json';
+                      String requestType = 'GET'; //GET POST PATCH PUT DELETE
+
+                      Http http = new Http();
+                      HttpRequest request = new HttpRequest();
+                      request.setEndpoint(requestURL);
+                      request.setMethod(requestType);
+                      HttpResponse response = http.send(request);
+
+                      // Deserialize based on result type class
+                      JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+                      return result.animal.name; //Replace JSONObjec with value from JSONResponse and Key_Name with the key you're accessing in the said JSON
+
+                 }
+              }
+            </code></pre>
+            <p>The first thing we will do, is to mark the <code>methodName</code> method as <code>@future(callout=true)</code></p>
+            <pre><code>public class httpResponseClass {
+
+                  public class JSONResponse{
+                  	public Animal animal;
+              	}
+              	public class Animal{
+              		String name, food, product;
+              	}
+
+            	@future(callout = true) //marking the method as future
+              	public static String methodName() {
+
+
+
+                      String requestURL = 'https://admin2dev.com/rest/response2.json';
+                      String requestType = 'GET';
+
+                      Http http = new Http();
+                      HttpRequest request = new HttpRequest();
+                      request.setEndpoint(requestURL);
+                      request.setMethod(requestType);
+                      HttpResponse response = http.send(request);
+
+
+                      JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+                      return result.animal.name;
+
+                 }
+              }
+            </code></pre>
+            <p>Great! Now we need to add our if condition. When we are getting a response from a REST Call, we get a <code>HTTP Status Code</code> of 200. We do this by using the <code>getStatusCode()</code> method on our <code>HTTPResponse</code>
+              variable. Let's update this code to incorporate that:</p>
+            <pre><code>public class httpResponseClass {
+
+                  public class JSONResponse{
+                  	public Animal animal;
+              	}
+              	public class Animal{
+              		String name, food, product;
+              	}
+
+            	@future(callout = true) //marking the method as future
+              	public static String methodName() {
+
+
+
+                      String requestURL = 'https://admin2dev.com/rest/response2.json';
+                      String requestType = 'GET';
+
+                      Http http = new Http();
+                      HttpRequest request = new HttpRequest();
+                      request.setEndpoint(requestURL);
+                      request.setMethod(requestType);
+                      HttpResponse response = http.send(request);
+
+                      if (response.getStatusCode() == 200){ //If Condition
+                      	JSONResponse result = (JSONResponse) JSON.deserialize(response.getBody(), JSONResponse.class);
+                      	return result.animal.name; //return 1
+                      }
+
+                      return 'Error Occured ' + response.getStatusCode(); //return 2
+
+                 }
+              }
+            </code></pre>
+            <p>Another major update to the code was <em>adding 2 return statements</em>. Note that once a method hits the <code>return</code> variable, it will not run any following lines, which is why the <code>return</code> keyword is always used
+              at the end. We have 2 returns here because there are two possibilites of that happening.</p>
+            <ul>
+              <li>First is we get a status code of 200 and we return the actual response</li>
+              <li>Second is we don't get a 200 status code which means an error occured.</li>
+            </ul>
+            <blockquote>
+              <p>These concepts are not skippable and your code should be using fallbacks and must be tested to ensure proper error handling</p>
+            </blockquote>
+
+
+            <a href="https://discord.gg/sw59wmx" target="_blank" class="global-button"> Join Discord Server to stay updated on Day 26 </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/global_v=dedafe7ddd.js"></script>
+  <script src="assets/js/index_v=dedafe7ddd.js"></script>
+
+</body>
+
+</html>
