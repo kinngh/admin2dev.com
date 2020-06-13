@@ -1,5 +1,5 @@
 User-agent: *
-Sitemap: http://admin2dev.com/sitemap.xml
+Sitemap: https://admin2dev.com/sitemap.xml
 Disallow: README.md
 Disallow: /apex100/
 Disallow: /rest/
