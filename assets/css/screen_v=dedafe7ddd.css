@@ -1751,7 +1751,7 @@ _:lang(x)::-moz-placeholder, .loop-item-wrap {
 }
 
 .loop-item-content {
-  max-width: 600px;
+  /*max-width: 900px;*/
   padding: 25px
 }
 
