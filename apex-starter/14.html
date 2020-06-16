@@ -16,16 +16,15 @@
   <meta property="og:site_name" content="Admin2Dev" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Governor Limits and Batch Apex" /> <!-- Content Title-->
-  <meta property="og:description"
-    content="Learn to write Batch Apex classes and what Governor Limits are in Salesforce" /> <!-- Content Description -->
+  <meta property="og:description" content="Learn to write Batch Apex classes and what Governor Limits are in Salesforce" /> <!-- Content Description -->
+  <meta property="og:image" content="/images/web-image.png" />
   <meta property="og:url" content="https://admin2dev.com/" />
 
 
   <meta property="article:author" content="https://twitter.com/theharshdeep" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Governor Limits and Batch Apex" /> <!-- Twitter Title -->
-  <meta name="twitter:description"
-    content="Learn to write Batch Apex classes and what Governor Limits are in Salesforce" /> <!-- Twitter description -->
+  <meta name="twitter:description" content="Learn to write Batch Apex classes and what Governor Limits are in Salesforce" /> <!-- Twitter description -->
   <meta name="twitter:url" content="https://admin2dev.com" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="Harshdeep Singh Hura" />
@@ -33,6 +32,9 @@
   <meta name="twitter:data2" content="Apex Tutorials" />
   <meta name="twitter:site" content="@theharshdeep" />
   <meta name="twitter:creator" content="@theharshdeep" />
+  <meta name="twitter:image" content="/images/web-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
@@ -74,10 +76,10 @@
                 <li><a href="../about.html">About</a></li>
 
               </ul>
-            <ul>
-  <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
-</ul>
-</nav>
+              <ul>
+                <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </header>
@@ -98,7 +100,8 @@
             <p>Unlike Database methods where we could catch errors if and when they happened, Governor Limit Exceptions (errors) cannot be caught using code blocks, and if an Apex transaction hits the Governor Limits, the entire change is rolled back
               and nothing is committed to the database.</p>
 
-              <p>In coffee making terms, the amount of coffee you can brew at any given point is limited by the size of your pot, french press and the number of cups you have available. So if you can brew 4 cups of coffee at a time, the process of making 4 cups of coffee at once will be a single transaction and if you try to make 5 cups of coffee, you probably need to remove the extra ingredients before you proceed to avoid spilling.</p>
+            <p>In coffee making terms, the amount of coffee you can brew at any given point is limited by the size of your pot, french press and the number of cups you have available. So if you can brew 4 cups of coffee at a time, the process of
+              making 4 cups of coffee at once will be a single transaction and if you try to make 5 cups of coffee, you probably need to remove the extra ingredients before you proceed to avoid spilling.</p>
             <div class="responsive-table">
               <table>
                 <thead>
@@ -201,7 +204,7 @@ System.LimitException: Too many DML statements: 151</code></pre>
             <p>Batch Apex is used when we are working with enormous amounts of data that cross Governor Limits. This is achieved by Batch Apex breaking down the entire query into smaller subsets that works in smaller batches and does not affect
               regular functioning of the org.</p>
 
-              <p>In coffee making terms, if you can make 4 cups of coffee at once, but there are 9 people who want to drink your coffee, you'll have to run the process thrice (4+4+1) to get 9 cups of coffee.</p>
+            <p>In coffee making terms, if you can make 4 cups of coffee at once, but there are 9 people who want to drink your coffee, you'll have to run the process thrice (4+4+1) to get 9 cups of coffee.</p>
 
             <p>To implement Batch Apex, we need to write a class that inherits from <code>Database.batchable</code> interface provided by Salesforce using the <code>implements</code> keyword available to Classes. The class must be <code>global</code>
               and must implement the <code>start()</code>, <code>execute()</code> and <code>finish()</code> methods.</p>
@@ -239,8 +242,8 @@ System.LimitException: Too many DML statements: 151</code></pre>
             <ul>
               <li>Database.BatchableContext defines the batch job we are waiting to finish</li>
             </ul>
-<p>Let's make some coffee before we jump on our org.</p>
-<pre><code>global class ClassName implements Database.Batchable&lt;sObject&gt; {
+            <p>Let's make some coffee before we jump on our org.</p>
+            <pre><code>global class ClassName implements Database.Batchable&lt;sObject&gt; {
   global List&lt;items&gt; start(CoffeeBatchNumber batchNumber) {
     //Query
     List&lt;items&gt; coffeeItems = new List&lt;items&gt;();
@@ -402,7 +405,7 @@ Database.executeBatch(batchVariable);</code></pre>
               <li>Batch Apex has three methods, <code>start()</code>, <code>execute()</code> and <code>finish()</code> that must be defined.</li>
               <li>Batch Apex may not run always run immediately, but will run when enough computing resources are available.</li>
             </ul>
-            <a href = "15.html" class = "global-button"> Day 15 </a>
+            <a href="15.html" class="global-button"> Day 15 </a>
           </div>
         </article>
 
@@ -415,8 +418,8 @@ Database.executeBatch(batchVariable);</code></pre>
     </div>
   </div>
 
-  
-  
+
+
 
 </body>
 

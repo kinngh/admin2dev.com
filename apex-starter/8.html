@@ -15,16 +15,15 @@
   <meta property="og:site_name" content="Admin2Dev" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="sObject, DML and SOQL" /> <!-- Content Title-->
-  <meta property="og:description"
-    content="Learn basics of using sObjects, Data Manipulation Language and SOQL in Salesforce" /> <!-- Content Description -->
+  <meta property="og:description" content="Learn basics of using sObjects, Data Manipulation Language and SOQL in Salesforce" /> <!-- Content Description -->
+  <meta property="og:image" content="/images/web-image.png" />
   <meta property="og:url" content="https://admin2dev.com/" />
 
 
   <meta property="article:author" content="https://twitter.com/theharshdeep" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="sObject, DML and SOQL" /> <!-- Twitter Title -->
-  <meta name="twitter:description"
-    content="Learn basics of using sObjects, Data Manipulation Language and SOQL in Salesforce" /> <!-- Twitter description -->
+  <meta name="twitter:description" content="Learn basics of using sObjects, Data Manipulation Language and SOQL in Salesforce" /> <!-- Twitter description -->
   <meta name="twitter:url" content="https://admin2dev.com" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="Harshdeep Singh Hura" />
@@ -32,6 +31,9 @@
   <meta name="twitter:data2" content="Apex Tutorials" />
   <meta name="twitter:site" content="@theharshdeep" />
   <meta name="twitter:creator" content="@theharshdeep" />
+  <meta name="twitter:image" content="/images/web-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
@@ -73,10 +75,10 @@
                 <li><a href="../about.html">About</a></li>
 
               </ul>
-            <ul>
-  <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
-</ul>
-</nav>
+              <ul>
+                <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </header>
@@ -203,10 +205,11 @@ insert finalList;
 List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName = :searchName];
 </code></pre>
 
-            <p>Usually after the <code>SELECT</code> keyword we include ID in our queries even if we don't use the field. This is because our operations require those fields and it's being handled in the background automatically and I would recommend almost always include ID as a field in your SOQL queries for use in future or while working in teams. </p>
-<p>We can also limit the number of values returned by using the <code>LIMIT</code> keyword followed by an Integer.</p>
-<pre><code>[SELECT ID, LastName FROM Contact WHERE LastName = 'Test' LIMIT 10];</code></pre>
-<p>This will return the first 10 values it finds.</p>
+            <p>Usually after the <code>SELECT</code> keyword we include ID in our queries even if we don't use the field. This is because our operations require those fields and it's being handled in the background automatically and I would recommend
+              almost always include ID as a field in your SOQL queries for use in future or while working in teams. </p>
+            <p>We can also limit the number of values returned by using the <code>LIMIT</code> keyword followed by an Integer.</p>
+            <pre><code>[SELECT ID, LastName FROM Contact WHERE LastName = 'Test' LIMIT 10];</code></pre>
+            <p>This will return the first 10 values it finds.</p>
             <h3>Summary</h3>
             <ul>
               <li>sObjects can be used as a Data type to store values.</li>
@@ -214,7 +217,7 @@ List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName = :se
               <li>SOQL is a search engine of sorts that looks for values matching criteria in specified objects.</li>
             </ul>
 
-            <a href = "9.html" class = "global-button"> Day 9 </a>
+            <a href="9.html" class="global-button"> Day 9 </a>
           </div>
         </article>
 
@@ -227,8 +230,8 @@ List&lt;Contact&gt; con = [SELECT ID, lastName FROM contact WHERE lastName = :se
     </div>
   </div>
 
-  
-  
+
+
 
 </body>
 

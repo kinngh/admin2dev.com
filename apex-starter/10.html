@@ -15,16 +15,15 @@
   <meta property="og:site_name" content="Admin2Dev" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="SOSL and Type Casting" /> <!-- Content Title-->
-  <meta property="og:description"
-    content="Learn the basics of using SOSL search and Type Casting in Apex" /> <!-- Content Description -->
+  <meta property="og:description" content="Learn the basics of using SOSL search and Type Casting in Apex" /> <!-- Content Description -->
+  <meta property="og:image" content="/images/web-image.png" />
   <meta property="og:url" content="https://admin2dev.com/" />
 
 
   <meta property="article:author" content="https://twitter.com/theharshdeep" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SOSL and Type Casting" /> <!-- Twitter Title -->
-  <meta name="twitter:description"
-    content="Learn the basics of using SOSL search and Type Casting in Apex" /> <!-- Twitter description -->
+  <meta name="twitter:description" content="Learn the basics of using SOSL search and Type Casting in Apex" /> <!-- Twitter description -->
   <meta name="twitter:url" content="https://admin2dev.com" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="Harshdeep Singh Hura" />
@@ -32,6 +31,9 @@
   <meta name="twitter:data2" content="Apex Tutorials" />
   <meta name="twitter:site" content="@theharshdeep" />
   <meta name="twitter:creator" content="@theharshdeep" />
+  <meta name="twitter:image" content="/images/web-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
@@ -73,10 +75,10 @@
                 <li><a href="../about.html">About</a></li>
 
               </ul>
-            <ul>
-  <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
-</ul>
-</nav>
+              <ul>
+                <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </header>
@@ -144,35 +146,37 @@ Opportunity[] oppList = (Opportunity[])searchList[2];
 </code></pre>
             <p>Notice how the counting always starts from 0 and not 1.</p>
             <h2>SOSL vs SOQL</h2>
-            <div class = "responsive-table"><table>
-              <thead>
-                <tr>
-                  <th>SOSL</th>
-                  <th>SOQL</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Search across multiple objects</td>
-                  <td>Search one object at a time</td>
-                </tr>
-                <tr>
-                  <td>Returns a List of List with multiple objects in order</td>
-                  <td>Returns a single List</td>
-                </tr>
-                <tr>
-                  <td>Queries can be run on unrelated objects</td>
-                  <td>Queries can be run on single or related objects only</td>
-                </tr>
-                <tr>
-                  <td>Can run across the entire org if necessary, knowledge of exact location of data is optional</td>
-                  <td>The location of data must be known</td>
-                </tr>
-              </tbody>
-            </table></div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>SOSL</th>
+                    <th>SOQL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Search across multiple objects</td>
+                    <td>Search one object at a time</td>
+                  </tr>
+                  <tr>
+                    <td>Returns a List of List with multiple objects in order</td>
+                    <td>Returns a single List</td>
+                  </tr>
+                  <tr>
+                    <td>Queries can be run on unrelated objects</td>
+                    <td>Queries can be run on single or related objects only</td>
+                  </tr>
+                  <tr>
+                    <td>Can run across the entire org if necessary, knowledge of exact location of data is optional</td>
+                    <td>The location of data must be known</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <h2>Summary</h2>
-            <p>From the official documentation <a href = "https://resources.docs.salesforce.com/sfdc/pdf/salesforce_large_data_volumes_bp.pdf"> available here, page 11</a></p>
+            <p>From the official documentation <a href="https://resources.docs.salesforce.com/sfdc/pdf/salesforce_large_data_volumes_bp.pdf"> available here, page 11</a></p>
             <h3>Use SOQL when</h3>
             <ul>
               <li>You know in which objects or fields the data resides.</li>
@@ -199,7 +203,7 @@ Opportunity[] oppList = (Opportunity[])searchList[2];
                 nulls and avoid the query if necessary.</li>
             </ul>
 
-            <a href = "11.html" class = "global-button"> Day 11 </a>
+            <a href="11.html" class="global-button"> Day 11 </a>
           </div>
         </article>
 
@@ -212,8 +216,8 @@ Opportunity[] oppList = (Opportunity[])searchList[2];
     </div>
   </div>
 
-  
-  
+
+
 
 </body>
 

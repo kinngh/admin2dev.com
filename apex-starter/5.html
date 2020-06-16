@@ -15,16 +15,15 @@
   <meta property="og:site_name" content="Admin2Dev" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="List, Set, Maps and For Loops" /> <!-- Content Title-->
-  <meta property="og:description"
-    content="Learn the difference between List, Set and Maps, and running For Loops" /> <!-- Content Description -->
+  <meta property="og:description" content="Learn the difference between List, Set and Maps, and running For Loops" /> <!-- Content Description -->
+  <meta property="og:image" content="/images/web-image.png" />
   <meta property="og:url" content="https://admin2dev.com/" />
 
 
   <meta property="article:author" content="https://twitter.com/theharshdeep" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="List, Set, Maps and For Loops" /> <!-- Twitter Title -->
-  <meta name="twitter:description"
-    content="Learn the difference between List, Set and Maps, and running For Loops" /> <!-- Twitter description -->
+  <meta name="twitter:description" content="Learn the difference between List, Set and Maps, and running For Loops" /> <!-- Twitter description -->
   <meta name="twitter:url" content="https://admin2dev.com" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="Harshdeep Singh Hura" />
@@ -32,6 +31,9 @@
   <meta name="twitter:data2" content="Apex Tutorials" />
   <meta name="twitter:site" content="@theharshdeep" />
   <meta name="twitter:creator" content="@theharshdeep" />
+  <meta name="twitter:image" content="/images/web-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
@@ -73,10 +75,10 @@
                 <li><a href="../about.html">About</a></li>
 
               </ul>
-            <ul>
-  <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
-</ul>
-</nav>
+              <ul>
+                <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </header>
@@ -137,24 +139,26 @@ System.ListException: List index out of bounds: 3</code></pre>
 
             <p>This is because all counting starts from 0, so to access the third element, we need to subtract 1 from it because internally the list is stored in the following way:</p>
 
-            <div class = "responsive-table"><table>
-              <tr>
-                <th>Index</th>
-                <th>Name</th>
-              </tr>
-              <tr>
-                <td>0</td>
-                <td>Harshdeep</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Cobey</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Zerab</td>
-              </tr>
-            </table></div>
+            <div class="responsive-table">
+              <table>
+                <tr>
+                  <th>Index</th>
+                  <th>Name</th>
+                </tr>
+                <tr>
+                  <td>0</td>
+                  <td>Harshdeep</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Cobey</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Zerab</td>
+                </tr>
+              </table>
+            </div>
             <p>Now let's fix the code by removing the last line with:</p>
 
             <pre><code>System.debug(names[0]);
@@ -193,7 +197,8 @@ System.debug(names);</code></pre>
 
             <pre><code>Map&lt;dataType1, dataType2&gt; variableName = new Map&lt;dataType1, dataType2&gt;();
 variableName.put(key, value);</code></pre>
-            <p>You insert values in your Map by using <code>mapVariable.put(key, value);</code>, where key and value are dataType variables as defined in their declaration. An easier way to understand is ordering food in a drive through. You ask for Number 1, 2 and 6 and you're given the food corresponding to those
+            <p>You insert values in your Map by using <code>mapVariable.put(key, value);</code>, where key and value are dataType variables as defined in their declaration. An easier way to understand is ordering food in a drive through. You ask for
+              Number 1, 2 and 6 and you're given the food corresponding to those
               numbers.</p>
 
             <p>To access value from a Map, we use <code>.get(key)</code>.<br />
@@ -206,7 +211,7 @@ placeCapital.put('Captial', 'Country');
 String ourCapital = placeCapital.get('New Delhi');
 System.debug(ourCapital);</code></pre>
 
-<p>This will return "India" in your log.</p>
+            <p>This will return "India" in your log.</p>
             <h3>Understanding when to use Sets, Lists and Maps</h3>
 
             <h4>Set</h4>
@@ -268,14 +273,15 @@ System.debug(ourCapital);</code></pre>
               <li>The statements 2, 3 and 4 run until the i is equal to 10. </li>
             </ol>
 
-<p>Here's how for loop works in terms of Coffee making. You're weighing your coffee and the first scoop had only 50 grams of coffee out of the 100 grams. A for loop in coffee terms would be:</p>
+            <p>Here's how for loop works in terms of Coffee making. You're weighing your coffee and the first scoop had only 50 grams of coffee out of the 100 grams. A for loop in coffee terms would be:</p>
 
-<pre><code>for (spoon = 0 grams; total_coffee < 100 grams; add another spoon){
+            <pre><code>for (spoon = 0 grams; total_coffee < 100 grams; add another spoon){
   spoon.add(50 grams);
   weight.check();
 }</code> </pre>
 
-<p>We start with 0 grams in our spoon, and add 50 grams of coffee with each spoon. Our exit condition is to ensure total coffee in our cup doesn't exceed 100 grams, so we keep adding coffee in 50 gram spoons until our exit condition is met.</p>
+            <p>We start with 0 grams in our spoon, and add 50 grams of coffee with each spoon. Our exit condition is to ensure total coffee in our cup doesn't exceed 100 grams, so we keep adding coffee in 50 gram spoons until our exit condition is
+              met.</p>
 
 
 
@@ -399,12 +405,13 @@ for (String emailLooper: emailList.keyset()){ // .keyset() returns all the value
 
 
 
-            <p>This loop iterates over the email list 100 times and gets the correct value from the phone list by calling its key-value pair. Lists and Maps have their own time and place to use, but in this scenario using Maps resulted in 100x fewer iterations of the loop, resulting in less usage of computing power and resources.</p>
-<h3>Summary</h3>
-<ul>
-  <li>Lists, Sets and Maps can hold multiple values</li>
-  <li>A for loop runs until the exit condition is <code>false</code></li>
-</ul>
+            <p>This loop iterates over the email list 100 times and gets the correct value from the phone list by calling its key-value pair. Lists and Maps have their own time and place to use, but in this scenario using Maps resulted in 100x fewer
+              iterations of the loop, resulting in less usage of computing power and resources.</p>
+            <h3>Summary</h3>
+            <ul>
+              <li>Lists, Sets and Maps can hold multiple values</li>
+              <li>A for loop runs until the exit condition is <code>false</code></li>
+            </ul>
 
             <a href="6.html" class="global-button"> Day 6 </a>
           </div>
@@ -419,8 +426,8 @@ for (String emailLooper: emailList.keyset()){ // .keyset() returns all the value
     </div>
   </div>
 
-  
-  
+
+
 
 </body>
 
