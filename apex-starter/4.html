@@ -14,16 +14,16 @@
 
   <meta property="og:site_name" content="Admin2Dev" />
 
-  <meta property="og:title" content="Git, Conditional Operators and Loops" /> <!-- Content Title-->
-  <meta property="og:description" content="Learn basics of using git and GitHub, creating Conditional Operators and running loops" /> <!-- Content Description -->
+  <meta property="og:title" content="Conditional Operators and Loops" /> <!-- Content Title-->
+  <meta property="og:description" content="Learn basics of creating Conditional Operators and running loops" /> <!-- Content Description -->
   <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png" />
   <meta property="og:url" content="https://admin2dev.com/" />
 
 
   <meta property="article:author" content="https://twitter.com/theharshdeep" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Git, Conditional Operators and Loops" /> <!-- Twitter Title -->
-  <meta name="twitter:description" content="Learn basics of using git and GitHub, creating Conditional Operators and running loops" /> <!-- Twitter description -->
+  <meta name="twitter:title" content="Conditional Operators and Loops" /> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Learn basics of creating Conditional Operators and running loops" /> <!-- Twitter description -->
   <meta name="twitter:url" content="https://admin2dev.com" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="Harshdeep Singh Hura" />
@@ -101,133 +101,6 @@
             </div>
           </div>
           <div class="post-content">
-            <h3>Git</h3>
-            <p>Before we dive any further, let's learn about git. Git is a versioning system and collaboration tool. Some popular services are GitHub, GitLab and BitBucket. It's really handy when working with teams.</p>
-            <p>Make a GitHub account and download the <a href="https://desktop.github.com" target="_blank">GitHub Desktop App</a>, which will also install the CLI (Command line integration) tool that allows you to use git from your terminal and <a
-                href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp" target="_blank">Dark Mode for GitHub</a> on Chrome.</p>
-            <p>macOS users need to install the latest version of <a href="https://sourceforge.net/projects/git-osx-installer/files/" target="_blank">Git Installer</a> and restart their device. </p>
-            <p><strong>macOS</strong>: Press the search button on top and open <code>terminal</code>.<br />
-              <strong>Windows</strong>: Press <code>Start button</code> and <code>r</code>, and type <code>cmd</code>.</p>
-
-            <p>You will be greeted with a black screen and text on it. After you've installed GitHub desktop app, just type <code>git</code> and press enter. You should be greeted with a screen similar to this: </p>
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/git-terminal.png" width=100% alt="git on terminal"></figure>
-
-            <p>First, we need to tell git who we are, for this we run two commands one after the other:</p>
-            <pre><code>git config --global user.name "Name"
-git config --global user.email "email@address.com"</code> </pre>
-
-            <p>Now, let's head over to Github and make a new repository. A repository is equivalent to a cabinet in your kitchen. You can have multiple cabinets in your kitchen and they all store distinct contents. Once logged in, you will be greeted
-              with a screen similar to this. Press on new to make a new repo:</p>
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/git-home.png" width=100% alt="GitHub home"></figure>
-
-            <p>Fill in information about your repo. An important thing to note is we are making a <u>Private repo</u>.</p>
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/git-make-new-repo.png" width=100% alt="Making a new repo"></figure>
-
-            <p>Make a new folder named <u>git</u> in your desktop. Folder and file names are case sensitive so it's handy to make it all lower case.</p>
-
-            <p>In terminal, type <code>cd</code>, press the space bar and drag the git folder on the terminal and press enter. <code>cd</code> stands for <i>Change Directory</i>.</p>
-
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/terminal-git-folder.png" width=100% alt="terminal git folder"></figure>
-            <p>
-              You will notice immediately the text on your left has changed. This means you're now inside the folder. Now we will download the repository in our computer. To do this, head back to your browser and if your repo isn't already open, open
-              it. Now press on <u>Clone or download</u> and copy the URL.</p>
-
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-clone-repo.png" width=100% alt="clone repo"></figure>
-
-            <p>Now head back in terminal and type</p>
-
-            <pre><code>git clone &lt;url&gt;</code></pre>
-
-            <p>You will be prompted to add your username and password. If there is no prompt, it means you have used Git on your machine before, or you don't have your repo set to private. Enter your username and instead of typing your password, you
-              need to generate a personal token. Head back to GitHub, click on your profile on the top right and click on settings
-            </p>
-
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-open-settings.png" width=100% alt="open settings"></figure>
-
-            <p>Now head over to developer settings</p>
-
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-developer-settings.png" width=100% alt="Settings"></figure>
-
-            <p>Click on Personal access tokens and generate a new token</p>
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-personal-token.png" width=100% alt="Get to personal token"></figure>
-
-            <p>Add any name you want to, and <u>assign all permissions</u>.</p>
-
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-new-token.png" width=100% alt="Generate new token"></figure>
-            <p>Copy the personal token and paste it in your terminal where the password should go.</p>
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/github-copy-token.png" width=100% alt="Copy access token"></figure>
-            <p>When you paste in terminal, the password field will remain blank. This is completely normal. Press enter to authorize and clone your repo.</p>
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/git-clone-repo.png" width=100% alt="Cloning repo"></figure>
-            <p>Now, we have our repo in our computer!</p>
-
-            <p>We are using git in this course to maintain notes and create code snippets to reuse later. It's a good habit to maintain code snippets for tasks you regularly do to save time and focus on more complex solutions.</p>
-
-            <p>Download <a href="https://atom.io" target="_blank">Atom</a> and install it. You can use any text editor but I love using atom because it's completely free and has community built packages to customize the experience.</p>
-            <p>Drag the folder inside your git folder on atom. There should be a file named README.md if you chose "Make repo with README file" while making your repo. If not, make a new file and save it as <code>README.md</code> Your screen now
-              should look similar to this:</p>
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/atom-welcome.png" width=100% alt="Atom screen in directory"></figure>
-
-            <p>A git repo will display the README.md file as a formatted document. The <code>MD</code> stands for Markdown. Here's a quick markdown guide:</p>
-            <pre><code># Markdown syntax
-
-# H1
-## H2
-### H3
-
-**bold text**
-
-*italicized text*
-
-> blockquote
-
-- First item
-- Second item
-- Third item
-
-`code`
-
-[Admin2Dev](http://admin2dev.com)
-
----
-
-```
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-```</code></pre>
-
-            <p>Paste this code block in README.md and save it. Head back to terminal, and make sure you're inside your repo folder. to do this, simply type <code>cd folder-name</code></p>
-            <p>Now, you need to add all the files to your repo. To do this, type</p>
-            <pre><code>git add .</code> </pre>
-            <p>The <code>.</code> at the end is important because it prepares to commit all the files in your folder to the repository. Now to commit it, we run</p>
-            <pre><code>git commit -m "Initial Commit"</code></pre>
-            <p>The <code>git commit</code> tells git that we want to commit these files and <code>-m "Initial commit"</code> is the message we write usually about the changes made.</p>
-            <p>Now, let's upload it to the repo. To do this simply type:</p>
-            <pre><code>git push</code></pre>
-            <p>Now in your browser open your repo and you will see something like this:</p>
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/git-markdown-example.png" width=100% alt="Markdown Example"></figure>
-
-            <p>The code block that you pasted is now properly formatted and easily readable! I highly recommend reading more on the markdown syntax because it is an extremely useful tool in your arsenal as a developer.</p>
-
-            <p>Now let's set up our repo to be notes ready. Here is how I set up my repo. </p>
-            <p>First, set up README.md as an index to the entire repo. </p>
-            <pre><code># Apex Snippets and Code Library.
-
-## Index
-- [Variables](/variables/)
-- Conditional Operators
-  - [if-else](/conditional/if-else.md)
-  - [Switch](/conditional/switch.md)
-</code> </pre>
-            <p>And my folder structure looks something like this:</p>
-
-            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/apex/4/atom-git-structure.png" width=100% alt="Markdown Example"></figure>
-
-            <p>Git can be overwhelming at first. I highly recommend to referring <a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown Syntax</a> and learning more about <a
-                href="https://guides.github.com/introduction/git-handbook/" target="_blank">Git and GitHub</a>.</p>
-
             <h3>Boolean Data Type</h3>
             <p>The boolean data type can only hold values that are true or false. Here is a quick syntax:</p>
             <pre><code>Boolean variableName = value;</code> </pre>
@@ -355,7 +228,6 @@ switch on a{
 
             <h3>Summary</h3>
             <ul>
-              <li>Git is a super powerful versioning system and collaboration tool.</li>
               <li>Booleans can only take true or false as their values.</li>
               <li>Comparison operators help in comparing values.</li>
               <li>if-else statements can be nested and can only be run as an if statement.</li>

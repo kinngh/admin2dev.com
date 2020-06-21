@@ -127,7 +127,6 @@
 
               <li>The second method should take 2 <code>Integer</code> values. The first input defines where to start the sequence from, and the second input defines how many numbers to generate in the fibonacci sequence in a single line. For
                 example, if the input integer values are <code>5 , 5</code>, it should generate <code>1,5,6,11,17</code>. <i>Hint: Use 1 as the other value when generating the sequence.</i> </li>
-              <li>Make a git entry on repo of your choice that has the final answer in a markdown file.</li>
             </ol>
 
             </p>
@@ -229,55 +228,6 @@ for(Integer i = 0; i &lt; n; i++){
             <p>To execute this code, open an Anonymous Execution window <code>Control + E</code> and log the entry:</p>
             <pre><code>System.debug(NumberGenerator.fibonacci(5));
 System.debug(NumberGenerator.fibonacci(6,5));</code></pre>
-
-            <p>To add this to a GitHub repo, create and clone the repo on your desktop first using <code>git clone url</code>, make a new file named <code>README.md</code> and enclose your entire code between <code>```</code>. Your README.md should
-              look something like this:</p>
-            <pre><code>```
-public class NumberGenerator{
-
-    public static List&lt;Integer&gt; fibonacci(Integer n){
-        List&lt;Integer&gt; returnList = new List&lt;Integer&gt;();
-
-        Integer a = 0, b = 1; //Initial numbers and place holders
-        Integer c; //new number place holder
-
-        returnList.add(a);
-        returnList.add(b);
-
-        for(Integer i = 0; i &lt; n-2; i++){
-
-            c = a + b;
-            returnList.add(c);
-            a = b;
-            b = c;
-        }
-
-        return returnList;
-    }
-
-    public static List&lt;Integer&gt; fibonacci(Integer starter, Integer sizer){
-        List&lt;Integer&gt; returnList = new List&lt;Integer&gt;();
-
-        Integer a = 1, b = starter; //Initial numbers and place holders
-        Integer c = 0; //new number place holder
-
-        returnList.add(a);
-        returnList.add(b);
-
-        for(Integer i = 0; i &lt; sizer-2; i++){
-
-            c = a + b;
-            returnList.add(c);
-            a = b;
-            b = c;
-        }
-
-        return returnList;
-
-    }
-
-}
-```</code> </pre>
             <p>Congratulations! If you got your answers right, you have a clear understanding of basic programming concepts. It's okay to take more than ideal time to solve because as a first time programmer you will take time to form your solutions
               in code!</p>
 
