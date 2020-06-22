@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>VSCode Mini Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+
+  <!-- New Code-->
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+
+  <meta property="og:site_name" content="Admin2Dev" />
+
+  <meta property="og:title" content="VSCode Mini Course" /> <!-- Content Title-->
+  <meta property="og:description" content="Learn how to use VSCode with the Salesforce.com Platform" /> <!-- Content Description -->
+  <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png" />
+  <meta property="og:url" content="https://admin2dev.com/" />
+
+
+  <meta property="article:author" content="https://twitter.com/theharshdeep" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VSCode Mini Course" /> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Learn how to use VSCode with the Salesforce.com Platform" /> <!-- Twitter description -->
+  <meta name="twitter:url" content="https://admin2dev.com" />
+  <meta name="twitter:label1" content="Written by" />
+  <meta name="twitter:data1" content="Harshdeep Singh Hura" />
+  <meta name="twitter:label2" content="Filed under" />
+  <meta name="twitter:data2" content="VSCode Tutorials" />
+  <meta name="twitter:site" content="@theharshdeep" />
+  <meta name="twitter:creator" content="@theharshdeep" />
+  <meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- New Code-->
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.png" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../learn/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li class="header-nav-dropdown">
+                  <svg role="img" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z"></path>
+                  </svg>
+                  <ul>
+                    <li> <a href="../terms.html">Terms of Service</a> </li>
+                    <li> <a href="../privacy.html">Privacy Policy</a> </li>
+                  </ul>
+                </li>
+
+              </ul>
+              <ul>
+                <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Setting up VSCode for Salesforce Development</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <p>Take this scenario. You have just built up this interest in coffee and now you want to expand from your instant coffee powder and milk, into something more <em>serious</em>. You go online, search for local coffee breweries and schedule
+              a coffee training programme with them. A week later, you have a sophisticated coffee making process that's unique to you. Your coffee is made in a vaccum chamber so you get every last drop of coffee from your beans before you stir it up
+              into the perfect shot of espresso.</p>
+            <p>Your toolset matters. Sure the developer console is a great <em>instant coffee mix</em>, you need something more powerful because developer console can only take you so far. When you start growing as a developer, you crave for that
+              perfect place to build and debug your programs and this mini course introduces you to your <em>vaccum chamber</em> to brew your coffee.</p>
+            <p><strong>Visual Studio Code</strong></p>
+            <p>Visual Studio Code, or VSCode, is an IDE built and published by Microsoft and is available for free. The great thing about VSCode is it's really customizable and the industry is quickly embracing VSCode as a standard IDE outside of the
+              developer console. Now, let's setup VSCode.</p>
+            <p>First, we need to download JDK or Java Development Kit from Oracle's website available <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html" target="_blank">here</a>. Even if you do have JDK installed, install
+              it again. This
+              is to ensure you're always on the latest version of the software and really, it's just easier that way. I've seen people run into issues and not be able to figure things out for weeks at a time, only to then completely reset their
+              system and start their machines from scratch.</p>
+            <p>Now download VSCode from their <a href="https://code.visualstudio.com" target="_blank">Visual Studio's Website</a> for your platform and install and open it.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/1/1.png" width=100% alt="">
+            </figure>
+
+
+            <p>The first thing to do after you install and open it, is to go in <code>Settings</code> and in <code>Commonly Used</code> section, change <code>Auto Save</code> to any option you prefer. I have kept it on <code>afterDelay</code> set to
+              <code>10000</code> so I don't have to worry about saving the file I am working on. The delay is in ms where 1 second = 1000 ms, so autosaving my file every 10 seconds works well.</p>
+
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/1/2.png" width=100% alt="">
+              </figure>
+
+            <p>Now open the extensions section and search for <code>Salesforce Extension Pack</code> and install it.
+
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/1/3.png" width=100% alt="">
+              </figure>
+
+            <p>While that is installing, we need Salesforce CLI tools on our machine. Head over to <a href="https://developer.salesforce.com/tools/sfdxcli" target="_blank">Salesforce CLI Website</a> and install it for your platform.</p>
+            <p>Once done, it will show a pop up on bottom right off your screen.
+
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/1/4.png" width=100% alt="">
+              </figure>
+
+            <p><strong>Restart your computer.</strong> I've noticed this with multiple instances that developers don't restart their computer for days and run into errors, and yes, I've helped debug people from our <a
+                href="https://discord.gg/5ndr5F8">Discord community</a> with this, where the solution was simply, restart your computer. After your restart, open VSCode and press <code>Command + Shift + P</code> for macOS users or <code>Control +
+                Shift + P</code> for Windows users and type <code>SFDX</code>. If you see commands popping up, you have correctly configured everything!</p>
+                <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/1/5.png" width=100% alt="">
+                </figure>
+
+            <p>In the next chapter, we go over the UI and customize VSCode to suit our needs.</p>
+
+
+            <a href="2.html" class="global-button"> Chapter 2: Understanding the UI</a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../assets/js/global.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>VSCode Mini Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+
+  <!-- New Code-->
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+
+  <meta property="og:site_name" content="Admin2Dev" />
+
+  <meta property="og:title" content="VSCode Mini Course" /> <!-- Content Title-->
+  <meta property="og:description" content="Learn how to use VSCode with the Salesforce.com Platform" /> <!-- Content Description -->
+  <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png" />
+  <meta property="og:url" content="https://admin2dev.com/" />
+
+
+  <meta property="article:author" content="https://twitter.com/theharshdeep" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VSCode Mini Course" /> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Learn how to use VSCode with the Salesforce.com Platform" /> <!-- Twitter description -->
+  <meta name="twitter:url" content="https://admin2dev.com" />
+  <meta name="twitter:label1" content="Written by" />
+  <meta name="twitter:data1" content="Harshdeep Singh Hura" />
+  <meta name="twitter:label2" content="Filed under" />
+  <meta name="twitter:data2" content="VSCode Tutorials" />
+  <meta name="twitter:site" content="@theharshdeep" />
+  <meta name="twitter:creator" content="@theharshdeep" />
+  <meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- New Code-->
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body class="page-template page-style-guide global-hash-authors-link global-hash-full-image global-hash-tags-link">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <h1 class="is-logo"><a href="../index.html"><img src="../images/logo.png" alt="Admin2Dev Logo"></a></h1>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../learn/index.html">Learn</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li class="header-nav-dropdown">
+                  <svg role="img" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z"></path>
+                  </svg>
+                  <ul>
+                    <li> <a href="../terms.html">Terms of Service</a> </li>
+                    <li> <a href="../privacy.html">Privacy Policy</a> </li>
+                  </ul>
+                </li>
+
+              </ul>
+              <ul>
+                <li><a class="signin global-hover" href="https://discord.gg/5ndr5F8">Join The Community</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header">
+            <div class="post-title-wrap">
+              <div class="post-title-content">
+                <h1 class="post-title global-title">Connecting to Salesforce Org</h1>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>These are steps to connect your VSCode instance to your org. There's nothing to understand here, just standard steps to follow.</p>
+            <p>Open VSCode and press <code>Command + Shift + P</code> for macOS users or <code>Control + Shift + P</code> for Windows users and search for <code>SFDX: Create a new project with manifest</code>.</p>
+
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/1.png" width=100% alt="">
+            </figure>
+
+            <p>After a few seconds, you will be greeted with three options. Choose <code>Empty</code></p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/2.png" width=100% alt="">
+            </figure>
+
+            <p>It will then ask you to name your project. We will be connecting to our developer org, so let's name it <code>My Developer Org</code></p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/3.png" width=100% alt="">
+            </figure>
+
+            <p>Next, it will open your file explorer and ask you where you want to save your project folder. I usually make a new folder in my Desktop called <code>vscode folder</code> and save it inside the folder. Your project folder will include all the
+              files that you will be writing and uploading, so make sure you save it in a place you can easily access and remember.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/4.png" width=100% alt="">
+            </figure>
+
+            <p>Once that is done, you will be greeted with a similar screen:</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/5.png" width=100% alt="">
+            </figure>
+
+            <p>Press <code>Command + Shift + P</code> for macOS users or <code>Control + Shift + P</code> for Windows users and search for <code>SFDX: Authorize an org</code>.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/6.png" width=100% alt="">
+            </figure>
+
+            <p>Select Custom</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/7.png" width=100% alt="">
+            </figure>
+
+
+            <p>Now we need to grab the URL of our developer org. For this, sign in to your developer org, open Setup and Switch to Salesforce Classic. Once there, copy the first part of the url. For my case, my full url is
+              <code>https://ap4.salesforce.com/home/home.jsp?source=lex</code> but I need only the <code>https://ap4.salesforce.com</code>. This will be different for everyone, but the format stays the same. It's always
+              <code>https://xxx.salesforce.com</code>.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/8.png" width=100% alt="">
+            </figure>
+
+            <p>Copy that URL into the custom login URL section of VSCode and press enter.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/9.png" width=100% alt="">
+            </figure>
+
+            <p>Now we need to name this org. I am naming mine <code>DeveloperOrg</code> and press enter.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/10.png" width=100% alt="">
+            </figure>
+
+            <p>This will trigger a login screen in your default browser, login and authorize <code>Salesforce CLI</code> to access your org.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/11.png" width=100% alt="">
+            </figure>
+
+            <p>Now, on your bottom blue bar, click on <code>No default org set</code></p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/12.png" width=100% alt="">
+            </figure>
+
+            <p>This will trigger a popup at top, select the <code>Developer Org - name@email.com</code> we just authorized</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/13.png" width=100% alt="">
+            </figure>
+
+            <p>If everything goes well, the bottom bar should update to look something like this:</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/14.png" width=100% alt="">
+            </figure>
+
+            <p>Your final screen should look similar to this:</p>
+            <ul>
+              <li>You have your project name open in the left panel in explorer with a bunch of folders like <code>.sfdx</code>, <code>config</code>, etc.</li>
+              <li>Your bottom bar displays the name of org you just connected.
+                <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/vscode/3/15.png" width=100% alt="">
+                </figure>
+            </ul>
+
+            <a href="4.html" class="global-button"> Chatper 4: Download existing code from org </a>
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../assets/js/global.js"></script>
+
+</body>
+
+</html>
