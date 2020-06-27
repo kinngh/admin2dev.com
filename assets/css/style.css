@@ -47,8 +47,8 @@
   --color-font-one: #f7f9f9;
   --color-font-two: #e4ebf2;
   --color-font-three: #182029;
-  --color-body: #182029;
-  --color-one: #1f2934;
+  --color-body: #000000;
+  --color-one: #02182B;
   --color-two: #1f2934;
   --color-three: #182029;
   --color-four: #f7f9f9;
@@ -744,7 +744,7 @@ input::placeholder, textarea::placeholder {
 .global-visibility.is-image {
   position: absolute;
   top: -35px;
-  color: var(--color-two)
+  color: var(--color-two);
 }
 
 @media (max-width:1024px) {
@@ -2778,14 +2778,15 @@ _:lang(x)::-moz-placeholder, .loop-item-wrap {
 .post-content code {
   font-size: 85%;
   padding: 2px 5px;
-  background-color: var(--color-one)
+  background-color: var(--color-five)
 }
 
 .post-content pre>code {
   display: block;
   padding: 10px 15px;
   white-space: pre-wrap;
-  border-radius: var(--border-radius)
+  border-radius: var(--border-radius);
+  background-color: var(--color-five)
 }
 
 .post-content p code {
