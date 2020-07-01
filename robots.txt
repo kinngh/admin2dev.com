@@ -3,4 +3,4 @@ Sitemap: https://admin2dev.com/sitemap.xml
 Disallow: README.md
 Disallow: /apex100/
 Disallow: /rest/
-Disallow: /learn/
+Disallow: /git-mini/
