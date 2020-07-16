@@ -127,11 +127,11 @@
             <pre><code>public class conUpdater {
     public static void updateAccount(String accString, String descString){
 
-      List&amp;lt;Account&amp;gt; accList = [SELECT ID, Name, (SELECT ID, Description FROM Contacts) FROM Account WHERE Name = :accString];
+      List&lt;Account&gt; accList = [SELECT ID, Name, (SELECT ID, Description FROM Contacts) FROM Account WHERE Name = :accString];
 
-      List&amp;lt;Contact&amp;gt; finalList = new List&amp;lt;Contact&amp;gt;();
+      List&lt;Contact&gt; finalList = new List&lt;Contact&gt;();
 
-      if (accList.size() &amp;gt; 0){
+      if (accList.size() &gt; 0){
         for(Contact iterator: accList[0].contacts){
           iterator.description = descString;
           finalList.add(iterator);
