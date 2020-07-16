@@ -115,7 +115,7 @@
 
             <p>This will return all contacts related to that account. Also notice how instead of Contact we used Contacts, this is because every subquery must be called by its plural name.</p>
             <p>Relationship queries can get a little tricky to store and access. Let's take our parent to child example where we are returning all contacts related to the GenePoint account and store it in a List of Account and output it in logs.</p>
-            <pre><code>List&amp;lt;Account&amp;gt; finalList = [SELECT ID, Name, (SELECT ID, LastName FROM Contacts) FROM Account WHERE Name = 'GenePoint'];
+            <pre><code>List&lt;Account&gt; finalList = [SELECT ID, Name, (SELECT ID, LastName FROM Contacts) FROM Account WHERE Name = 'GenePoint'];
 
 System.debug(finalList);</code></pre>
             <p>You will notice your log not returning the Contacts, but only information on the Account:</p>
@@ -132,7 +132,7 @@ System.debug(finalList);</code></pre>
 
             <p>Now let's add this to our code</p>
 
-            <pre><code>List&amp;lt;Account&amp;gt; finalList = [SELECT ID, Name, (SELECT ID, LastName FROM Contacts) FROM Account WHERE Name = 'GenePoint'];
+            <pre><code>List&lt;Account&gt; finalList = [SELECT ID, Name, (SELECT ID, LastName FROM Contacts) FROM Account WHERE Name = 'GenePoint'];
 
 System.debug(finalList);
 
@@ -158,7 +158,7 @@ Contact:{AccountId=0016F00002x0YX7QAM, Id=0036F00003XE2FLQA1, LastName=final})
             <pre><code>[SELECT Name__c, (SELECT ID, LastName FROM Contact__r) FROM Account__c WHERE Name__c = 'GenePoint'];
             </code></pre>
             <p>To output this data in log, we follow the same syntax as we did with sObjects.</p>
-            <pre><code>List&amp;lt;Account__c&amp;gt; finalList = [SELECT Name__c, (SELECT ID, LastName FROM Contact__r) FROM Account__c WHERE Name__c = 'GenePoint'];
+            <pre><code>List&lt;Account__c&gt; finalList = [SELECT Name__c, (SELECT ID, LastName FROM Contact__r) FROM Account__c WHERE Name__c = 'GenePoint'];
 
 System.debug(finalList);
 
