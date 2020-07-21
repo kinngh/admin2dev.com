@@ -102,33 +102,45 @@
           <div class="post-header">
             <div class="post-title-wrap">
               <div class="post-title-content">
-                <h1 class="post-title global-title">Introduction To Git</h1>
+                <h1 class="post-title global-title">Using Terminal / CLI</h1>
               </div>
             </div>
           </div>
           <div class="post-content">
+            <p>Using Terminal / Command Prompt may look super intimidating at first, but a terminal window is just a text version of using point and click tools. Think of it this way, everytime you create a new folder, it's running terminal commands
+              in the background. Using terminal directly means we are ditching point and click tools and becoming power users of our own system.</p>
+            <p>On <code>macOS</code> Go to Applications &gt; Utilities &gt; Terminal or use Spotlight search to open Terminal.
+              On <code>Windows</code>, press <code>Command</code> and <code>R</code> together, and type <code>cmd</code>.</p>
+            <p>Both tools are terminals, except they have different names but serve the same purpose. Let's learn some basic commands.</p>
+            <h2>CD</h2>
+            <p>CD stands for <code>Change Directory</code>. By default when you open a new terminal window, it opens in the root of user. To get to desktop, in your terminal type (case sensitive):</p>
+            <p>macOS: <code>cd Desktop</code> <br />
+              Windows: <code>cd C:\Users\(username)\Desktop</code></p>
 
-            <h2>What is Git</h2>
-            <p>Git is a version control system for tracking changes in code. While aimed at programmers, it can be used to track changes in almost any kind of file <a href="https://en.wikipedia.org/wiki/Git" target="_blank"><sup>1</sup></a>.</p>
-            <p>To use git, we need git providers. The three most popular git providers are</p>
-            <ul>
-              <li><a href="https://github.com" target="_blank">GitHub</a></li>
-              <li><a href="https://gitlab.com" target="_blank">GitLab</a></li>
-              <li><a href="https://bitbucket.org/" target="_blank">BitBucket</a></li>
-            </ul>
-            <p>So what's the difference between a git provider and git? Think of this as, git is your driving skills. You can drive any car you want. A git provider is a car. So you use your driving skills (git) to use a car (git provider).</p>
-            <h2>Why Git is necessary</h2>
-            <h3>Versioning</h3>
-            <p>Git is meant for tracking changes of your code. As needs evolve, so does code and sometimes you want to go back in time and reuse a piece of code that was removed or to track changes that were done by other team members.</p>
-            <h3>Collaboration</h3>
-            <p>With multiple branches and forks of the code, it is possible to create a personal version of the code and then have it merged with the <del>master</del> main branch.</p>
-            <h2>CLI</h2>
-            <p>We will be running git purely from the CLI, or Command Line Interface. it's the black window with white / green text we always see in hacker movies. It might get intimidating at first, but once you get the hang of it, CLI will be just
-              another tool in your arsenal as a developer.</p>
-            <h4>Note:</h4>
-            <p>This site, Admin2Dev, is completely managed on GitHub using Git and CLI! So Git isn't just another tool just for tracking changes, it can also be used to deploy websites and other content on production!</p>
+            <p>An alternative way to open Desktop folder in Windows is to type <code>cd</code> in terminal followed by a space and then dragging a folder in the terminal and removing the folder name before pressing enter.</p>
+            <p>To confirm the fact that you're now in the Desktop folder, in your terminal type:</p>
+            <p>macOS: <code>ls</code><br />
+              Windows: <code>dir</code></p>
+            <p>This will show you a list f all available files and folders inside the directory you're in!</p>
+            <p>To go up a level in the folder hierarchy, you use:</p>
+            <p>macOS: <code>cd ..</code><br />
+              Windows: <code>cd ..</code></p>
+            <p>This will change your directory to the folder that your current folder was in. So if you're in <code>Desktop &gt; Git</code> folder, using <code>cd..</code> will change your directory to <code>Desktop</code>.</p>
+            <h2>MKDIR</h2>
+            <p>MKDIR stands for <code>Make Directory</code>. This is used to make new folders at your current path. While still in Desktop, let's make a new folder called <code>git</code>. Make sure it's all small case so it's easier to type.</p>
+            <p>macOS: <code>mkdir git</code><br />
+              Windows: <code>mkdir git</code></p>
+            <p>Now in your desktop, a new folder called <code>git</code> has appeared!</p>
+            <h2>CLEAR / CLS</h2>
+            <p>The terminal window can get super messy very quick! To clear our current window:</p>
+            <p>macOS: <code>clear</code><br />
+              Windows: <code>cls</code></p>
+            <p>This clears up text from the terminal window and starts with a fresh looking screen.</p>
+            <p>We will be exploring more commands in Terminal / Command Prompt in the coming chapters</p>
 
-            <a href="2.html" class="global-button"> Chatper 2: Using Terminal / CLI </a>
+            <a href="https://discord.gg/5ndr5F8" target="_blank" class="global-button"> Join Discord Server to stay updated on Chapter 3</a>
+
+            <!-- <a href="3.html" class="global-button"> Chatper 3: Introduction to GitHub </a> -->
           </div>
         </article>
 
