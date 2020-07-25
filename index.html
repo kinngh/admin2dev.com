@@ -4,15 +4,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Admin2Dev | Learn Salesforce Development For Free</title>
+	<title>Admin2Dev | Learn programming on the Salesforce platform</title>
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css?family=Alata:400%7CMuli:400,400i,700,700i&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
+	<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&amp;family=Spartan:wght@500;600;700&amp;display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css">
 	<meta property="og:site_name" content="Admin2Dev" />
 	<meta property="og:title" content="Admin2Dev" /> <!-- Content Title-->
 	<meta property="og:description" content="Free Salesforce Programming tutorials for Administrators" /> <!-- Content Description -->
@@ -27,8 +23,6 @@
 	<meta name="twitter:url" content="https://admin2dev.com" />
 	<meta name="twitter:label1" content="Written by" />
 	<meta name="twitter:data1" content="Harshdeep Singh Hura" />
-	<meta name="twitter:label2" content="Filed under" />
-	<meta name="twitter:data2" content="Apex Tutorials" />
 	<meta name="twitter:site" content="@kinngh" />
 	<meta name="twitter:creator" content="@kinngh" />
 	<meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png" />
@@ -50,13 +44,18 @@
 
 </head>
 
-<body id="myBody"class="home-template global-hash-authors-link global-hash-full-image global-hash-tags-link">
+<body id="myBody"
+	class=" global-hash-post-card-amber global-hash-post-card-apricot global-hash-post-card-aqua global-hash-post-card-coral global-hash-post-card-cream global-hash-post-card-green global-hash-post-card-purple global-hash-post-card-raspberry global-hash-post-card-sky">
 	<div class="global-wrap">
 		<div class="global-content">
 			<header class="header-section">
 				<div class="header-wrap">
 					<div class="header-logo">
-						<h1 class="is-logo"><a href="index.html"><img src="images/logo.png" alt="Admin2Dev Logo"></a></h1>
+						<h1 class="is-image">
+							<a href="index.html">
+								<img src="./images/logo.png" alt="Admin2Dev">
+							</a>
+						</h1>
 					</div>
 					<div class="header-nav">
 						<input id="toggle" class="header-checkbox" type="checkbox">
@@ -69,77 +68,141 @@
 						</label>
 						<nav>
 							<ul>
-								<li><a href="index.html">Home</a></li>
+								<li><a href="index.html" class="is-active">Home</a></li>
 								<li><a href="learn/index.html">Learn</a></li>
-								<li><a href="about.html">About</a></li>
+								<li><a href="about/index.html">About</a></li>
 								<li class="header-nav-dropdown">
 									<svg role="img" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
-										<path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z"></path>
-									</svg>
+										<path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z" /></svg>
 									<ul>
-										<li> <a href="terms.html">Terms of Service</a> </li>
-										<li> <a href="privacy.html">Privacy Policy</a> </li>
+										<li><a href="terms.html">Terms Of Service</a></li>
+										<li><a href="privacy.html">Privacy Policy</a></li>
 									</ul>
 								</li>
-
 							</ul>
 							<ul>
-								<li><a onclick="darkMode()"> <img src="images/darkmode.png" width = 25></a></li>
+								<li class="signup global-button"><a href="https://discord.gg/5ndr5F8" target="_blank">Join The Community</a></li>
+								<li class="signin"><a onclick="darkMode()" id="darkModeText">Dark Mode</a></li>
 							</ul>
 						</nav>
 					</div>
 				</div>
 			</header>
 			<main class="global-main">
-				<div id="pinned" class="pinned-section">
-					<div class="pinned-wrap">
-						<div class="pinned-items is-cover">
-
-							<div class="pinned-item">
-								<a href="learn/index.html" class="global-link"></a>
-								<div class="pinned-image global-image">
-									<img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80" alt="Image">
-								</div>
-								<div class="pinned-content">
-									<h3 class="pinned-title">Start Learning Today!</h3>
-								</div>
+				<div class="pinned-section">
+					<div class="pinned-pages global-special">
+						<h2><span>Ongoing Course</span></h2>
+						<article class="item-1">
+							<h3><a href="git-mini/index.html" class="global-underline">Git and Collaboration Mini Course</a></h3>
+							<div class="global-meta">
+								<p>New chapter everyday!</p>
 							</div>
-
-
-							<div class="pinned-item">
-								<a href="https://discord.gg/5ndr5F8" class="global-link" target="_blank"></a>
-								<div class="pinned-image global-image">
-									<img src="https://images.unsplash.com/photo-1530043123514-c01b94ef483b?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="Image">
-								</div>
-								<div class="pinned-content">
-									<h3 class="pinned-title">Join our Discord Server</h3>
-								</div>
-							</div>
-
-
-						</div>
+						</article>
 					</div>
-					<div class="pinned-cover global-image">
-						<img src="images/home.jpg" alt="home"> </div>
+
+					<div class="pinned-posts global-special">
+						<h2><span>What's New</span></h2>
+						<article class="item-1">
+							<h3><a href="learn/index.html" class="global-underline">Start here</a></h3>
+							<div class="global-meta">
+								<p>New to programming, Admin? Click here to start!</p>
+							</div>
+						</article>
+						<article class="item-2">
+							<h3><a href="https://www.youtube.com/channel/UCTBnFY984EoR4gU6AiZ052A" target="_blank" class="global-underline">YouTube Live Streams!</a></h3>
+							<div class="global-meta">
+								<p>Subscribe for course videos and community live streams!</p>
+							</div>
+						</article>
+						<article class="item-3">
+							<h3><a href="https://discord.gg/5ndr5F8" class="global-underline" target="_blank">Need Help?</h3>
+							<div class="global-meta">
+								<p>Click to join our Discord Community!</p></a>
+							</div>
+						</article>
+
+					</div>
 				</div>
+				<div class="loop-section">
+					<div class="loop-wrap">
+						<article class="item is-hero is-first is-image post tag-story tag-art tag-creative tag-hash-post-card-gray">
+							<div class="item-container global-color">
+								<a class="item-image global-image global-color">
+									<img src="images/home_logo.png" alt="A2D Logo">
+								</a>
+								<div class="item-content">
+									<h2 class="item-title">
+										<a class="global-underline">Programming for Admins</a>
+									</h2>
+									<p class="item-excerpt">
+										Programming can be scary, but it doesn't have to be. Learn how to write your first set of code, for free.
+									</p>
+								</div>
+							</div>
+						</article>
+						<article class="item is-even is-image post tag-story tag-illustration tag-hash-post-card-apricot featured">
+							<div class="item-container">
+								<div class="item-content">
+									<h2 class="item-title">
+										<a class="global-underline">Learn At Your Pace</a>
+									</h2>
+									<p class="item-excerpt">
+										All chapters in a course are timed to take upto an hour everyday.
+									</p>
+								</div>
+							</div>
+						</article>
+						<article class="item is-odd is-image post tag-creative tag-product tag-hash-post-card-amber featured">
+							<div class="item-container">
+								<div class="item-content">
+									<h2 class="item-title">
+										<a class="global-underline">Join The Community</a>
+									</h2>
+									<p class="item-excerpt">
+										Join our free Discord server and interact with other professionals in the field and get help on a variety of topics.
+									</p>
+								</div>
+							</div>
+						</article>
+						<article class="item is-even is-image post tag-creative tag-review tag-story tag-hash-post-card-aqua">
+							<div class="item-container">
+								<div class="item-content">
+									<h2 class="item-title">
+										<a class="global-underline">Beginner Friendly</a>
+									</h2>
+									<p class="item-excerpt">
+										All starter courses have a pre-requisite that you are at least a Salesforce Certified Administrator.
+									</p>
+								</div>
+							</div>
+						</article>
+						<article class="item is-odd post tag-review tag-story tag-hash-post-card-amber no-image">
+							<div class="item-container">
+								<div class="item-content">
+									<h2 class="item-title">
+										<a class="global-underline">100% Free</a>
+									</h2>
+									<p class="item-excerpt">
+										All courses and course material is completely free for personal use.
+									</p>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+
+				<br />
 
 				<div class="subscribe-section">
 					<div class="subscribe-wrap">
-						<div class="subscribe-header">
-							<h3>Be a part of the community.</h3>
-						</div>
-						<div class="subscribe-claim is-cover">
-							<h3>Our Discord Server is where we share ideas, seek and get help, and more.<br /><a href="https://discord.gg/5ndr5F8" target="_blank"><u>Click here to join.</u></a></h3>
-							<div class="subscribe-cover global-image">
-								<img src="images/home.jpg"> </div>
-						</div>
 					</div>
 				</div>
 
 			</main>
 			<footer class="footer-section global-footer">
 				<div class="footer-copyright">
-					&copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+					&copy; Harshdeep Singh Hura. <br />
+					All Rights Reserved.
 				</div>
 			</footer>
 		</div>
