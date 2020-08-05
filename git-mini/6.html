@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Git and Collaboration Mini Course | Admin2Dev</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&amp;family=Spartan:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/stylesheet.css">
+
+  <!-- New Code-->
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+
+  <meta property="og:site_name" content="Admin2Dev" />
+
+  <meta property="og:title" content="Git and Collaboration Mini Course" /> <!-- Content Title-->
+  <meta property="og:description" content="Learn how to use Git and Collaborate with other developers" /> <!-- Content Description -->
+  <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png" />
+  <meta property="og:url" content="https://admin2dev.com/" />
+
+
+  <meta property="article:author" content="https://twitter.com/kinngh" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Git and Collaboration Mini Course" /> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Learn how to use Git and Collaborate with other developers" /> <!-- Twitter description -->
+  <meta name="twitter:url" content="https://admin2dev.com" />
+  <meta name="twitter:label1" content="Written by" />
+  <meta name="twitter:data1" content="Harshdeep Singh Hura" />
+  <meta name="twitter:label2" content="Filed under" />
+  <meta name="twitter:data2" content="Git and Collaboration Tutorials" />
+  <meta name="twitter:site" content="@kinngh" />
+  <meta name="twitter:creator" content="@kinngh" />
+  <meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112097931-2');
+  </script>
+
+</head>
+
+
+<body id="myBody"
+  class=" global-hash-post-card-amber global-hash-post-card-apricot global-hash-post-card-aqua global-hash-post-card-coral global-hash-post-card-cream global-hash-post-card-green global-hash-post-card-purple global-hash-post-card-raspberry global-hash-post-card-sky">
+  <div class="global-wrap">
+    <div class="global-content">
+      <header class="header-section">
+        <div class="header-wrap">
+          <div class="header-logo">
+            <a href="../index.html" class="is-image">
+              <img src="../images/logo.png" alt="Admin2Dev">
+            </a>
+          </div>
+          <div class="header-nav">
+            <input id="toggle" class="header-checkbox" type="checkbox">
+            <label class="header-toggle" for="toggle">
+              <span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
+            </label>
+            <nav>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../learn/index.html">Learn</a></li>
+                <li><a href="../about/index.html">About</a></li>
+                <li class="header-nav-dropdown">
+                  <svg role="img" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z" /></svg>
+                  <ul>
+                    <li><a href="../terms.html">Terms Of Service</a></li>
+                    <li><a href="../privacy.html">Privacy Policy</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="signup global-button"><a href="https://discord.gg/5ndr5F8" target="_blank">Join The Community</a></li>
+                <li class="signin"><a onclick="darkMode()" id="darkModeText">Dark Mode</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main class="global-main">
+        <article class="post-section">
+          <div class="post-header item is-hero is-page is-first post no-image page">
+            <div class="item-container global-color">
+              <div class="item-content">
+                <h2 class="item-title">Collaboration and Contribution</h2>
+              </div>
+            </div>
+          </div>
+          <div class="post-content">
+
+            <h1>Contributing to repos</h1>
+            <p>Now that we know the bare basics of using git, let's collaborate with other developers on the GitHub platform.</p>
+            <h2>Fork Repo</h2>
+            <p>Head over to <a href="https://github.com/Admin2Dev/learning-markdown">Admin2Dev Learning Markdown Repo</a> and on top right, click on <strong>Fork</strong>. To Fork a repo means to <em>creating an instance of the repo for your
+                use</em>, this is different from <em>cloning a repo</em> since that downloads from the server to our device.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/git/6/1.png" width=100% alt="image">
+            </figure>
+
+            <p>Notice how it says <code>forked from Admin2Dev/learning-markdown</code> right under the repo name on top left. What we have done at this point, is created an instance of the repo for ourselves. By doing this, we can work on this repo
+              however we want without affecting the original repo.</p>
+            <p>Let's make some changes. In our README.MD, let's add an extra line at the end and commit it. You can either use the edit button on GitHub or clone the repo on your machine and add/commit/push.</p>
+            <pre><code>&gt; May the Salesforce be with you!
+            </code></pre>
+            <h2>Pull Request</h2>
+            <p>A pull request from a fork is <em>notifying the repo owner to look into changes you've made, and add it to the main repo</em>. In this case, I am asking Admin2Dev, owner of the <em>learning-markdown</em> repo, to merge my changes into
+              their repository, so everyone who visits the repo sees this version.</p>
+            <p>Let's click on the <em>Pull Request</em> and submit a request.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/git/6/2.png" width=100% alt="image">
+            </figure>
+
+            <p>You'll notice it lists all changes made, along with a screen that compares what changes were made. In this case, we see a green line with our pun in it, indicating we added a new line in the README.MD file. Go ahead and click on
+              <em>Create Pull Request</em> and then explain what changes were made. This is particularly important because you need to document what changes you made to the codebase and <em>why</em> you made it.</p>
+            <p>Now let's switch to <em>Admin2Dev</em>'s (now referred to as A2D) side. A2D gets a notification that a new Pull Request was opened by <em>kinngh</em> to their <em>learning-markdown</em> repo.</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/git/6/3.png" width=100% alt="image">
+            </figure>
+
+            <p>Upon opening the notifcation, A2D is taken to the Pull Request page where they can see what changes were made, commit messages, who made the commits and other relevant info</p>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/git/6/4.png" width=100% alt="image">
+            </figure>
+
+            <p>Once they confirm the merge, the Pull Request will be closed and the status will be updated to <em>Merged</em>, and the code base was updated with the commit message <code>Merge pull request #1 from kinngh/master</code>. You can now
+              safely delete the original fork you made.</p>
+
+              <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/git/6/5.png" width=100% alt="image">
+              </figure>
+
+            <p>You can look at the git repos here:</p>
+            <ul>
+              <li><a href="https://github.com/kinngh/learning-markdown">kinngh/learning-markdown</a></li>
+              <li><a href="https://github.com/Admin2Dev/learning-markdown">Admin2Dev/learning-markdown</a></li>
+            </ul>
+
+            <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/git/6/6.png" width=100% alt="image">
+            </figure>
+            <h2>Contributing.md</h2>
+            <p>A lot of Open Source projects will have a file called <em>CONTRIBUTING.md</em> in their repo which outlines how you should be contributing. This includes ensuring tests are passed (like writing Test Classes for Apex), code is formatted
+              using a specific linter, among other guidelines. You can take a look at <a href="https://github.com/Alamofire/Almaofire">Alamofire/Alamofire</a> repo's <a
+                href="https://github.com/Alamofire/Alamofire/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> that outlines how to ask questions, reporting issues, reporting security issues, basic code of conduct, etc.</p>
+            <p>It's a good practice to follow pointers in a repo's CONTRIBUTING.md file before opening issues or pull requests.</p>
+            <h2>Licenses</h2>
+            <p>Not every piece of code on GitHub is available for commercial use, or even open source for that matter. A lot of projects post their codebase on GitHub for transparency purposes, which is why it's always a good idea to look into the
+              LICENSE.MD file of a repo, and <em>actually following it</em>. GitHub does a great job of detecting licenses and showing a quick summary of how the repo can be used, like this one from <a
+                href="https://github.com/plausible/analytics/blob/master/LICENSE.md">plausible/analytics</a></p>
+
+                <figure class="kg-card kg-image-card kg-card-hascaption"><img src="../images/git/6/7.png" width=100% alt="image">
+                </figure>
+
+
+
+            <p>Below is a list of sites you can read about the licenses in depth:</p>
+            <ul>
+              <li><a href="https://opensource.org/licenses">OpenSource.org</a></li>
+              <li><a href="https://medium.com/@moqod_development/understanding-open-source-and-free-software-licensing-c0fa600106c9">Understanding Open-Source and Free Software Licensing on Medium</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Open-source_license">Open-source license on Wikipedia</a></li>
+            </ul>
+
+
+
+
+            <a href="https://discord.gg/5ndr5F8" target="_blank" class="global-button"> Join our Discord Community!</a>
+
+          </div>
+        </article>
+
+      </main>
+      <footer class="footer-section global-footer">
+        <div class="footer-copyright">
+          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../assets/js/global.js"></script>
+
+</body>
+
+</html>

@@ -11,30 +11,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/stylesheet.css">
 
+  <!-- New Code-->
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 
   <meta property="og:site_name" content="Admin2Dev" />
 
-  <meta property="og:title" content="Git and Collaboration Mini Course" /> <!-- Content Title-->
-  <meta property="og:description" content="Learn Salesforce Programming For Free!" /> <!-- Content Description -->
+  <meta property="og:title" content="JavaScript Course" /> <!-- Content Title-->
+  <meta property="og:description" content="Learn how to write JavaScript" /> <!-- Content Description -->
   <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png" />
   <meta property="og:url" content="https://admin2dev.com/" />
 
 
   <meta property="article:author" content="https://twitter.com/kinngh" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Git and Collaboration Mini Course" /> <!-- Twitter Title -->
-  <meta name="twitter:description" content="Learn Salesforce Programming For Free!" /> <!-- Twitter description -->
+  <meta name="twitter:title" content="JavaScript Course" /> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Learn how to write JavaScript" /> <!-- Twitter description -->
   <meta name="twitter:url" content="https://admin2dev.com" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="Harshdeep Singh Hura" />
   <meta name="twitter:label2" content="Filed under" />
-  <meta name="twitter:data2" content="Git Tutorials" />
+  <meta name="twitter:data2" content="Git and Collaboration Tutorials" />
   <meta name="twitter:site" content="@kinngh" />
   <meta name="twitter:creator" content="@kinngh" />
   <meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+
+  <!-- New Code-->
+
+
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
@@ -88,7 +93,7 @@
               </ul>
               <ul>
                 <li class="signup global-button"><a href="https://discord.gg/5ndr5F8" target="_blank">Join The Community</a></li>
-                <li class="signin"><a onclick="darkMode()" id = "darkModeText">Dark Mode</a></li>
+                <li class="signin"><a onclick="darkMode()" id="darkModeText">Dark Mode</a></li>
               </ul>
             </nav>
           </div>
@@ -99,44 +104,34 @@
           <div class="post-header item is-hero is-page is-first post no-image page">
             <div class="item-container global-color">
               <div class="item-content">
-                <h2 class="item-title">Git and Collaboration Mini Course</h2>
+                <h2 class="item-title">JS Title</h2>
               </div>
             </div>
           </div>
           <div class="post-content">
-            <p>
-            <h4>Welcome to Git and Collaboration Mini Course! This is a free collection of tutorials, videos, tests and more all designed to help you learn using Git effectively.</h4>
-            </p>
-            <p>This mini course is written for SF <strike>Admins</strike> Developers who have completed the <a href="../apex-starter/index.html" target="_blank">Apex Starter Course</a> and <a href="../vscode-mini/index.html" target="_blank">VSCode
-                Mini Course</a></p>
-            <p>You can always tweet me <a href="https://twitter.com/kinngh" target="_blank">@kinngh</a> or join our <a href="https://discord.gg/5ndr5F8" target="_blank">Discord Server</a> for help.</p>
-            <p>Parts of this course was written live on our <a href="https://www.youtube.com/channel/UCTBnFY984EoR4gU6AiZ052A" target="_blank">YouTube Channel</a>! You should subscribe for more Salesforce Content and Live Streams!</p>
-            <hr>
-            <h3>Tools</h3>
-            <p>A list of tools that you will be using through out the course. There are chapters for setting up all the tools when we need them. </p>
-            <ul>
-              <li><a href="https://atom.io" target="_blank">Atom Text Editor</a> (Recommended)</li>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Editor</th>
+                    <th>Console</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td>
+                    <textarea id="jscontent" placeholder="Write Javascript Here!" rows=15 name="code" style="width: 100%;height:100%;resize:none;text-align:top;">console.log('a ha ha');</textarea>
+                  </td>
+                  <td id="log" style="text-align:top;width: 50%;height:100%;">
+                    console.
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <a class="global-button" onclick="clearLog()">Clear</a>
+            <a class="global-button" onclick="runCode()">Run</a>
 
-              <li><a href="https://git-scm.com/" target="_blank">Git SCM</a></li>
-
-              <li><a href="https://www.google.com/chrome/" target="_blank">Google Chrome Browser</a></li>
-              <ul>
-                <li><a href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp" target="_blank">Dark Mode for GitHub</a> (Recommended)</li>
-              </ul>
-            </ul>
-
-            <hr>
-
-            <h3>The Mini Course</h3>
-            <ul>
-              <li><a href="1.html">Chatper 1: Introduction to Git and CLI</a></li>
-              <li><a href="2.html">Chapter 2: Using Terminal / CLI</a></li>
-              <li><a href="3.html">Chapter 3: Introduction to GitHub</a></li>
-              <li><a href="4.html">Chapter 4: Markdown</a></li>
-              <li><a href="5.html">Chapter 5: Using Git</a></li>
-              <li><a href="6.html">Chapter 6: Collaboration and Contribution</a></li>
-              <ul>
-
+            <a href="https://discord.gg/5ndr5F8" target="_blank" class="global-button"> Join Discord Server to stay updated on Chapter n</a>
+            <!--            <a href=".html" class="global-button"> Chapter n: Title</a> -->
           </div>
         </article>
 
@@ -148,7 +143,9 @@
       </footer>
     </div>
   </div>
+
   <script src="../assets/js/global.js"></script>
+  <script src="js/compile.js"></script>
 
 </body>
 
