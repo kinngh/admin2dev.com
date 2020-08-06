@@ -407,7 +407,7 @@ ClassBatch batchVariable = new ClassBatch(queryString);
 Database.executeBatch(batchVariable);</code></pre>
             <p>Here we first define our query as a string and then create a new object of the class and pass a parameter. This means that <code>batchVariable</code> is an object of the class with <code>queryString</code> as an init method. This code
               is 'dangerous' on a longer term because it only iterates over Contact objects, and it's extremely easy to forget that and then run into errors.</p>
-            <h2>Summary</h2>
+            <h1>Summary</h1>
             <ul>
               <li>Governor Limits are put in place to ensure there's enough computing resources available for everyone.</li>
               <li>Batch Apex has three methods, <code>start()</code>, <code>execute()</code> and <code>finish()</code> that must be defined.</li>
