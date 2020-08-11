@@ -11,7 +11,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/stylesheet.css">
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- Quantcast Tag -->
+<script type="text/javascript">
+var _qevents = _qevents || [];
+
+(function() {
+var elem = document.createElement('script');
+elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+elem.async = true;
+elem.type = "text/javascript";
+var scpt = document.getElementsByTagName('script')[0];
+scpt.parentNode.insertBefore(elem, scpt);
+})();
+
+_qevents.push({
+qacct:"p-6fa2_AJhAp2eg",
+uid:"__INSERT_EMAIL_HERE__"
+});
+</script>
+
+<noscript>
+<div style="display:none;">
+<img src="//pixel.quantserve.com/pixel/p-6fa2_AJhAp2eg.gif" border="0" height="1" width="1" alt="Quantcast"/>
+</div>
+</noscript>
+<!-- End Quantcast tag -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -50,7 +75,8 @@
               <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../learn/index.html" class="is-active">Learn</a></li>
-                <li><a href="../about/index.html">About</a></li> <li><a href="https://ko-fi.com/admin2dev" target="_blank">Sponsor</a></li> 
+                <li><a href="../about/index.html">About</a></li>
+                <li><a href="https://ko-fi.com/admin2dev" target="_blank">Sponsor</a></li>
                 <li class="header-nav-dropdown">
                   <svg role="img" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z" /></svg>
@@ -62,7 +88,7 @@
               </ul>
               <ul>
                 <li class="signup global-button"><a href="https://discord.gg/5ndr5F8" target="_blank">Join The Community</a></li>
-                <li class="signin"><a onclick="darkMode()" id = "darkModeText">Dark Mode</a></li>
+                <li class="signin"><a onclick="darkMode()" id="darkModeText">Dark Mode</a></li>
               </ul>
             </nav>
           </div>
@@ -160,6 +186,65 @@
                 </div>
               </div>
             </article>
+            <!--
+          </div>
+        </div>
+
+        <div class="loop-section">
+          <div class="loop-wrap">
+          -->
+            <article class="item is-even is-image post tag-story tag-illustration tag-hash-post-card-aqua featured">
+              <div class="item-container">
+                <div class="item-content">
+                  <a href="../web-dev/index.html" class="item-image global-image global-color">
+                    <img src="../images/icons/apex.png" alt=" ">
+                  </a>
+                  <h2 class="item-title">
+                    <a href="../web-dev/index.html" class="global-underline">
+                      Intro to Web Development
+                    </a>
+                  </h2>
+                  <p class="item-excerpt">
+                    <a href="../web-dev/index.html">
+                      Learn the basics of HTML and CSS, and host your own portfolio on the internet!
+                    </a>
+                  </p>
+                  <div class="global-tags">
+                    <a class="global-tags-hash-sign">starter</a>
+                    <a class="global-tags-hash-sign">HTML</a>
+                    <a class="global-tags-hash-sign">CSS</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!--
+            <article class="item is-even is-image post tag-story tag-illustration tag-hash-post-card-aqua featured">
+              <div class="item-container">
+                <div class="item-content">
+                  <a href="../javascript/index.html" class="item-image global-image global-color">
+                    <img src="../images/icons/apex.png" alt=" ">
+
+                  </a>
+                  <h2 class="item-title">
+                    <a href="../javascript/index.html" class="global-underline">
+                      JavaScript
+                    </a>
+                  </h2>
+                  <p class="item-excerpt">
+                    <a href="../javascript/index.html">
+                      Learn the basics of JavaScript and add a new layer of interactivity to your portfolio!
+                    </a>
+                  </p>
+                  <div class="global-tags">
+                    <a class="global-tags-hash-sign">starter</a>
+                    <a class="global-tags-hash-sign">javascript</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          -->
+
+
           </div>
         </div>
 
