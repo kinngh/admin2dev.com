@@ -130,7 +130,7 @@ var jsonModel = (function() {
               "string" === typeof f ?
               (c += "\tpublic String " + g + ";\r\n") :
               "number" === typeof f || "boolean" === typeof f ?
-              (c += "\tpublic int " + g + ";\r\n") :
+              (c += "\tpublic integer " + g + ";\r\n") :
               "object" === typeof f &&
               ((c += "\tpublic List<" + h + "> " + g + ";\r\n"),
                 (b = F(h) + z(b, e) + "}\r\n"),
@@ -144,7 +144,7 @@ var jsonModel = (function() {
             (c =
               0 <= b.toString().indexOf(".") ?
               c + ("\tpublic double " + g + ";\r\n") :
-              c + ("\tpublic int " + g + ";\r\n")) :
+              c + ("\tpublic integer " + g + ";\r\n")) :
             "boolean" === typeof b &&
             (c += "\tpublic boolean " + g + ";\r\n");
         }
