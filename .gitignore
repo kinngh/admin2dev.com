@@ -1,4 +1,5 @@
 .DS_Store
 /templates/
 /javascript/
-/tools/
+/tools/rest/node_modules/
+/tools/rest/package-lock.json
