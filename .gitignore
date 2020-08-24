@@ -3,3 +3,5 @@
 /javascript/
 /tools/rest/node_modules/
 /tools/rest/package-lock.json
+/tools/node_modules/
+/tools/package-lock.json
