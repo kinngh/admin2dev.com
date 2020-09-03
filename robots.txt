@@ -1,3 +1,2 @@
 User-agent: *
 Sitemap: https://admin2dev.com/sitemap.xml
-Disallow: README.md
