@@ -1,43 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="fr-FR"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Apex Starter Course | Admin2Dev</title>
+  <title>Cours de démarrage Apex | Admin2Dev</title>
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&amp;family=Spartan:wght@500;600;700&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/stylesheet.css">
 
-  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 
-  <meta property="og:site_name" content="Admin2Dev" />
+  <meta property="og:site_name" content="Admin2Dev">
 
-  <meta property="og:title" content="Conditional Operators and Loops" /> <!-- Content Title-->
-  <meta property="og:description" content="Learn basics of creating Conditional Operators and running loops" /> <!-- Content Description -->
-  <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png" />
-  <meta property="og:url" content="https://admin2dev.com/" />
+  <meta property="og:title" content="Conditional Operators and Loops"> <!-- Content Title-->
+  <meta property="og:description" content="Learn basics of creating Conditional Operators and running loops"> <!-- Content Description -->
+  <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png">
+  <meta property="og:url" content="https://admin2dev.com/">
 
 
-  <meta property="article:author" content="https://twitter.com/kinngh" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Conditional Operators and Loops" /> <!-- Twitter Title -->
-  <meta name="twitter:description" content="Learn basics of creating Conditional Operators and running loops" /> <!-- Twitter description -->
-  <meta name="twitter:url" content="https://admin2dev.com" />
-  <meta name="twitter:label1" content="Written by" />
-  <meta name="twitter:data1" content="Harshdeep Singh Hura" />
-  <meta name="twitter:label2" content="Filed under" />
-  <meta name="twitter:data2" content="Apex Tutorials" />
-  <meta name="twitter:site" content="@kinngh" />
-  <meta name="twitter:creator" content="@kinngh" />
-  <meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="article:author" content="https://twitter.com/kinngh">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Conditional Operators and Loops"> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Learn basics of creating Conditional Operators and running loops"> <!-- Twitter description -->
+  <meta name="twitter:url" content="https://admin2dev.com">
+  <meta name="twitter:label1" content="Written by">
+  <meta name="twitter:data1" content="Harshdeep Singh Hura">
+  <meta name="twitter:label2" content="Filed under">
+  <meta name="twitter:data2" content="Apex Tutorials">
+  <meta name="twitter:site" content="@kinngh">
+  <meta name="twitter:creator" content="@kinngh">
+  <meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
 
@@ -47,12 +44,11 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-112097931-2');
-</script><script async src="https://hm-ackee.herokuapp.com/tracker.js" data-ackee-server="https://hm-ackee.herokuapp.com" data-ackee-domain-id="b76d74a9-da14-46a7-b30a-596c57329e5b"></script>
+</script><script async="" src="https://hm-ackee.herokuapp.com/tracker.js" data-ackee-server="https://hm-ackee.herokuapp.com" data-ackee-domain-id="b76d74a9-da14-46a7-b30a-596c57329e5b"></script>
 
 </head>
 
-<body id="myBody"
-  class=" global-hash-post-card-amber global-hash-post-card-apricot global-hash-post-card-aqua global-hash-post-card-coral global-hash-post-card-cream global-hash-post-card-green global-hash-post-card-purple global-hash-post-card-raspberry global-hash-post-card-sky">
+<body id="myBody" class="global-hash-post-card-amber global-hash-post-card-apricot global-hash-post-card-aqua global-hash-post-card-coral global-hash-post-card-cream global-hash-post-card-green global-hash-post-card-purple global-hash-post-card-raspberry global-hash-post-card-sky is-loaded">
   <div class="global-wrap">
     <div class="global-content">
       <header class="header-section">
@@ -73,22 +69,22 @@
             </label>
             <nav>
               <ul>
-                <li><a href="../index.html" >Home</a></li>
-                <li><a href="../learn/index.html">Learn</a></li>
-<li><a href="../tools/index.html">Tools</a></li>
-                 <li><a href="../sponsor/index.html">Sponsor</a></li>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../learn/index.html">Apprendre</a></li>
+<li><a href="../tools/index.html">Outils</a></li>
+                 <li><a href="../sponsor/index.html">Commanditaire</a></li>
                 <li class="header-nav-dropdown">
                   <svg role="img" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z" /></svg>
+                    <path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z"></path></svg>
                   <ul>
-                    <li><a href="../about/index.html">About</a></li><li><a href="../terms.html">Terms Of Service</a></li>
-                    <li><a href="../privacy.html">Privacy Policy</a></li>
+                    <li><a href="../about/index.html">À propos</a></li><li><a href="../terms.html">Conditions d'utilisation</a></li>
+                    <li><a href="../privacy.html">Politique de confidentialité</a></li>
                   </ul>
                 </li>
               </ul>
               <ul>
-                <li class="signup global-button"><a href="https://discord.gg/5ndr5F8" target="_blank">Join The Community</a></li>
-                <li class="signin"><a onclick="darkMode()" id = "darkModeText">Dark Mode</a></li>
+                <li class="signup global-button"><a href="https://discord.gg/5ndr5F8" target="_blank">Rejoignez la communauté</a></li>
+                <li class="signin"><a onclick="darkMode()" id="darkModeText">Mode sombre</a></li>
               </ul>
             </nav>
           </div>
@@ -99,44 +95,43 @@
           <div class="post-header item is-hero is-page is-first post no-image page">
             <div class="item-container global-color">
               <div class="item-content">
-                <h2 class="item-title">Conditional Operations, More Arithmetic Operations and Loops</h2>
+                <h2 class="item-title">Opérations conditionnelles, opérations plus arithmétiques et boucles</h2>
               </div>
             </div>
           </div>
           <div class="post-content">
-            <h3>Boolean Data Type</h3>
-            <p>The boolean data type can only hold values that are true or false. Here is a quick syntax:</p>
+            <h3>Type de données booléennes</h3>
+            <p>Le type de données booléennes ne peut contenir que des valeurs vraies ou fausses. Voici une syntaxe rapide :</p>
             <pre><code>Boolean variableName = value;</code> </pre>
             <ul>
-              <li><code>Boolean</code> is the data type declaration.</li>
-              <li><code>variableName</code> is the name assigned to the variable. </li>
-              <li><code>=</code> is to assign the value to the variable.</li>
+              <li><code>Boolean</code>est la déclaration de type de données.</li>
+              <li><code>variableName</code>est le nom attribué à la variable.</li>
+              <li><code>=</code>est d'attribuer la valeur à la variable.</li>
               <li><code>value</code> can only be <code>true</code> or <code>false</code> and doesn't use any <code>'</code>.</li>
             </ul>
-            <p>Here are quick examples of how to declare boolean variables:</p>
+            <p>Voici des exemples rapides de la façon de déclarer les variables booléennes :</p>
             <pre><code>Boolean a = true;
 Boolean b = false;</code></pre>
 
-            <h3>Comparison Operators</h3>
-            <p>We use comparison operators to compare the values of two similar variables. Comparison operators are an integral part of programming because it helps in running certain blocks of code when specific conditions are met. Here are
-              comparison operators:</p>
+            <h3>Opérateurs de comparaison</h3>
+            <p>Nous utilisons des opérateurs de comparaison pour comparer les valeurs de deux variables similaires. Les opérateurs de comparaison font partie intégrante de la programmation car ils aident à exécuter certains blocs de code lorsque des conditions spécifiques sont remplies. Voici les opérateurs de comparaison :</p>
             <ul>
               <li><code>==</code> is different from <code>=</code> operator. A single <code>=</code> assigns the value on the right to the variable on the left but the <code>==</code> operator checks if the value on the left <strong>IS EQUAL</strong>
                 to the value on the right. </li>
-              <li><code>!=</code> operator checks if the value on the right <strong>IS NOT EQUAL</strong> to the variable on the left. This returns true if the values are different, and false if the values are the same.</li>
-              <li><code>&gt;</code> operator checks if the value on the left is greater than variable on the left.</li>
-              </li>
-              <li><code>&lt;</code> operator checks if the value of the right is greater than the variable on the left.</li>
-              </li>
-              <li><code>&lt;=</code> operator checks if the value of the right is either greater than, or equal to the variable on the left.</li>
-              <li><code>&gt;=</code> operator checks if the value of the right is either smaller than, or equal to the variable on the left.</li>
-              </li>
-              <li><code>||</code> is called the OR operator. It takes two values on either side and checks returns true if either value is true, or both values are true and returns false if both values are false.</li>
-              <li><code>&amp;&amp;</code> is called the AND operator. It takes two values on either side and returns true if both values are true, and false if either value is false, or both values are false.</li>
+              <li><code>!=</code>vérifie si la valeur de droite N'EST<strong> PAS ÉGALE par rapport </strong>à la variable de gauche. Cela renvoie true si les valeurs sont différentes, et false si les valeurs sont les mêmes.</li>
+              <li><code>&gt;</code>vérifie si la valeur à gauche est supérieure à la variable à gauche.</li>
+
+              <li><code>&lt;</code>vérifie si la valeur de la droite est supérieure à la variable de gauche.</li>
+
+              <li><code>&lt;=</code>vérifie si la valeur de la droite est supérieure ou égale à la variable de gauche.</li>
+              <li><code>&gt;=</code>vérifie si la valeur de la droite est inférieure ou égale à la variable de gauche.</li>
+
+              <li><code>||</code>est appelé l'opérateur OU. Il prend deux valeurs de chaque côté et vérifie que true renvoie si l'une ou l'autre valeur est vraie, ou si les deux valeurs sont vraies et renvoie false si les deux valeurs sont fausses.</li>
+              <li><code>&amp;&amp;</code>s'appelle l'opérateur AND. Il prend deux valeurs de chaque côté et renvoie true si les deux valeurs sont vraies, et false si l'une ou l'autre valeur est fausse, ou les deux valeurs sont fausses.</li>
             </ul>
 
-            <h3>Conditionals</h3>
-            <p>A very widely used conditional is the <code>if-else</code> statement. It's very straight forward and simple to use. here is the syntax: </p>
+            <h3>Conditionnels</h3>
+            <p>Un conditionnel très largement utilisé est l'instruction <code>if-else</code>. C'est très simple et simple à utiliser. Voici la syntaxe :</p>
             <pre><code>if(condition){
   //run if code
 } else {
@@ -144,17 +139,15 @@ Boolean b = false;</code></pre>
 }</code></pre>
 
             <ul>
-              <li><code>if</code> declares the start of the condition.</li>
-              <li><code>(condition)</code> holds a combination of comparison operators and values/variables. If the condition evaluates to true, the if code block is run and if it's false, the entire code block is ignored and moves to else. It's a
-                good
-                practice to always keep the condition within brackets.</li>
-              <li><code>//run if code the</code> // symbol is used to comment in code. Anything towards the right side of the // in the line is not run by the computer.</li>
-              <li><code>else</code> is run if the first condition evaluates to false.</li>
-              <li><code>{ }</code> brackets are used to denote code blocks. </li>
+              <li><code>if</code>déclare le début de la condition.</li>
+              <li><code>(condition)</code>contient une combinaison d'opérateurs de comparaison et de valeurs/variables. Si la condition est évaluée à true, le bloc de code if est exécuté et s'il est false, le bloc de code entier est ignoré et passe à else. C'est une bonne pratique de toujours garder l'état entre parenthèses.</li>
+              <li><code>//run if code the</code>// symbole est utilisé pour commenter dans le code. Tout ce qui se trouve vers le côté droit de la // dans la ligne n'est pas exécuté par l'ordinateur.</li>
+              <li><code>else</code>est exécuté si la première condition est évaluée à false.</li>
+              <li><code>{ }</code>les crochets sont utilisés pour désigner les blocs de code.</li>
               <li>Notice there is no <code>;</code> to mark the end of the if-else condition. The values inside the code block, however, require <code>;</code>.</li>
             </ul>
 
-            <p>Here's an example to a simple if-else statement:</p>
+            <p>Voici un exemple d'une simple instruction if-else :</p>
             <pre><code>Integer a = 4;
 if (a==4){
   System.debug('A is 4!');
@@ -162,7 +155,7 @@ if (a==4){
   System.debug('A is not 4!');
 }</code> </pre>
 
-            <p>Change the value of a to any other value and see the results! The if-else statement can be chained to form bigger if-else statements:</p>
+            <p>Changez la valeur de a par n'importe quelle autre valeur et voyez les résultats ! L'instruction if-else peut être enchaînée pour former des instructions if-else plus grandes :</p>
             <pre><code>Integer a = 4;
 if (a==4){
     System.debug('A is 4!');
@@ -172,7 +165,7 @@ if (a==4){
     System.debug('A is not 4 or 5!');
 }</code> </pre>
 
-            <p>An if-else statement can also be used without the else statement.</p>
+            <p>Une instruction if-else peut également être utilisée sans l'instruction else.</p>
             <pre><code>Integer a = 4;
 if (a==4){
     System.debug('A is 4!');
@@ -180,7 +173,7 @@ if (a==4){
 if (a==5) {
     System.debug('A is 5!');
 }</code> </pre>
-            <p>If-else statements can be put inside each other. This is called a nested if-else statement.</p>
+            <p>Les instructions If-else peuvent être placées les unes dans les autres. C'est ce qu'on appelle une instruction imbriquée if-else.</p>
             <pre><code>Integer a = 4;
 if (a==4 || a == 5){
   if (a==4){
@@ -191,9 +184,9 @@ if (a==4 || a == 5){
 } else {
   System.debug('A is not 4 or 5');
 }</code></pre>
-            <p>The code uses an OR statement to check the value of a. Line 2 evaluates to true if a is either 4 or 5.</p>
+            <p>Le code utilise une instruction OU pour vérifier la valeur de a. La ligne 2 est évaluée à true si a vaut 4 ou 5.</p>
 
-            <p>Chaining if-else statements can get really complicated, and to deal with that, we use <code>switch</code> statements. Here is the syntax:</p>
+            <p>Enchaîner les instructions if-else peut devenir vraiment compliqué, et pour y faire face, nous utilisons des instructions <code>switch</code>. Voici la syntaxe :</p>
             <pre><code>switch on variableName{
     when value1{
       //run code block 1
@@ -206,13 +199,13 @@ if (a==4 || a == 5){
     }
 }</code> </pre>
             <ul>
-              <li><code>switch on</code> is used to declare we are making a switch statement</li>
-              <li><code>variableName</code> This is the variable we are runing the switch statement on.</li>
+              <li><code>switch on</code>est utilisé pour déclarer que nous faisons une instruction switch</li>
+              <li><code>variableName</code>C'est la variable sur laquelle nous exécutons l'instruction switch.</li>
               <li><code>when value1</code> if the value of variableName is value1, the <code>code block 1</code> is run</li>
-              <li><code>when else</code> this code block will run if the value of variableName isn't equal to any values.</li>
+              <li><code>when else</code>ce bloc de code s'exécutera si la valeur de variableName n'est égale à aucune valeur.</li>
             </ul>
 
-            <p>Here's an example</p>
+            <p>Voici un exemple</p>
             <pre><code>Integer a = 10;
 switch on a{
   when 10{
@@ -229,22 +222,20 @@ switch on a{
 }</code> </pre>
 
 
-            <h1>Summary</h1>
+            <h1>Résumé</h1>
             <ul>
-              <li>Booleans can only take true or false as their values.</li>
-              <li>Comparison operators help in comparing values.</li>
-              <li>if-else statements can be nested and can only be run as an if statement.</li>
-              <li>Switch statements are a good way to refactor if-else statements when they need to be nested a lot.</li>
+              <li>Les booléens ne peuvent prendre que true ou false comme valeurs.</li>
+              <li>Les opérateurs de comparaison aident à comparer les valeurs.</li>
+              <li>Les instructions if-else peuvent être imbriquées et ne peuvent être exécutées que comme une instruction if.</li>
+              <li>Les instructions Switch sont un bon moyen de refactoriser les instructions if-else lorsqu'elles ont besoin d'être beaucoup imbriquées.</li>
             </ul>
-            <a href="5.html" class="global-button"> Day 5: List, Set, Maps and For Loops</a>
+            <a href="5.html" class="global-button">Jour 5 : Liste, ensemble, cartes et boucles</a>
           </div>
         </article>
 
       </main>
       <footer class="footer-section global-footer">
-        <div class="footer-copyright">
-          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
-        </div>
+        <div class="footer-copyright">© <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br>Tous droits réservés.</div>
       </footer>
     </div>
   </div>
@@ -254,6 +245,7 @@ switch on a{
 
   <script src="../assets/js/global.js"></script>
 
-</body>
 
-</html>
+
+
+</body></html>
