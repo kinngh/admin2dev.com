@@ -38,7 +38,7 @@ e && (m || o || e.remove()), o && (t.style.flexBasis = "25%", n && (n.style.flex
 
 
 
-//Dark mode
+//Dunkler Modus
 
 var element = document.getElementById("myBody");
 var darkStorage = localStorage.getItem("darkMode");
@@ -47,14 +47,14 @@ var darkText = document.getElementById("darkModeText");
 if ((darkStorage == null) || (darkStorage == "disabled")) {
   localStorage.setItem("darkMode", "disabled");
   element.classList.remove("global-hash-dark-version");
-  darkText.textContent= "Dark Mode";
+  darkText.textContent= "Dunkler Modus";
 
 }
 
 if (darkStorage == "enabled") {
   localStorage.setItem("darkMode", "enabled");
   element.classList.add("global-hash-dark-version");
-  darkText.textContent= "Light Mode";
+  darkText.textContent= "Lichtmodus";
 }
 
 function darkMode() {
@@ -62,12 +62,12 @@ function darkMode() {
 
   if ((darkStorage == null) || (darkStorage == "disabled")) {
     localStorage.setItem("darkMode", "enabled");
-    darkText.textContent= "Light Mode";
+    darkText.textContent= "Lichtmodus";
   }
 
   if (darkStorage == "enabled") {
     localStorage.setItem("darkMode", "disabled");
-    darkText.textContent= "Dark Mode";
+    darkText.textContent= "Dunkler Modus";
   }
   element.classList.toggle("global-hash-dark-version");
 
