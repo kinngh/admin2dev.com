@@ -1,43 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="de-DE"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Apex Starter Course | Admin2Dev</title>
+  <title>Apex-Startkurs | Admin2Dev</title>
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&amp;family=Spartan:wght@500;600;700&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../assets/css/stylesheet.css">
 
-  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 
-  <meta property="og:site_name" content="Admin2Dev" />
+  <meta property="og:site_name" content="Admin2Dev">
 
-  <meta property="og:title" content="SOSL and Type Casting" /> <!-- Content Title-->
-  <meta property="og:description" content="Learn the basics of using SOSL search and Type Casting in Apex" /> <!-- Content Description -->
-  <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png" />
-  <meta property="og:url" content="https://admin2dev.com/" />
+  <meta property="og:title" content="SOSL and Type Casting"> <!-- Content Title-->
+  <meta property="og:description" content="Learn the basics of using SOSL search and Type Casting in Apex"> <!-- Content Description -->
+  <meta property="og:image" content="https://a2d-cdn.now.sh/web-image.png">
+  <meta property="og:url" content="https://admin2dev.com/">
 
 
-  <meta property="article:author" content="https://twitter.com/kinngh" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SOSL and Type Casting" /> <!-- Twitter Title -->
-  <meta name="twitter:description" content="Learn the basics of using SOSL search and Type Casting in Apex" /> <!-- Twitter description -->
-  <meta name="twitter:url" content="https://admin2dev.com" />
-  <meta name="twitter:label1" content="Written by" />
-  <meta name="twitter:data1" content="Harshdeep Singh Hura" />
-  <meta name="twitter:label2" content="Filed under" />
-  <meta name="twitter:data2" content="Apex Tutorials" />
-  <meta name="twitter:site" content="@kinngh" />
-  <meta name="twitter:creator" content="@kinngh" />
-  <meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="article:author" content="https://twitter.com/kinngh">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SOSL and Type Casting"> <!-- Twitter Title -->
+  <meta name="twitter:description" content="Learn the basics of using SOSL search and Type Casting in Apex"> <!-- Twitter description -->
+  <meta name="twitter:url" content="https://admin2dev.com">
+  <meta name="twitter:label1" content="Written by">
+  <meta name="twitter:data1" content="Harshdeep Singh Hura">
+  <meta name="twitter:label2" content="Filed under">
+  <meta name="twitter:data2" content="Apex Tutorials">
+  <meta name="twitter:site" content="@kinngh">
+  <meta name="twitter:creator" content="@kinngh">
+  <meta name="twitter:image" content="https://a2d-cdn.now.sh/web-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-112097931-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
 
@@ -47,12 +44,11 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-112097931-2');
-</script><script async src="https://hm-ackee.herokuapp.com/tracker.js" data-ackee-server="https://hm-ackee.herokuapp.com" data-ackee-domain-id="b76d74a9-da14-46a7-b30a-596c57329e5b"></script>
+</script><script async="" src="https://hm-ackee.herokuapp.com/tracker.js" data-ackee-server="https://hm-ackee.herokuapp.com" data-ackee-domain-id="b76d74a9-da14-46a7-b30a-596c57329e5b"></script>
 
 </head>
 
-<body id="myBody"
-  class=" global-hash-post-card-amber global-hash-post-card-apricot global-hash-post-card-aqua global-hash-post-card-coral global-hash-post-card-cream global-hash-post-card-green global-hash-post-card-purple global-hash-post-card-raspberry global-hash-post-card-sky">
+<body id="myBody" class="global-hash-post-card-amber global-hash-post-card-apricot global-hash-post-card-aqua global-hash-post-card-coral global-hash-post-card-cream global-hash-post-card-green global-hash-post-card-purple global-hash-post-card-raspberry global-hash-post-card-sky is-loaded">
   <div class="global-wrap">
     <div class="global-content">
       <header class="header-section">
@@ -73,13 +69,13 @@
             </label>
             <nav>
               <ul>
-                <li><a href="../index.html" >Home</a></li>
-                <li><a href="../learn/index.html">Learn</a></li>
-<li><a href="../tools/index.html">Tools</a></li>
-                 <li><a href="../sponsor/index.html">Sponsor</a></li> 
+                <li><a href="../index.html">Startseite</a></li>
+                <li><a href="../learn/index.html">Lernen</a></li>
+<li><a href="../tools/index.html">Werkzeuge</a></li>
+                 <li><a href="../sponsor/index.html">Sponsor</a></li>
                 <li class="header-nav-dropdown">
                   <svg role="img" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z" /></svg>
+                    <path d="M2 4A2 2 0 102.001.001 2 2 0 002 4zm8 0a2 2 0 10.001-3.999A2 2 0 0010 4zm8 0a2 2 0 10.001-3.999A2 2 0 0018 4z"></path></svg>
                   <ul>
                     <li><a href="../about/index.html">About</a></li><li><a href="../terms.html">Terms Of Service</a></li>
                     <li><a href="../privacy.html">Privacy Policy</a></li>
@@ -87,8 +83,8 @@
                 </li>
               </ul>
               <ul>
-                <li class="signup global-button"><a href="https://discord.gg/5ndr5F8" target="_blank">Join The Community</a></li>
-                <li class="signin"><a onclick="darkMode()" id = "darkModeText">Dark Mode</a></li>
+                <li class="signup global-button"><a href="https://discord.gg/5ndr5F8" target="_blank">Treten Sie der Community bei</a></li>
+                <li class="signin"><a onclick="darkMode()" id="darkModeText">Dunkler Modus</a></li>
               </ul>
             </nav>
           </div>
@@ -99,48 +95,44 @@
           <div class="post-header item is-hero is-page is-first post no-image page">
             <div class="item-container global-color">
               <div class="item-content">
-                <h2 class="item-title">SOSL and Type Casting</h2>
+                <h2 class="item-title">SOSL und Type Casting</h2>
               </div>
             </div>
           </div>
           <div class="post-content">
 
-            <h2>Salesforce Object Search Language</h2>
-            <p>SOSL (Salesforce Object Search Language) performs text searches in records, and queries multiple types of objects at the same time.</p>
+            <h2>Salesforce-Objektsuchsprache</h2>
+            <p>SOSL (Salesforce Object Search Language) führt Textsuchen in Datensätzen durch und fragt mehrere Objekttypen gleichzeitig ab.</p>
             <pre><code>FIND {keyword} IN ALL FIELDS RETURNING ObjectName(returnFields);</code></pre>
             <ul>
-              <li><code>FIND</code> is the keyword to initiate a SOSL query.</li>
-              <li><code>{keyword}</code> is the string we are looking for.</li>
-              <li><code>IN</code> what fields are we looking in</li>
-              <li><code>ALL</code> keyword for searching through all Objects’ fields</li>
-              <li><code>FIELDS</code> keyword stating we are searching in fields</li>
-              <li><code>RETURNING</code> keyword for what values we want to return</li>
-              <li><code>ObjectName(returnFields)</code> returns the fields from Object when there is a match</li>
+              <li><code>FIND</code>Ist das Schlüsselwort, um eine SOSL-Abfrage zu initiieren.</li>
+              <li><code>{keyword}</code>Ist die Schnur, nach der wir suchen.</li>
+              <li><code>IN</code>In welchen Bereichen suchen wir</li>
+              <li><code>ALL</code>Schlüsselwort für die Suche in allen Feldern der Objekte</li>
+              <li><code>FIELDS</code>Schlüsselwort, das besagt, dass wir in Feldern suchen</li>
+              <li><code>RETURNING</code>Schlüsselwort für welche Werte wir zurückgeben möchten</li>
+              <li><code>ObjectName(returnFields)</code>Gibt die Felder aus Objekt zurück, wenn eine Übereinstimmung vorliegt</li>
             </ul>
-            <p>Let’s run an example in the <em>Query Editor</em> of Developer Console to first see what our query returns. To do this, open Developer Console and select <em>Query
-                Editor</em> from the bottom tab:</p>
+            <p>Führen wir ein Beispiel im <em>Abfrage-Editor </em>der Entwicklerkonsole aus, um zuerst zu sehen, was unsere Abfrage zurückgibt. Öffnen Sie dazu die Entwicklerkonsole und wählen Sie auf der unteren Registerkarte <em>Abfrage-Editor</em>:</p>
             <pre><code>FIND {Test} IN ALL FIELDS RETURNING Contact(LastName, Phone, Email);</code></pre>
-            <p>This returns a list of all contacts that have test in their last name, field or email. Let’s save this in a List of List of sObjects and then into a variable of Contact
-              array type:</p>
+            <p>Dies gibt eine Liste aller Kontakte zurück, deren Nachname, Feld oder E-Mail getestet wurde. Speichern wir dies in einer Liste der sObjects und dann in einer Variablen vom Array-Typ Contact:</p>
             <pre><code>List&lt;List&lt;sObject&gt;&gt; searchList = FIND {Test} IN ALL FIELDS RETURNING Contact(LastName, Phone, Email);
 
 Contact[] con = (Contact[])searchList[0];
 </code></pre>
-            <p>In line 1, we make a List of List of sObjects to store all values that out SOSL query returns. The sObject type allows us to store virtually any standard object instead of a
-              specific one.<br>
+            <p>In Zeile 1 erstellen wir eine Liste der Listen der sObjects, um alle Werte zu speichern, die die SOSL-Abfrage zurückgibt. Der sObject-Typ ermöglicht es uns, praktisch jedes Standardobjekt statt eines bestimmten zu speichern.<br>
               In line 2, we convert our <code>searchList</code> into a Contact Object type. The conversion of a value from one data type to another is called <em>Type Casting</em>.</p>
             <hr>
-            <h2>Type Casting</h2>
-            <p>The process of changing a value from one data type to another is called Type casting. To put simply in coffee terms, if you grind your coffee beans roughly and want only the
-              coffee dust to pass through, you put the entire mixture through a strainer and allow only coffee dust to get in the other container. The syntax is:</p>
+            <h2>Typ Casting</h2>
+            <p>Der Prozess des Änderns eines Werts von einem Datentyp in einen anderen wird Type Casting genannt. Um einfach nur Kaffee zu sagen: Wenn Sie Ihre Kaffeebohnen grob mahlen und nur den Kaffeestaub durchdringen möchten, geben Sie die gesamte Mischung durch ein Sieb und lassen nur Kaffeestaub in den anderen Behälter gelangen. Die Syntax lautet:</p>
             <pre><code>dataType variableName = (dataType) valueOrVariableToConvert;
 </code></pre>
             <ul>
-              <li><code>dataType</code> in both cases is the data type we want to convert the variable/value into</li>
-              <li><code>variableName</code> is the name of converted variable/value</li>
-              <li><code>valueOrVariableToConvert</code> is the variable or value we want to convert.</li>
+              <li><code>dataType</code>In beiden Fällen ist der Datentyp, in den wir die Variable/den Wert konvertieren möchten</li>
+              <li><code>variableName</code>Ist der Name der konvertierten Variablen/Werte</li>
+              <li><code>valueOrVariableToConvert</code>Ist die Variable oder der Wert, den wir konvertieren möchten.</li>
             </ul>
-            <p>Let’s convert a simple Decimal into an Integer.</p>
+            <p>Konvertieren wir ein einfaches Dezimalzeichen in eine Ganzzahl.</p>
             <pre><code>Decimal value1 = 45.115;
 Integer value2 = (Integer) value1;
 System.debug('The decimal is: '+ value1 + '. The integer is: ' + value2);
@@ -149,15 +141,15 @@ System.debug('The decimal is: '+ value1 + '. The integer is: ' + value2);
             <p>Type casting works within reason and can only convert comparable types, for example a
               String cannot be converted to an Integer even if the value of String is <code>45</code>.</p>
             <hr>
-            <p>When an SOSL query returns multiple objects, the array is indexed in the same order as the order of Objects returned in the query.</p>
+            <p>Wenn eine SOSL-Abfrage mehrere Objekte zurückgibt, wird das Array in der gleichen Reihenfolge indiziert wie die Reihenfolge der in der Abfrage zurückgegebenen Objekte.</p>
             <pre><code>List&lt;List&lt;sObject&gt;&gt; searchList = [FIND 'test*' IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity];
 
 Account[] accList = (Account[])searchList[0];
 Contact[] conList = (Contact[])searchList[1];
 Opportunity[] oppList = (Opportunity[])searchList[2];
 </code></pre>
-            <p>Notice how the counting always starts from 0 and not 1.</p>
-            <h2>SOSL vs SOQL</h2>
+            <p>Beachten Sie, dass die Zählung immer bei 0 und nicht bei 1 beginnt.</p>
+            <h2>SOSL gegen SOQL</h2>
             <div class="responsive-table">
               <table>
                 <thead>
@@ -168,62 +160,56 @@ Opportunity[] oppList = (Opportunity[])searchList[2];
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Search across multiple objects</td>
-                    <td>Search one object at a time</td>
+                    <td>Suche über mehrere Objekte hinweg</td>
+                    <td>Ein Objekt nach dem anderen durchsuchen</td>
                   </tr>
                   <tr>
-                    <td>Returns a List of List with multiple objects in order</td>
-                    <td>Returns a single List</td>
+                    <td>Gibt eine Liste der Listen mit mehreren Objekten in der Reihenfolge zurück</td>
+                    <td>Gibt eine einzelne Liste zurück</td>
                   </tr>
                   <tr>
-                    <td>Queries can be run on unrelated objects</td>
-                    <td>Queries can be run on single or related objects only</td>
+                    <td>Abfragen können für nicht verwandte Objekte ausgeführt werden</td>
+                    <td>Abfragen können nur für einzelne oder verwandte Objekte ausgeführt werden</td>
                   </tr>
                   <tr>
-                    <td>Can run across the entire org if necessary, knowledge of exact location of data is optional</td>
-                    <td>The location of data must be known</td>
+                    <td>Kann bei Bedarf über die gesamte Organisation laufen, die Kenntnis des genauen Standorts der Daten ist optional</td>
+                    <td>Der Speicherort der Daten muss bekannt sein</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <h1>Summary</h1>
-            <p>From the official documentation <a href="https://resources.docs.salesforce.com/sfdc/pdf/salesforce_large_data_volumes_bp.pdf"> available here, page 11</a></p>
-            <h3>Use SOQL when</h3>
+            <h1>Zusammenfassung</h1>
+            <p>Aus der offiziellen Dokumentation, die <a href="https://resources.docs.salesforce.com/sfdc/pdf/salesforce_large_data_volumes_bp.pdf">hier verfügbar ist, Seite 11</a></p>
+            <h3>Verwenden Sie SOQL, wenn</h3>
             <ul>
-              <li>You know in which objects or fields the data resides.</li>
-              <li>You want to retrieve data from a single object or from multiple objects that are related to one another.</li>
-              <li>You want to count the number of records that meet specified criteria.</li>
-              <li>You want to sort results as part of the query.</li>
-              <li>You want to retrieve data from number, date, or checkbox fields.</li>
+              <li>Sie wissen, in welchen Objekten oder Feldern sich die Daten befinden.</li>
+              <li>Sie möchten Daten von einem einzelnen Objekt oder von mehreren Objekten abrufen, die miteinander verbunden sind.</li>
+              <li>Sie möchten die Anzahl der Datensätze zählen, die bestimmte Kriterien erfüllen.</li>
+              <li>Sie möchten die Ergebnisse als Teil der Abfrage sortieren.</li>
+              <li>Sie möchten Daten aus Zahlen-, Datums- oder Kontrollkästchenfeldern abrufen.</li>
             </ul>
-            <h3>Use SOSL when</h3>
+            <h3>Verwenden Sie SOSL, wenn</h3>
             <ul>
-              <li>You don’t know in which object or field the data resides and you want to find it in the most efficient way possible.</li>
-              <li>You want to retrieve multiple objects and fields efficiently, and the objects may or may not be related to one another.</li>
-              <li>You want to retrieve data for a particular division in an organization using the divisions feature, and you want to find it in the most efficient way possible.</li>
+              <li>Sie wissen nicht, in welchem Objekt oder Feld sich die Daten befinden, und möchten sie so effizient wie möglich finden.</li>
+              <li>Sie möchten mehrere Objekte und Felder effizient abrufen, und die Objekte können miteinander in Beziehung stehen oder auch nicht.</li>
+              <li>Sie möchten Daten für eine bestimmte Abteilung in einer Organisation mit der Divisionsfunktion abrufen und sie so effizient wie möglich finden.</li>
             </ul>
-            <h3>Some additional considerations when using SOQL or SOSL:</h3>
+            <h3>Einige zusätzliche Überlegungen bei der Verwendung von SOQL oder SOSL:</h3>
             <ul>
-              <li>Both SOSL search queries and SOQL WHERE filters can specify text to look for. When a given search can use either language, SOSL is generally faster than SOQL if the
-                search expression uses leading wildcards or a CONTAINS term.</li>
-              <li>In some cases, when multiple WHERE filters are being used in SOQL, indexes cannot be used even though the fields in the WHERE clause may be indexed. In this situation,
-                decompose the single query into multiple queries each with one WHERE filter and then combine the results.</li>
-              <li>Executing a query with a null in a WHERE filter makes it impossible to use indexing. Such queries must scan the entire database to find appropriate records. Design the
-                data model not to rely on nulls as valid field values.</li>
-              <li>If dynamic values are being used for the WHERE field and null values can be passed in, don’t let the query run to determine there are no records; instead check for the
-                nulls and avoid the query if necessary.</li>
+              <li>Sowohl SOSL-Suchabfragen als auch SOQL WHERE-Filter können Text angeben, nach dem gesucht werden soll. Wenn eine bestimmte Suche eine der beiden Sprachen verwenden kann, ist SOSL im Allgemeinen schneller als SOQL, wenn der Suchausdruck führende Platzhalter oder einen CONTAINS-Begriff verwendet.</li>
+              <li>In einigen Fällen, wenn mehrere WHERE-Filter in SOQL verwendet werden, können Indizes nicht verwendet werden, obwohl die Felder in der WHERE-Klausel indiziert werden können. Zerlegen Sie in dieser Situation die einzelne Abfrage in mehrere Abfragen mit jeweils einem WHERE-Filter und kombinieren Sie dann die Ergebnisse.</li>
+              <li>Das Ausführen einer Abfrage mit einer Null in einem WHERE-Filter macht es unmöglich, die Indizierung zu verwenden. Solche Abfragen müssen die gesamte Datenbank scannen, um geeignete Datensätze zu finden. Entwerfen Sie das Datenmodell so, dass es sich nicht auf NULL als gültige Feldwerte stützt.</li>
+              <li>Wenn dynamische Werte für das WHERE-Feld verwendet werden und Nullwerte übergeben werden können, lassen Sie die Abfrage nicht laufen, um festzustellen, ob keine Datensätze vorhanden sind; überprüfen Sie stattdessen auf NULL und vermeiden Sie die Abfrage bei Bedarf.</li>
             </ul>
 
-            <a href="11.html" class="global-button"> Day 11: Apex Triggers and Order of Execution </a>
+            <a href="11.html" class="global-button">Tag 11: Apex-Trigger und Reihenfolge der Ausführung</a>
           </div>
         </article>
 
       </main>
       <footer class="footer-section global-footer">
-        <div class="footer-copyright">
-          &copy; <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br />All Rights Reserved.
-        </div>
+        <div class="footer-copyright">© <a href="http://harshdeephura.com" target="_blank">Harshdeep Singh Hura</a>.<br>Alle Rechte vorbehalten.</div>
       </footer>
     </div>
   </div>
@@ -233,6 +219,7 @@ Opportunity[] oppList = (Opportunity[])searchList[2];
 
   <script src="../assets/js/global.js"></script>
 
-</body>
 
-</html>
+
+
+</body></html>
