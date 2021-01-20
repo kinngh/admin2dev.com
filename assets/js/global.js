@@ -54,7 +54,7 @@ if ((darkStorage == null) || (darkStorage == "disabled")) {
 if (darkStorage == "enabled") {
   localStorage.setItem("darkMode", "enabled");
   element.classList.add("global-hash-dark-version");
-  darkText.textContent= "Mode lumière";
+  darkText.textContent= "Mode clair";
 }
 
 function darkMode() {
@@ -62,7 +62,7 @@ function darkMode() {
 
   if ((darkStorage == null) || (darkStorage == "disabled")) {
     localStorage.setItem("darkMode", "enabled");
-    darkText.textContent= "Mode lumière";
+    darkText.textContent= "Mode clair";
   }
 
   if (darkStorage == "enabled") {
